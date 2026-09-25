@@ -1,0 +1,43 @@
+<!-- To change to vertical go to app.js and change .html file -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timeline - MTech Thesis</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="timeline_hz.css" />
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+
+    <main class="panoramic-page">
+      <header class="timeline-header">
+        <h1>TIFR · TIMELINE</h1>
+      </header>
+
+      <div class="panoramic-viewport" id="panoramicViewport">
+        <div class="panoramic-track" id="panoramicTrack">
+          <!-- Central Guide Line with directional arrow -->
+          <div class="highway-line">
+            <div class="highway-arrow"></div>
+          </div>
+          <!-- Milestones injected via JS -->
+        </div>
+      </div>
+
+      <!-- Floating Hover Tooltip -->
+      <div id="eventTooltip" class="event-tooltip">
+        <div class="tooltip-date" id="tooltipDate"></div>
+        <h4 class="tooltip-title" id="tooltipTitle"></h4>
+        <div class="tooltip-body" id="tooltipBody"></div>
+      </div>
+    </main>
+
+    <script src="../app.js"></script>
+    <script src="timeline_hz.js"></script>
+    <script>
+      loadNavbar("../");
+    </script>
+  </body>
+</html>

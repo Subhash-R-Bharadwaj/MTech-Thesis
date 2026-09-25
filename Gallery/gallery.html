@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - MTech Thesis</title>
+    <!-- Root global styles -->
+    <link rel="stylesheet" href="../styles.css" />
+    <!-- Page-specific styles -->
+    <link rel="stylesheet" href="gallery.css" />
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+
+    <main class="page-content">
+      <header class="gallery-header">
+        <h1>Research & Results Gallery</h1>
+        <p>Plots, system architectures, and experiment visualizations.</p>
+      </header>
+
+      <!-- Image Grid -->
+      <section class="gallery-grid" id="galleryGrid">
+        <div
+          class="gallery-card"
+          data-title="Model Architecture"
+          data-desc="High-level block diagram of the proposed pipeline."
+        >
+          <div class="img-placeholder">Architecture Diagram</div>
+          <div class="card-meta">
+            <h3>Model Architecture</h3>
+            <p>System Overview</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-card"
+          data-title="Training Loss"
+          data-desc="Convergence comparison across 100 epochs."
+        >
+          <div class="img-placeholder">Loss Curve Plot</div>
+          <div class="card-meta">
+            <h3>Training Loss</h3>
+            <p>Evaluation Metric</p>
+          </div>
+        </div>
+
+        <div
+          class="gallery-card"
+          data-title="Confusion Matrix"
+          data-desc="Final classification metrics across test splits."
+        >
+          <div class="img-placeholder">Confusion Matrix</div>
+          <div class="card-meta">
+            <h3>Confusion Matrix</h3>
+            <p>Results Analysis</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal for Expanded Preview -->
+      <div id="galleryModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" id="closeModal">&times;</span>
+          <div id="modalVisual" class="modal-visual-placeholder"></div>
+          <h2 id="modalTitle"></h2>
+          <p id="modalDesc"></p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Root global script -->
+    <script src="../app.js"></script>
+    <!-- Page-specific script -->
+    <script src="gallery.js"></script>
+    <script>
+      loadNavbar("../");
+    </script>
+  </body>
+</html>

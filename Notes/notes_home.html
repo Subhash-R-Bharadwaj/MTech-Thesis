@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes - MTech Thesis</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="notes_home.css" />
+  </head>
+  <body class="notes-page-body">
+    <div id="navbar-container"></div>
+
+    <main class="page-content notes-container">
+      <header class="notes-header">
+        <h1>Project Notes</h1>
+        <p>Research documentation, experimental setups, and theoretical logs</p>
+      </header>
+
+      <!-- Search Input -->
+      <div class="search-box">
+        <input
+          type="text"
+          id="notesSearch"
+          placeholder="Search topics, setups, formulas..."
+        />
+      </div>
+
+      <!-- Bimonthly Navigation Buttons -->
+      <div class="button-group months-grid">
+        <a href="Jun_Jul/jun_jul.html" class="nav-btn">June - July</a>
+        <a href="Aug_Sep/aug_sep.html" class="nav-btn">August - September</a>
+        <a href="Oct_Nov/oct_nov.html" class="nav-btn">October - November</a>
+      </div>
+
+      <!-- Dictionary Trigger Button -->
+      <div class="button-group dictionary-container">
+        <button id="openDictionaryBtn" class="nav-btn dictionary-btn">
+          <span>📖 Topic Dictionary</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- Dictionary Pop-up Modal -->
+    <div id="dictionaryModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="header-left">
+            <h2>Topic Dictionary</h2>
+            <span class="topic-count" id="dictCount"></span>
+          </div>
+          <button
+            id="closeDictionaryBtn"
+            class="close-btn"
+            aria-label="Close modal"
+          >
+            &times;
+          </button>
+        </div>
+
+        <!-- Quick Alphabet Jump Bar -->
+        <nav id="alphabetNav" class="alphabet-nav"></nav>
+
+        <!-- Alphabetically Grouped Content Area -->
+        <div id="dictionaryList" class="dictionary-body"></div>
+      </div>
+    </div>
+
+    <script src="../app.js"></script>
+    <script src="notes_catalog.js"></script>
+    <script src="notes_home.js"></script>
+    <script>
+      loadNavbar("../");
+    </script>
+  </body>
+</html>

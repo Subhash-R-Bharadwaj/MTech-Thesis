@@ -1,0 +1,5 @@
+/* Custom styles specific to the home overview */
+.page-content h1 {
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}

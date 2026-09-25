@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>June - July Notes - MTech Thesis</title>
+
+    <!-- MathJax Configuration -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          packages: {
+            "[+]": ["amsmath", "amssymb", "amsbsy", "amsfonts", "textcomp"],
+          },
+        },
+        options: {
+          skipHtmlTags: [
+            "script",
+            "noscript",
+            "style",
+            "textarea",
+            "pre",
+            "code",
+          ],
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Root Global Stylesheet -->
+    <link rel="stylesheet" href="../../styles.css" />
+    <!-- Page-Specific Stylesheet -->
+    <link rel="stylesheet" href="jun_jul.css" />
+  </head>
+  <body>
+    <!-- Container where global top navbar will render -->
+    <div id="navbar-container"></div>
+
+    <div class="notes-layout">
+      <!-- Left Sidebar for Topics -->
+      <aside class="topics-sidebar">
+        <div class="sidebar-header">
+          <h3>June - July Topics</h3>
+        </div>
+        <ul id="topic-list" class="topic-list"></ul>
+        <a href="../notes_home.html" class="back-link">&larr; Back to Notes</a>
+      </aside>
+
+      <!-- Main Content Reader View -->
+      <main class="content-display">
+        <div id="rendered-output" class="paper-view"></div>
+      </main>
+    </div>
+
+    <!-- Global navbar logic -->
+    <script src="../../app.js"></script>
+    <!-- Page-specific script -->
+    <script src="jun_jul.js"></script>
+    <script>
+      loadNavbar("../../");
+    </script>
+  </body>
+</html>

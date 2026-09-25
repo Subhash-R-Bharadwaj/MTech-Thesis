@@ -1,0 +1,41 @@
+<!-- To change to horizontal go to app.js and change .html file -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timeline - MTech Thesis</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="timeline_vt.css" />
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+
+    <main class="spine-page">
+      <header class="timeline-header">
+        <h1>TIFR · TIMELINE</h1>
+      </header>
+
+      <div class="spine-timeline-container" id="spineContainer">
+        <!-- Neon spine running vertically -->
+        <div class="spine-line">
+          <div class="spine-arrow-top"></div>
+        </div>
+        <!-- Cards rendered here via JS -->
+      </div>
+
+      <!-- Floating Hover Tooltip -->
+      <div id="eventTooltip" class="event-tooltip">
+        <div class="tooltip-date" id="tooltipDate"></div>
+        <h4 class="tooltip-title" id="tooltipTitle"></h4>
+        <div class="tooltip-body" id="tooltipBody"></div>
+      </div>
+    </main>
+
+    <script src="../app.js"></script>
+    <script src="timeline_vt.js"></script>
+    <script>
+      loadNavbar("../");
+    </script>
+  </body>
+</html>

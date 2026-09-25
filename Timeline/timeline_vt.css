@@ -1,0 +1,177 @@
+.spine-page {
+  padding: 2.5rem 1.5rem 4rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: calc(100vh - 65px);
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.timeline-header h1 {
+  font-size: 2rem;
+  letter-spacing: 4px;
+  color: #f8fafc;
+}
+
+.timeline-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* Center spine container */
+.spine-timeline-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Central Line */
+.spine-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #334155;
+  border-left: 2px dashed #38bdf8;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.spine-arrow-top {
+  position: absolute;
+  top: -8px;
+  left: -5px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #38bdf8;
+}
+
+/* Row wrapper for each card */
+.spine-row {
+  position: relative;
+  display: flex;
+  width: 100%;
+  z-index: 2;
+}
+
+.spine-row.left {
+  justify-content: flex-start;
+}
+
+.spine-row.right {
+  justify-content: flex-end;
+}
+
+/* Node Card */
+.spine-card {
+  width: 44%;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.spine-card:hover {
+  transform: translateY(-3px);
+  border-color: #38bdf8;
+  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.25);
+}
+
+.node-date {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 0.35rem;
+}
+
+.node-title {
+  font-size: 0.9rem;
+  color: #f8fafc;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+/* Center anchor circle */
+.spine-node-dot {
+  position: absolute;
+  left: 50%;
+  top: 1.5rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 3px solid #38bdf8;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* Tooltip */
+.event-tooltip {
+  position: fixed;
+  display: none;
+  z-index: 2000;
+  background: #0b1120;
+  color: #e2e8f0;
+  border: 1px solid #38bdf8;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  max-width: 320px;
+  pointer-events: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.tooltip-date {
+  font-size: 0.75rem;
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.tooltip-title {
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin: 0.25rem 0 0.5rem 0;
+}
+
+.tooltip-body {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+/* Responsive: Collapse into a single left-aligned column on small screens */
+@media (max-width: 768px) {
+  .spine-line {
+    left: 20px;
+  }
+  .spine-node-dot {
+    left: 20px;
+  }
+  .spine-row.left,
+  .spine-row.right {
+    justify-content: flex-end;
+  }
+  .spine-card {
+    width: calc(100% - 48px);
+  }
+}
+
+.route-board-container,
+.panoramic-viewport,
+.flowchart-container {
+  -webkit-overflow-scrolling: touch;
+}
