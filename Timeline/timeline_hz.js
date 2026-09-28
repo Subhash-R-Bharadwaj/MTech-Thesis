@@ -1,5 +1,11 @@
 const timelineEvents = [
   {
+    id: 35,
+    date: "15/09/2026 - 25/09/2026",
+    title: "Paper Review and Presentation",
+    content: "Propagation of EM waves in plasma, Ponderomotive force, Linear plasma waves, Wakefield generation, etc., No practical/experimental work in this time. Only reading up and making notes. Presentations are very interesting and fun - to be able to discuss and understand physics of LWFA."
+  }
+  {
     id: 34,
     date: "10/09/2026",
     title: "ICPP Abstract and Presentation Paper",
