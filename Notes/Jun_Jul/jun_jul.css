@@ -183,28 +183,6 @@
   flex: 1;
 }
 
-.paper-view table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.75rem 0;
-  background: #0f172a;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.paper-view th,
-.paper-view td {
-  padding: 0.75rem 1rem;
-  border: 1px solid #334155;
-  text-align: left;
-}
-
-.paper-view th {
-  background: #1e293b;
-  font-weight: 600;
-  color: #f8fafc;
-}
-
 /* Real LaTeX Rendered Images */
 .paper-view .latex-img {
   max-width: 100%;
@@ -279,7 +257,7 @@
   }
 }
 
-/* LaTeX Table Container */
+/* Table container & scrolling */
 .paper-view .table-container {
   width: 100%;
   overflow-x: auto;
@@ -296,7 +274,7 @@
   font-size: 0.95rem;
 }
 
-/* First Row Headers */
+/* Header row styling */
 .paper-view tr:first-child td {
   background-color: #1e293b;
   font-weight: 700;
@@ -309,6 +287,7 @@
   color: #38bdf8;
 }
 
+/* Data cells */
 .paper-view td {
   padding: 0.85rem 1.15rem;
   border: 1px solid #334155;

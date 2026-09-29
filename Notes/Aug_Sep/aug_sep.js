@@ -1116,39 +1116,39 @@ function renderCurrentNote() {
   text = text.replace(
     /\\begin\{table\}(\[.*?\])?([\s\S]*?)\\end\{table\}/g,
     (_, __, inner) => {
-      // 1. Remove table wrapper commands and horizontal rules
-      let tableHtml = inner
-        .replace(
-          /\\centering|\\small|\\footnotesize|\\renewcommand\{.*?\}\{.*?\}/g,
-          "",
-        )
-        .replace(/\\toprule|\\midrule|\\bottomrule|\\hline/g, "");
-
-      // 2. Strip \begin{tabularx}{...} or \begin{tabular} along with any nested column specs up to the first cell or row
-      tableHtml = tableHtml.replace(
-        /\\begin\{(?:tabularx|tabular)\}[\s\S]*?(?=\\textbf|\\hline|\\toprule|[^\\{>\s@]|\\\\)/,
-        '<div class="table-container"><table><tbody><tr><td>',
-      );
-
-      // Fallback in case \begin{tabular...} remains
-      tableHtml = tableHtml.replace(
-        /\\begin\{(?:tabularx|tabular)\}[^>]*?>?\{[^}]*?\}/g,
+      let tableHtml = inner.replace(
+        /\\centering|\\small|\\footnotesize|\\renewcommand\{.*?\}\{.*?\}/g,
         "",
       );
 
-      // 3. Close the table
+      // Strip from \begin{tabularx} up to \toprule or \hline to safely consume the entire column spec
+      tableHtml = tableHtml.replace(
+        /\\begin\{(?:tabularx|tabular)\}[\s\S]*?(?:\\toprule|\\hline)/,
+        '<div class="table-container"><table><tbody><tr><td>',
+      );
+
+      // Fallback: If no \toprule exists, stop at the first \textbf{
+      tableHtml = tableHtml.replace(
+        /\\begin\{(?:tabularx|tabular)\}[\s\S]*?(?=\\textbf\{)/,
+        '<div class="table-container"><table><tbody><tr><td>',
+      );
+
+      // Remove midrules and bottomrules
+      tableHtml = tableHtml.replace(/\\midrule|\\bottomrule/g, "");
+
+      // Close the table
       tableHtml = tableHtml.replace(
         /\\end\{(?:tabularx|tabular)\}/g,
         "</td></tr></tbody></table></div>",
       );
 
-      // 4. Convert LaTeX linebreaks (\\\\) to table rows
+      // Convert LaTeX linebreaks (\\\\) to table rows
       tableHtml = tableHtml.replace(/\\\\(\s*\[.*?\])?/g, "</td></tr><tr><td>");
 
-      // 5. Convert LaTeX column separators (&) to table cells
+      // Convert LaTeX column separators (&) to table cells
       tableHtml = tableHtml.replace(/&/g, "</td><td>");
 
-      // 6. Parse formatting macros inside cells
+      // Parse formatting macros inside cells
       tableHtml = tableHtml.replace(
         /\\textbf\{([^}]+)\}/g,
         "<strong>$1</strong>",
@@ -1156,14 +1156,15 @@ function renderCurrentNote() {
       tableHtml = tableHtml.replace(/\\textit\{([^}]+)\}/g, "<em>$1</em>");
       tableHtml = tableHtml.replace(/\\newline|\\linebreak/g, "<br>");
 
-      // 7. Remove empty or phantom rows created by trailing newlines/rules
+      // Clean empty/phantom rows
       tableHtml = tableHtml.replace(/<tr>\s*<td>\s*<\/td>\s*<\/tr>/g, "");
 
       return tableHtml;
     },
   );
 
-  text = text.replace(/<table>[\s\S]*?<\/table>/g, protect);
+  // Protect the newly formed table container
+  text = text.replace(/<div class="table-container">[\s\S]*?<\/div>/g, protect);
 
   // 3. Strip preambles
   text = text.replace(/\\documentclass\{.*?\}/g, "");
@@ -1231,11 +1232,13 @@ function renderCurrentNote() {
 
   text = text.replace(/\\centering|\\hfill/g, "");
 
-  // 9. Restore all protected blocks (math & nested structures)
-  text = text.replace(
-    /%%%BLOCK_(\d+)%%%/g,
-    (_, id) => protectedBlocks[Number(id)],
-  );
+  // 9. Restore all protected blocks recursively (handles math nested inside tables)
+  while (text.includes("%%%BLOCK_")) {
+    text = text.replace(
+      /%%%BLOCK_(\d+)%%%/g,
+      (_, id) => protectedBlocks[Number(id)],
+    );
+  }
 
   target.innerHTML = text;
 

@@ -1684,46 +1684,55 @@ function renderCurrentNote() {
   text = text.replace(
     /\\begin\{table\}(\[.*?\])?([\s\S]*?)\\end\{table\}/g,
     (_, __, inner) => {
-      let tableHtml = inner
-        // Clean table-level rules and commands
-        .replace(
-          /\\centering|\\small|\\footnotesize|\\renewcommand\{.*?\}\{.*?\}/g,
-          "",
-        )
-        .replace(/\\toprule|\\midrule|\\bottomrule|\\hline/g, "");
+      let tableHtml = inner.replace(
+        /\\centering|\\small|\\footnotesize|\\renewcommand\{.*?\}\{.*?\}/g,
+        "",
+      );
 
-      // Match \begin{tabularx}{\textwidth}{...} or \begin{tabular}{...} including complex column specs like >{...}X @{}
+      // Strip from \begin{tabularx} up to \toprule or \hline to safely consume the entire column spec
       tableHtml = tableHtml.replace(
-        /\\begin\{(?:tabularx|tabular)\}(?:\{[\s\S]*?\})?\s*\{[\s\S]*?\}/g,
+        /\\begin\{(?:tabularx|tabular)\}[\s\S]*?(?:\\toprule|\\hline)/,
         '<div class="table-container"><table><tbody><tr><td>',
       );
 
-      // Clean closing tag
+      // Fallback: If no \toprule exists, stop at the first \textbf{
+      tableHtml = tableHtml.replace(
+        /\\begin\{(?:tabularx|tabular)\}[\s\S]*?(?=\\textbf\{)/,
+        '<div class="table-container"><table><tbody><tr><td>',
+      );
+
+      // Remove midrules and bottomrules
+      tableHtml = tableHtml.replace(/\\midrule|\\bottomrule/g, "");
+
+      // Close the table
       tableHtml = tableHtml.replace(
         /\\end\{(?:tabularx|tabular)\}/g,
         "</td></tr></tbody></table></div>",
       );
 
-      // Convert LaTeX row endings (\\\\) into HTML table rows
+      // Convert LaTeX linebreaks (\\\\) to table rows
       tableHtml = tableHtml.replace(/\\\\(\s*\[.*?\])?/g, "</td></tr><tr><td>");
 
-      // Convert LaTeX column separators (&) into HTML table cells
+      // Convert LaTeX column separators (&) to table cells
       tableHtml = tableHtml.replace(/&/g, "</td><td>");
 
-      // Convert \textbf{...} inside table cells directly
+      // Parse formatting macros inside cells
       tableHtml = tableHtml.replace(
         /\\textbf\{([^}]+)\}/g,
         "<strong>$1</strong>",
       );
+      tableHtml = tableHtml.replace(/\\textit\{([^}]+)\}/g, "<em>$1</em>");
+      tableHtml = tableHtml.replace(/\\newline|\\linebreak/g, "<br>");
 
-      // Clean empty rows / cells left by trailing newlines or rules
+      // Clean empty/phantom rows
       tableHtml = tableHtml.replace(/<tr>\s*<td>\s*<\/td>\s*<\/tr>/g, "");
 
       return tableHtml;
     },
   );
 
-  text = text.replace(/<table>[\s\S]*?<\/table>/g, protect);
+  // Protect the newly formed table container
+  text = text.replace(/<div class="table-container">[\s\S]*?<\/div>/g, protect);
 
   // 3. Strip preambles
   text = text.replace(/\\documentclass\{.*?\}/g, "");
@@ -1791,24 +1800,17 @@ function renderCurrentNote() {
 
   text = text.replace(/\\centering|\\hfill/g, "");
 
-  //9. Restore all protected math & table blocks
-  text = text.replace(
-    /%%%BLOCK_(\d+)%%%/g,
-    (_, id) => protectedBlocks[Number(id)],
-  );
-
-  // Set rendered content
-  target.innerHTML = text;
-
-  // Re-run MathJax
-  if (window.MathJax && window.MathJax.typesetPromise) {
-    MathJax.typesetClear([target]);
-    MathJax.typesetPromise([target]).catch((err) =>
-      console.warn("MathJax err:", err),
+  // 9. Restore all protected blocks recursively (handles math nested inside tables)
+  while (text.includes("%%%BLOCK_")) {
+    text = text.replace(
+      /%%%BLOCK_(\d+)%%%/g,
+      (_, id) => protectedBlocks[Number(id)],
     );
   }
 
-  // 10. MathJax typeset re-run
+  target.innerHTML = text;
+
+  // 10. Re-trigger MathJax to render equations inside cells
   if (window.MathJax && window.MathJax.typesetPromise) {
     MathJax.typesetClear([target]);
     MathJax.typesetPromise([target]).catch((err) =>

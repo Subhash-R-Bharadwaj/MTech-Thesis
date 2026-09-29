@@ -183,28 +183,6 @@
   flex: 1;
 }
 
-.paper-view table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.75rem 0;
-  background: #0f172a;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.paper-view th,
-.paper-view td {
-  padding: 0.75rem 1rem;
-  border: 1px solid #334155;
-  text-align: left;
-}
-
-.paper-view th {
-  background: #1e293b;
-  font-weight: 600;
-  color: #f8fafc;
-}
-
 /* Real LaTeX Rendered Images */
 .paper-view .latex-img {
   max-width: 100%;
