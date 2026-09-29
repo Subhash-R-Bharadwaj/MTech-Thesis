@@ -571,4 +571,9 @@ const notesCatalog = [
     page: "August - September",
     url: "Aug_Sep/aug_sep.html?id=10",
   },
+  {
+    title: "Liquid Targets in LPI",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=27",
+  },
 ];
