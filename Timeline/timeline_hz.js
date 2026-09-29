@@ -1,5 +1,12 @@
 const timelineEvents = [
   {
+    id: 36,
+    date: "29/09/2026",
+    title: "Thesis work Deciding Meeting",
+    content:
+      "Had meeting with Anubal team, Prashant sir and Mukesh about eli proposal - Plasma Grating for HHG. Have been asked to work on producing accurate interference with beams and then Mukesh will focus onto liquid sheet. Finally plasma gradient should be made to move for HHG ",
+  },
+  {
     id: 35,
     date: "15/09/2026 - 25/09/2026",
     title: "Paper Review and Presentation",
