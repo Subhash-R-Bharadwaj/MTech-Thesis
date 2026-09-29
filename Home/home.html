@@ -9,20 +9,106 @@
     <!-- Page-specific styles -->
     <link rel="stylesheet" href="home.css" />
   </head>
-  <body>
+  <body class="home-page-body">
+    <!-- Container where global top navbar will render -->
     <div id="navbar-container"></div>
 
-    <main class="page-content">
-      <h1>Project Overview</h1>
-      <p>Main thesis details, abstract, and scope.</p>
+    <main class="page-content home-container">
+      <!-- Section 1: Thesis -->
+      <section class="home-section thesis-section">
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-title-wrap">
+              <span class="project-name">Thesis Work</span>
+              <div class="title-tooltip"><!-- fill content here--></div>
+            </div>
+            <div class="progress-badge">
+              <span class="badge-num">0</span>
+              <span class="badge-pct">%</span>
+            </div>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Mini-Projects -->
+      <section class="home-section mini-projects-section">
+        <h2 class="section-title">Mini-Projects</h2>
+        <div class="projects-list">
+          <!-- Project 1 -->
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-title-wrap">
+                <span class="project-name">Electron Spectrometer</span>
+                <div class="title-tooltip">
+                  Magnetic field mapping, electron trajectory simulation in
+                  Python, CNC stage distance calibration done. ESM ready from
+                  workshop and connected to flange. Need to start working with
+                  laser.
+                </div>
+              </div>
+              <div class="progress-badge">
+                <span class="badge-num">50</span>
+                <span class="badge-pct">%</span>
+              </div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 50%"></div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-title-wrap">
+                <span class="project-name"
+                  >Mirror Alignment - Laser Beam Centering</span
+                >
+                <div class="title-tooltip">
+                  Python-Arduino-Motor communication looks good. 3D printed
+                  mirror holder not accurate and couple of ULN arrays are
+                  busted. Using only single camera, need to combine 2 camera
+                  setup to align beam accurately.
+                </div>
+              </div>
+              <div class="progress-badge">
+                <span class="badge-num">40</span>
+                <span class="badge-pct">%</span>
+              </div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 40%"></div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-item">
+            <div class="project-header">
+              <div class="project-title-wrap">
+                <span class="project-name">PW Lab Assembly and Setup</span>
+                <div class="title-tooltip">
+                  Chamber setup and 1 table mostly ready. Waiting on more
+                  components to start pump connections and vacuum testing.
+                </div>
+              </div>
+              <div class="progress-badge">
+                <span class="badge-num">20</span>
+                <span class="badge-pct">%</span>
+              </div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 20%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!-- Root global script -->
     <script src="../app.js"></script>
-    <!-- Page-specific script -->
     <script src="home.js"></script>
     <script>
-      // Tell the navbar function to go up one directory for links
       loadNavbar("../");
     </script>
   </body>
