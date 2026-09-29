@@ -897,6 +897,164 @@ Liquid targets bridge the gap b/w solid-foil targets and gas jets in LPI. Provid
 \end{enumerate}
 \hrule`,
   },
+  {
+    id: 28,
+    title: "Optical Masks",
+    content: String.raw`\subsection*{Optical Masks}
+Spatial filter placed in optical path to manipulate amplitude, phase or polarization across a beam's transverse profile. Depending on where the mask is placed, it serves various purposes - 
+\begin{itemize}
+    \item Real image plane - Wavefront diagnostics.
+    \item Fourier plane(focal plane) - Spatial filtering.
+    \item Near field - Beam shaping.
+\end{itemize}
+\textbf{Math Representation}
+\newline
+General 2D mask place in transverse plane(x,y) is described by complex transmission fn - $t(x,y)=A(x,y)e^{i\phi(x,y)}$
+\begin{itemize}
+    \item Amp. modulation - $A(x,y)\in[0,1]$ - dictates transmission or opacity - eg: pinholes, slits, knife edges, ...
+    \item Phase modulation - $\phi(x,y)\in[0,2\pi)$ - imparts spatially varying optical path delay without attenuation - eg: phase plates, ...
+\end{itemize}
+If field just before mask is $E_{in}(x,y)$, then field immediately after is $E_{out}(x,y)=t(x,y)E_{in}(x,y)$
+\newline
+\hrule
+`,
+  },
+  {
+    id: 29,
+    title: "Beam Splitters",
+    content: String.raw`\subsection*{Beam Splitters}
+Optical component that splits single incident beam into 2 separate paths - transmitted and reflected. BS establish reference arms, delay lines and synchronization channels.
+\newline\linebreak
+\textbf{Fundamental Types}
+\begin{enumerate}
+    \item Plate BS
+    \begin{itemize}
+        \item Flat optical parallel plate(\textbf{fused Si or BK7}) with partially reflecting coating on the front surface and anti-reflection(AR) coating on rear surface.
+        \item Typically mounted at 45$^{\circ}$ angle of incidence.
+        \item Adv - minimal material for ultrashort pulses, low cost, high laser induced damage threshold(LIDT).
+        \item Disadv - If AR coating is imperfect leads to faint secondary ghost reflections parallel to primary reflected beam.
+        \item Group Vel Dispersion(GVD) - Transmitted beam travels through the dispersive glass substrate at an angle, introducing positive chirp ($k_2 = \frac{d^2k}{d\omega^2} > 0$) and spatial beam displacement. For ultrashort pulses, need a compensator plate in opposite arm.
+    \end{itemize}
+    \item Cube BS
+    \begin{itemize}
+        \item Constructed by cementing 2 right angle prisms along hypotenuses, with a dielectric or metallic partial reflector coating applied to one interface.
+        \item Adv - No beam displacement(input-output surfaces are normal to beams); no ghost reflections(all outer surfaces are normal to incidence).
+        \item Disadv - Thick glass produces significant material dispersion; optical cement)epoxy) degrades quickly under high peak power radiation.
+    \end{itemize}
+    \item Pellicle BS
+    \begin{itemize}
+        \item Ultrathin($1-5\mu m$) nitrocellulose or polymer membrane stretched across rigid metal frame.
+        \item Adv - Zero chromatic dispersion, spherical aberrations, beam displacement(micro-thin surface);
+        \item Disadv - fragile, sensitive, low damage threshold.
+    \end{itemize}
+\end{enumerate}
+\textbf{Splitting Mechanisms}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{} l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X @{}}
+\toprule
+\textbf{Type} & \textbf{Mechanism} & \textbf{Polarization Sensitivity} & \textbf{Losses}\\
+\midrule
+Dielectric Coating &
+Multilayer thin films const/dest interference &
+Highly sensitive to angle and pol.\ (R$_s\neq$R$_p$) &
+Zero absorption (R+T=100\%)\\
+Metallic Coating &
+Thin metal film (Al, Cr, Au) &
+Broad spectral neutrality &
+High absorption (A $\sim$20--40\%, R+T$<$100\%) \\
+Polarizing BS &
+Brewster angle multilayer coatings or birefringent prisms &
+Transmits pure p-pol, reflects pure s-pol. &
+Clean separation by state \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\hrule
+`,
+  },
+  {
+    id: 30,
+    title: "Mask vs BS",
+    content: String.raw`\subsection*{Mask vs BS}
+\begin{itemize}
+    \item \textbf{BS} - Macroscopic beam dividing element. Purpose is to split EM energy of single incident beam into 2 separate paths(T/R), typically maintaining a spatially uniform splitting ratio(eg: 50:50, 70:30) across entire beam c/s.
+    \item \textbf{Mask} - Transverse spatial filter/modulator. Defined by having a spatially non-uniform transmission profile($t(x,y)$) across beam dia, specifically designed to shape beam profile, or block certain freq, etc.,
+    \item \textbf{More in Delay Lines}
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: 31,
+    title: "Delay, Delay Lines",
+    content: String.raw`\subsection*{Delay, Delay Lines}
+Optical delay line is an apparatus designed to introduce a controlled, variable time interval($\tau$) b.w 2 optical pulses derived from same master laser.
+\newline
+Because electronic trigger generators and photo-detectors have jitter and response times on order of ps-ns, they are very slow to sync with fs lasers. Ultrafast time resolution is achieved entirely by converting spatial displacement into temporal delay via speed of light.
+\newline\linebreak
+\textbf{Principle}
+\begin{itemize}
+    \item Light travels distance d in vacuum/air(n~1) in time: $\tau\ =\ \frac{d}{c}$
+    \item Spatial Displacement($\Delta L$): 300nm,30$\mu$m, 300$\mu$m. 30cm $\to$ Time Delay($\tau$): 1fs, 100fs, 1ps, 1ns.
+    \item IN standard double pass geometry(where light hits a retroreflector on a motorized stage and reflects back), moving the stage by a physical mechanical distance $\Delta x$ changes the round-trip optical path length by $\Delta L = 2 \Delta x$:
+    $$\tau\ =\ \frac{2\Delta x}{c}$$
+    $\therefore$ mech displacement of just 150nm shifts pulse arrival by 1fs.
+\end{itemize}
+\textbf{Delay Line Architecture and Retroreflection}
+\newline
+If the delay line stage wobbles/pitches as beam translates, beam axis tilts, misaligning the downstream interferometer or focus. Optical delay lines use specific reflector geometries to prevent this - 
+\begin{enumerate}
+    \item Flat mirror(0$^{circ}$ or 45$^{circ}$)
+    \item Roof prism/right angle mirror pair(Dogleg) - 2 flat mirrors mounted at 90$^{circ}$ reflect beam back in same direction.
+    \item Corner cube retroreflector(Trihedral prism/hollow corner cube) - 3 mutually perp. mirrors form interior corner of a cube.
+\end{enumerate}
+\textbf{Mask and BS}
+\newline
+BS does not impart an adjustable delay. It only creates 2 optical paths that make an optical delay possible. Distinction b/w how delay lines and optical masks operate comes down to longitudinal path differences versus transverse phase profiles
+\begin{enumerate}
+    \item \textbf{BS - Longitudinal Path Difference}
+    \begin{itemize}
+        \item In a pump-probe or cross-correlator setup, BS divides a single laser pulse into two identical replica pulses - A, B.
+        \item The BS itself does not determine the relative delay, it only provides the physical junction.
+        \item The delay($\Delta \tau$) is created by routing Pulse B through a mechanical translation stage(retroreflector/delay arm) that physically increases its total path length($L$) - $\Delta \tau=\frac{\Delta L}{c}$
+        \item Because entire beam moves along this longer path, resulting time delay is uniform across entire transverse beam profile.
+    \end{itemize}
+    \item \textbf{Optical Mask - Transverse Spatial Phase Delay}
+    \begin{itemize}
+        \item A phase mask operates on the transverse c/s $(x, y)$ of a single beam simultaneously.
+        \item Instead of delaying the entire pulse as a single unit in time, a phase mask has a spatially varying refractive index or thickness profile $d(x, y)$, imparting a position-dependent phase shift:
+        $$\Delta\phi(x, y) = \frac{2\pi}{\lambda_0} [n(x, y) - 1] d(x, y)$$
+        \item At coordinate $(x_1, y_1)$, the wavefront passes through without delay.
+        \item At coordinate $(x_2, y_2)$, the wavefront is delayed by a fraction of a wavelength or several femtoseconds relative to $(x_1, y_1)$.
+        \item This produces a sculpted wavefront(such as a focus/tilt/vortex/doughnut mode/top-hat profile) rather than a uniform temporal separation between two discrete pulses.
+    \end{itemize}
+\end{enumerate}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{} l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X @{}}
+\toprule
+\textbf{Parameter} & \textbf{BS Delay Line} & \textbf{Phase Mask Delay Line}\\
+\midrule
+Where delay occurs &
+Along propagation axis(z) - long. &
+Across transverse profile \\
+Transverse uniformity &
+Uniform at every point in beam profile &
+Non-uniform, delay varies across beam profile \\
+Result &
+2 separate pulses arriving at different times &
+1 pulse with an engineered non-planar wavefront shape \\
+Delay scale &
+fs-ns($\mu$m-m path difference) &
+Fractions of an optical cycle - few waves(nm-$\mu$m optical path) \\
+\end{tabularx}
+\end{table}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
@@ -954,28 +1112,53 @@ function renderCurrentNote() {
   text = text.replace(/\$([^$]*?)\$/g, protect);
   text = text.replace(/\\begin\{vmatrix\}[\s\S]*?\\end\{vmatrix\}/g, protect);
 
-  // 2. Parse LaTeX tabular environments
+  // 2. Parse LaTeX tabular, tabularx, and table environments
   text = text.replace(
     /\\begin\{table\}(\[.*?\])?([\s\S]*?)\\end\{table\}/g,
     (_, __, inner) => {
-      let tableHtml = inner.replace(
-        /\\begin\{tabularx\}\{.*?\}\{.*?\}/g,
-        "<table><tr><td>",
-      );
+      // 1. Remove table wrapper commands and horizontal rules
+      let tableHtml = inner
+        .replace(
+          /\\centering|\\small|\\footnotesize|\\renewcommand\{.*?\}\{.*?\}/g,
+          "",
+        )
+        .replace(/\\toprule|\\midrule|\\bottomrule|\\hline/g, "");
+
+      // 2. Strip \begin{tabularx}{...} or \begin{tabular} along with any nested column specs up to the first cell or row
       tableHtml = tableHtml.replace(
-        /\\begin\{tabular\}\{.*?\}/g,
-        "<table><tr><td>",
+        /\\begin\{(?:tabularx|tabular)\}[\s\S]*?(?=\\textbf|\\hline|\\toprule|[^\\{>\s@]|\\\\)/,
+        '<div class="table-container"><table><tbody><tr><td>',
       );
+
+      // Fallback in case \begin{tabular...} remains
       tableHtml = tableHtml.replace(
-        /\\end\{tabularx\}|\\end\{tabular\}/g,
-        "</td></tr></table>",
-      );
-      tableHtml = tableHtml.replace(
-        /\\toprule|\\midrule|\\bottomrule|\\hline/g,
+        /\\begin\{(?:tabularx|tabular)\}[^>]*?>?\{[^}]*?\}/g,
         "",
       );
-      tableHtml = tableHtml.replace(/\\\\/g, "</td></tr><tr><td>");
+
+      // 3. Close the table
+      tableHtml = tableHtml.replace(
+        /\\end\{(?:tabularx|tabular)\}/g,
+        "</td></tr></tbody></table></div>",
+      );
+
+      // 4. Convert LaTeX linebreaks (\\\\) to table rows
+      tableHtml = tableHtml.replace(/\\\\(\s*\[.*?\])?/g, "</td></tr><tr><td>");
+
+      // 5. Convert LaTeX column separators (&) to table cells
       tableHtml = tableHtml.replace(/&/g, "</td><td>");
+
+      // 6. Parse formatting macros inside cells
+      tableHtml = tableHtml.replace(
+        /\\textbf\{([^}]+)\}/g,
+        "<strong>$1</strong>",
+      );
+      tableHtml = tableHtml.replace(/\\textit\{([^}]+)\}/g, "<em>$1</em>");
+      tableHtml = tableHtml.replace(/\\newline|\\linebreak/g, "<br>");
+
+      // 7. Remove empty or phantom rows created by trailing newlines/rules
+      tableHtml = tableHtml.replace(/<tr>\s*<td>\s*<\/td>\s*<\/tr>/g, "");
+
       return tableHtml;
     },
   );
@@ -1048,7 +1231,7 @@ function renderCurrentNote() {
 
   text = text.replace(/\\centering|\\hfill/g, "");
 
-  // 9. Restore protected math blocks
+  // 9. Restore all protected blocks (math & nested structures)
   text = text.replace(
     /%%%BLOCK_(\d+)%%%/g,
     (_, id) => protectedBlocks[Number(id)],
@@ -1056,7 +1239,7 @@ function renderCurrentNote() {
 
   target.innerHTML = text;
 
-  // 10. MathJax typeset re-run
+  // 10. Re-trigger MathJax to render equations inside cells
   if (window.MathJax && window.MathJax.typesetPromise) {
     MathJax.typesetClear([target]);
     MathJax.typesetPromise([target]).catch((err) =>

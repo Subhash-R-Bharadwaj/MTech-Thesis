@@ -342,11 +342,15 @@ Imaginary surface connecting all adjacent points of a wave that are vibrating in
     content: String.raw`\subsection*{Harmonics?}
 Refers to light waves generated at integer multiples of fundamental laser freq($\omega_0$). When an intense laser beam passes through a non-linear medium, the medium's $e^-$ don't just oscillate at the incoming frequency; they react non-linearly, radiating light at double, triple, or hundreds of times the original frequency.
 \begin{itemize}
-    \item In standard, low intensity optics, the electric field of light(E) induces a electric dipole polarization(P) in a material that is purely linear:
+    \item In standard, low intensity optics, the electric field of light(E) induces a electric dipole polarization density(P) in a material that is purely linear:
     $$P = \varepsilon_0 \chi^{(1)}E$$
     \item However, high intensity pulsed lasers(fs/ps systems) produce electric fields strong enough to rival the Coulomb forces holding $e^-$ to their atomic nuclei. The material's response becomes non-linear and is written as a Taylor expansion:
     $$P = \varepsilon_0 \left( \chi^{(1)}E + \chi^{(2)}E^2 + \chi^{(3)}E^3 +... \right)$$
     where: $\chi^{(1)}$ - Linear susceptibility(refraction, absorption); $\chi^{(2)}$ - 2nd order non-linear susceptibility $\rightarrow$ Second-Harmonic Generation(SHG); $\chi^{(3)}$: 3rd order non-linear susceptibility $\rightarrow$ Third-Harmonic Generation(THG), self-focusing.
+    \item For an incident monochromatic field, $E(t)=E_0cos(\omega t)$
+    $$P^{(2)}(t)=\epsilon_0\chi^{(2)}E_0^2cos^2(\omega t)=\frac{1}{2}\epsilon_0\chi^{(2)}E_0^2(1+cos(2\omega t))$$
+    $$\text{1st term represents a static DC electric polarization(optical rectification}\ \to\ \frac{1}{2}\epsilon_0\chi^{(2)}E_0^2)$$
+    $$\text{2nd term oscillates at }2\omega\text{ driving dipole radiation at double fundamental freq.}$$
     \item Each higher order term acts as a new source term in Maxwell's wave equations, generating light at higher frequency multiples.
 \end{itemize}    
 \hrule`,
@@ -358,7 +362,7 @@ Refers to light waves generated at integer multiples of fundamental laser freq($
 \begin{enumerate}
     \item SHG - freq doubling
     \begin{itemize}
-        \item 2 photons of freq $\omega_0$ combine to create a single photon of freq $2\omega_0$($\lambda /2$).
+        \item 2nd order nonlinear process where photons of freq $\omega_$ combine to create a single photon of freq $2\omega_$($\equiv\lambda /2$).
     \end{itemize}
     \item THG - freq tripling
     \begin{itemize}
@@ -1544,10 +1548,80 @@ Common name for PMMA(Polymethyl Methacrylate) which is transparent, rigid thermo
   },
   {
     id: "92",
-    title:
-      "How to alter frequency of laser? Can it be manipulated to adjust output power?",
-    content: String.raw`\subsection*{How to alter frequency of laser? Can it be manipulated to adjust output power?}
-\hrule`,
+    title: "Interference",
+    content: String.raw`\subsection*{Interference}
+Physical phenomenon where 2/more overlapping EM waves superpose to form a resultant wave whose local amplitude depends on relative phase difference b/w constituents.
+\newline
+Because Maxwell’s equations in linear media are linear differential equations, electromagnetic fields obey the principle of superposition - \textbf{the total field is the direct sum of the individual vector fields.}
+\newline\linebreak
+\textbf{Math}
+\newline
+Consider 2 EM waves of freq $\omega$ intersecting at point r - 
+$$E_1(r,t)=E_{01}cos(k_1r-\omega t+\phi_1)$$
+$$E_2(r,t)=E_{02}cos(k_2r-\omega t+\phi_2)$$
+Total electric field is $E=E_1+E_2$. But optical detectors cannot follow PHz oscillations, so they measure irradiance/intensity, which is derived as - 
+$$I=c\epsilon_0\langle|E|^2\rangle=c\epsilon_0(\langle|E_1|^2\rangle+\langle|E_2|^2\rangle+2\langle E_1.E_2\rangle)$$
+Evaluating cycle average, we get fundamental 2-beam interference eqn - 
+$$I=I_1+I_2+2\sqrt{I_1I_2}cos\theta_{pol}cos(\Delta\phi)$$
+where: $I_1, I_2\to\ $Individual beam intensities; $cos\theta_{pol}\to\ $angle b/w 2 polarization vectors($\hat{e_1}.\hat{e_2}=cos\theta_{pol}$; $\Delta\phi=(k_2-k_1).r+(\phi_2-\phi_1)\to\ $Phase difference.
+\newline
+The term $2\sqrt{I_1I_2}cos\theta_{pol}cos(\Delta\phi)$ is the interference term.
+\newline\linebreak
+\textbf{Interference Conditions and Fringe Visibility}
+\newline
+Assuming parallel polarizations: $cos\theta_{pol}=1$
+\begin{itemize}
+    \item Constructive: $cos(\Delta\phi)=1\to\ \Delta\phi=2m\pi(m\in\mathbb{Z})$
+    $$I_{max}=I_1+I_2+2\sqrt{I_1I_2}=(\sqrt{I_1}+\sqrt{I_2})^2$$
+    \item Destructive: $cos(\Delta\phi)=-11\to\ \Delta\phi=(2m+1)\pi(m\in\mathbb{Z})$
+    $$I_{min}=I_1+I_2-2\sqrt{I_1I_2}=(\sqrt{I_1}-\sqrt{I_2})^2$$
+    \item Fringe Visibility: Quality of interference pattern is quantified by Michelson's visibility:
+    $$V=\frac{I_{max}-I_{min}}{I_{max}+I_{min}}=\frac{2\sqrt{I_1I_2}}{I_1+I_2}cos\theta_{pol}|\gamma_{12}(\tau)|$$
+    where, $|\gamma_{12}(\tau)|\to\ $degree of mutual coherence($0\leq|\gamma_{12}|\leq1$).
+\end{itemize}
+\textbf{Key Constraints: Fresnel-Arago Laws}
+\begin{itemize}
+    \item Orthogonal polarizations do not interfere - $$\because cos\theta_{pol}=0$$
+    No scalar intensity modulation or fringes appear. Instead, the superposition produces a spatially modulated state of polarization(e.g., cycling linearly $\to$ elliptically $\to$ circularly).
+    \item To observe stationary fringes over time, the two sources must maintain a constant relative phase ($\Delta\phi(t) = \text{const}$). Independent thermal light sources fluctuate randomly on femtosecond timescales, wiping out fringes ($\langle \cos\Delta\phi \rangle = 0$).
+\end{itemize}
+\textbf{QUESTIONS}
+\begin{enumerate}
+    \item Two laser beams of equal intensity $I_0$ have orthogonal linear polarizations ($E_1 = E_0\cos(kz - \omega t)\hat{x}$ and $E_2 = E_0\cos(kz - \omega t + \pi)\hat{y}$). What is the total measured intensity $I$? What is the resulting state of polarization of the combined beam?
+    $$\to$$
+    \begin{itemize}
+        \item Total measure intensity is $2I_0$.
+        \item State of Polarization -
+        $$E_x(z,t) = E_0 \cos(kz - \omega t)$$
+        $$E_y(z,t) = E_0 \cos(kz - \omega t + \pi) = -E_0 \cos(kz - \omega t)$$
+        $E_y(z,t) = -E_x(z,t)$ at all points and at all times. Because the phase difference is a fixed multiple of $\pi$ ($\Delta\phi = \pi$), the components remain perfectly in phase (with a sign flip). 
+        \newline
+        The resultant vector is:
+        $$E(z,t) = E_0 \cos(kz - \omega t)( \hat{x} - \hat{y})$$
+        This describes linear polarization tilted at $-45^\circ$ (or $135^\circ$) with amplitude $\sqrt{2}E_0$, rather than an elliptical or circular state.
+    \end{itemize}
+    \item A probe laser with $\lambda_0 = 800nm$ passes through a plasma channel and produces a fringe shift of $\Delta N = 1$ fringe. Find the line-integrated electron density $\int n_e \, dz$ in $cm^{-2}$ given $n_c \approx 1.74 \times 10^{21} cm^{-3}$.
+    $$\to$$
+    \begin{itemize}
+        \item Relate Optical Phase Shift to Plasma Density.
+        $$n_{plasma}=n_p= \sqrt{1 - \frac{n_e}{n_c}} \approx 1 - \frac{n_e}{2n_c}$$
+        Accumulated phase difference b/w plasma path and reference vacuum path over a propagation length $L$ is:
+        $$\Delta\phi = \int_0^L (k_{vac} - k_{plasma}) \, dz = \frac{2\pi}{\lambda_0} \int_0^L (1 - n_p) \, dz$$
+        Substitute $1 - n_p \approx \frac{n_e}{2n_c}$:$$\Delta\phi = \frac{2\pi}{\lambda_0} \int_0^L \frac{n_e(z)}{2n_c} \, dz = \frac{\pi}{\lambda_0 n_c} \int_0^L n_e(z) \, dz$$
+        \item Relate Phase Shift to Fringe Shift ($\Delta N$) - In interferometry, one full fringe shift ($\Delta N = 1$) corresponds to a phase shift of exactly $2\pi$ radians:
+        $$\Delta N = \frac{\Delta\phi}{2\pi} = \frac{1}{2\lambda_0 n_c} \int_0^L n_e(z) \, dz$$
+        \item Rearrange for the Line-Integrated Density - Taking $\Delta N = 1$:
+        $$\int_0^L n_e(z) \, dz = 2 \lambda_0 n_c. \Delta N = 2 \lambda_0 n_c$$
+        \item Plug in numerical values - 
+        $$\lambda_0 = 800nm = 8 \times 10^{-5}cm$$
+        $$n_c \approx 1.74 \times 10^{21}cm^{-3}$$
+        $$\int_0^L n_e(z) \, dz = 2 \times (8 \times 10^{-5}cm) \times (1.74 \times 10^{21}cm^{-3})$$
+        $$\int_0^L n_e(z) \, dz = 16 \times 1.74 \times 10^{16}cm^{-2} \approx 2.78 \times 10^{17} cm^{-2}$$
+        \item Final result - A shift of 1 fringe corresponds directly to an areal electron density of approximately $2.8 \times 10^{17}cm^{-2}$.
+    \end{itemize}
+\end{enumerate}
+\hrule
+`,
   },
 ];
 
@@ -1606,28 +1680,45 @@ function renderCurrentNote() {
   text = text.replace(/\$([^$]*?)\$/g, protect);
   text = text.replace(/\\begin\{vmatrix\}[\s\S]*?\\end\{vmatrix\}/g, protect);
 
-  // 2. Parse LaTeX tabular environments
+  // 2. Parse LaTeX tabular, tabularx, and table environments
   text = text.replace(
     /\\begin\{table\}(\[.*?\])?([\s\S]*?)\\end\{table\}/g,
     (_, __, inner) => {
-      let tableHtml = inner.replace(
-        /\\begin\{tabularx\}\{.*?\}\{.*?\}/g,
-        "<table><tr><td>",
-      );
+      let tableHtml = inner
+        // Clean table-level rules and commands
+        .replace(
+          /\\centering|\\small|\\footnotesize|\\renewcommand\{.*?\}\{.*?\}/g,
+          "",
+        )
+        .replace(/\\toprule|\\midrule|\\bottomrule|\\hline/g, "");
+
+      // Match \begin{tabularx}{\textwidth}{...} or \begin{tabular}{...} including complex column specs like >{...}X @{}
       tableHtml = tableHtml.replace(
-        /\\begin\{tabular\}\{.*?\}/g,
-        "<table><tr><td>",
+        /\\begin\{(?:tabularx|tabular)\}(?:\{[\s\S]*?\})?\s*\{[\s\S]*?\}/g,
+        '<div class="table-container"><table><tbody><tr><td>',
       );
+
+      // Clean closing tag
       tableHtml = tableHtml.replace(
-        /\\end\{tabularx\}|\\end\{tabular\}/g,
-        "</td></tr></table>",
+        /\\end\{(?:tabularx|tabular)\}/g,
+        "</td></tr></tbody></table></div>",
       );
-      tableHtml = tableHtml.replace(
-        /\\toprule|\\midrule|\\bottomrule|\\hline/g,
-        "",
-      );
-      tableHtml = tableHtml.replace(/\\\\/g, "</td></tr><tr><td>");
+
+      // Convert LaTeX row endings (\\\\) into HTML table rows
+      tableHtml = tableHtml.replace(/\\\\(\s*\[.*?\])?/g, "</td></tr><tr><td>");
+
+      // Convert LaTeX column separators (&) into HTML table cells
       tableHtml = tableHtml.replace(/&/g, "</td><td>");
+
+      // Convert \textbf{...} inside table cells directly
+      tableHtml = tableHtml.replace(
+        /\\textbf\{([^}]+)\}/g,
+        "<strong>$1</strong>",
+      );
+
+      // Clean empty rows / cells left by trailing newlines or rules
+      tableHtml = tableHtml.replace(/<tr>\s*<td>\s*<\/td>\s*<\/tr>/g, "");
+
       return tableHtml;
     },
   );
@@ -1700,13 +1791,22 @@ function renderCurrentNote() {
 
   text = text.replace(/\\centering|\\hfill/g, "");
 
-  // 9. Restore protected math blocks
+  //9. Restore all protected math & table blocks
   text = text.replace(
     /%%%BLOCK_(\d+)%%%/g,
     (_, id) => protectedBlocks[Number(id)],
   );
 
+  // Set rendered content
   target.innerHTML = text;
+
+  // Re-run MathJax
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    MathJax.typesetClear([target]);
+    MathJax.typesetPromise([target]).catch((err) =>
+      console.warn("MathJax err:", err),
+    );
+  }
 
   // 10. MathJax typeset re-run
   if (window.MathJax && window.MathJax.typesetPromise) {

@@ -278,3 +278,46 @@
     padding: 0.5rem 0;
   }
 }
+
+/* LaTeX Table Container */
+.paper-view .table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+}
+
+.paper-view table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+/* First Row Headers */
+.paper-view tr:first-child td {
+  background-color: #1e293b;
+  font-weight: 700;
+  color: #38bdf8;
+  border-bottom: 2px solid #334155;
+  padding: 0.9rem 1.15rem;
+}
+
+.paper-view tr:first-child td strong {
+  color: #38bdf8;
+}
+
+.paper-view td {
+  padding: 0.85rem 1.15rem;
+  border: 1px solid #334155;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.paper-view tr:hover td {
+  background-color: rgba(30, 41, 59, 0.4);
+}

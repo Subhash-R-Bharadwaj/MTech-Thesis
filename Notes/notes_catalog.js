@@ -191,6 +191,11 @@ const notesCatalog = [
     url: "Jun_Jul/jun_jul.html?id=9",
   },
   {
+    title: "Interference",
+    page: "June-July",
+    url: "Jun_Jul/jun_jul.html?id=92",
+  },
+  {
     title: "Jitters",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=54",
@@ -575,5 +580,25 @@ const notesCatalog = [
     title: "Liquid Targets in LPI",
     page: "August - September",
     url: "Aug_Sep/aug_sep.html?id=27",
+  },
+  {
+    title: "Optical Masks",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=28",
+  },
+  {
+    title: "Beam Splitters",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=29",
+  },
+  {
+    title: "Mask vs BS",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=30",
+  },
+  {
+    title: "Delay, Delay Lines",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=31",
   },
 ];
