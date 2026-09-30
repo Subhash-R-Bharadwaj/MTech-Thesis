@@ -1,0 +1,213 @@
+/* Background & Base */
+body.thesis-page-body {
+  background-color: #0b1120;
+  color: #cbd5e1;
+  min-height: 100vh;
+}
+
+.thesis-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+/* 1. Back Button */
+.back-nav {
+  margin-bottom: 1.5rem;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.back-btn:hover {
+  color: #7dd3fc;
+  transform: translateX(-3px);
+}
+
+/* 2. Heading */
+.thesis-header {
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.thesis-header h1 {
+  font-size: 2.2rem;
+  color: #f8fafc;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* 3. Content Area */
+.thesis-content {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: #cbd5e1;
+}
+
+.thesis-content h2 {
+  font-size: 1.4rem;
+  color: #f8fafc;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  border-left: 3px solid #38bdf8;
+  padding-left: 0.75rem;
+}
+
+.thesis-content h3 {
+  font-size: 1.15rem;
+  color: #f8fafc;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.thesis-content p {
+  margin-bottom: 1.25rem;
+}
+
+/* LaTeX Math Blocks */
+.math-block {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+/* Content Images & Figures */
+.content-figure {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.content-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+figcaption {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+/* Lists */
+.thesis-content ul,
+.thesis-content ol {
+  margin: 1rem 0 1.5rem 1.75rem;
+}
+
+.thesis-content li {
+  margin-bottom: 0.5rem;
+}
+/* Container: Flex row with wrapping */
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+/* 
+  Flex child rule:
+  - flex-grow: 1 (auto-expands to fill the row if there are < 4 pictures)
+  - flex-shrink: 1
+  - flex-basis: calc(25% - 1rem) (sets base size to 4 items per row)
+  - max-width: calc(25% - (3 * 1rem / 4)) (caps exactly at 4 pictures per row)
+*/
+.photo-item {
+  flex: 1 1 calc(25% - 1rem);
+  max-width: calc(25% - 0.75rem);
+  min-width: 180px; /* Prevents cards from becoming too narrow */
+  height: 180px;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.photo-item:hover {
+  transform: translateY(-3px);
+  border-color: #38bdf8;
+  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.2);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Lightbox Modal */
+.photo-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 17, 32, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.photo-modal.active {
+  display: flex;
+}
+
+.modal-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.7);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: #94a3b8;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #f8fafc;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .photo-item {
+    flex: 1 1 calc(50% - 0.5rem);
+    max-width: calc(50% - 0.5rem);
+    height: 140px;
+  }
+}

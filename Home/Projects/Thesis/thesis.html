@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thesis Work - MTech Thesis</title>
+
+    <!-- MathJax for rendering LaTeX formulas -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          packages: {
+            "[+]": ["amsmath", "amssymb", "amsbsy", "amsfonts", "textcomp"],
+          },
+        },
+        options: {
+          skipHtmlTags: [
+            "script",
+            "noscript",
+            "style",
+            "textarea",
+            "pre",
+            "code",
+          ],
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Root global styles (3 folder levels up) -->
+    <link rel="stylesheet" href="../../../styles.css" />
+    <!-- Local thesis page styles -->
+    <link rel="stylesheet" href="thesis.css" />
+  </head>
+  <body class="thesis-page-body">
+    <!-- Container where global top navbar renders -->
+    <div id="navbar-container"></div>
+
+    <main class="thesis-wrapper">
+      <!-- 1. Back button -->
+      <nav class="back-nav">
+        <a href="../../home.html" class="back-btn">&larr; Back</a>
+      </nav>
+
+      <!-- 2. Heading -->
+      <header class="thesis-header">
+        <h1>
+          Characterization of Interference Pattern on Liquid Sheet to Produce
+          Dynamically Controlled Traveling Plasma Grating for Relativistic HHG
+        </h1>
+      </header>
+
+      <!-- 3. Content Area: Images, Text, and LaTeX -->
+      <article class="thesis-content" id="thesisContent">
+        <!-- Responsive Photo Grid (Max 4 per row, auto-correcting width) -->
+        <div class="photo-grid" id="photoGrid">
+          <div class="photo-item">
+            <img src="overview1.jpeg" alt="Setup Figure 1" />
+          </div>
+          <div class="photo-item">
+            <img src="overview2.jpeg" alt="Setup Figure 2" />
+          </div>
+          <div class="photo-item">
+            <img src="overview3.jpeg" alt="Setup Figure 3" />
+          </div>
+        </div>
+
+        <!-- Lightbox Modal for enlarged view -->
+        <div class="photo-modal" id="photoModal">
+          <span class="modal-close" id="modalClose">&times;</span>
+          <img class="modal-img" id="modalImg" alt="Enlarged view" />
+        </div>
+        <p>[See notes page for explaination of topics]</p>
+
+        <!-- LaTeX Block Example -->
+        <!-- <div class="math-block">
+          $$\frac{d\mathbf{p}}{dt} = -e \left( \mathbf{E} + \mathbf{v} \times
+          \mathbf{B} \right)$$
+        </div> -->
+
+        <!-- <p>
+          Where $\mathbf{p} = \gamma m_e \mathbf{v}$ represents the relativistic
+          momentum and $\gamma$ is the Lorentz factor.
+        </p> -->
+
+        <!-- Image / Figure Example -->
+        <figure class="content-figure">
+          <!-- Replace 'sample.jpg' with your image path (e.g., ./your_image.jpg) -->
+          <img
+            src="sample.jpg"
+            alt="Setup Schematic"
+            class="content-img"
+            onerror="this.style.display = 'none'"
+          />
+          <figcaption>
+            <!-- Figure 1: Schematic of the interaction geometry and beam
+            diagnostics. -->
+          </figcaption>
+        </figure>
+
+        <!-- Sub-headings & Additional Sections -->
+        <!-- <h2>Key Objectives</h2>
+        <ul>
+          <li>Laser wakefield electron acceleration and beam collimation.</li>
+          <li>Dipole spectrometer magnetic field mapping and Lanex imaging.</li>
+          <li>Spectral unfolding and real-time beam stabilization feedback.</li>
+        </ul> -->
+      </article>
+    </main>
+
+    <!-- Root global script (3 folder levels up) -->
+    <script src="../../../app.js"></script>
+    <!-- Local thesis page script -->
+    <script src="thesis.js"></script>
+    <script>
+      // 3 folder levels up to reach root
+      loadNavbar("../../../");
+    </script>
+  </body>
+</html>

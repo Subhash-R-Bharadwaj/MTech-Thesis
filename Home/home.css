@@ -159,3 +159,17 @@ body.home-page-body {
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
   border-radius: 999px;
 }
+
+/* Title Link Styling */
+.project-title-link {
+  text-decoration: none;
+  display: inline-block;
+  color: inherit;
+  cursor: pointer;
+}
+
+.project-title-link:hover .project-name {
+  color: #38bdf8;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

@@ -601,4 +601,39 @@ const notesCatalog = [
     page: "August - September",
     url: "Aug_Sep/aug_sep.html?id=31",
   },
+  {
+    title: "Michelson vs Mach-Zehnder",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=32",
+  },
+  {
+    title: "Superluminal Phase Velocity",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=33",
+  },
+  {
+    title: "Sub-cycle Timescale",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=34",
+  },
+  {
+    title: "Relativistic Oscillating Mirror(ROM) Mechanism",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=35",
+  },
+  {
+    title: "Phased Array Effect",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=36",
+  },
+  {
+    title: "Carrier Phase Envelope - CEP",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=37",
+  },
+  {
+    title: "Collinear, Noncollinear Beams, Recombination",
+    page: "August - September",
+    url: "Aug_Sep/aug_sep.html?id=38",
+  },
 ];
