@@ -1585,6 +1585,10 @@ Assuming parallel polarizations: $cos\theta_{pol}=1$
     No scalar intensity modulation or fringes appear. Instead, the superposition produces a spatially modulated state of polarization(e.g., cycling linearly $\to$ elliptically $\to$ circularly).
     \item To observe stationary fringes over time, the two sources must maintain a constant relative phase ($\Delta\phi(t) = \text{const}$). Independent thermal light sources fluctuate randomly on femtosecond timescales, wiping out fringes ($\langle \cos\Delta\phi \rangle = 0$).
 \end{itemize}
+\textbf{Interferometers}
+\newline
+Instrument that uses interference patterns formed by waves to measure certain characteristics of waves themselves or or materials that reflect/refract/transmit the waves.
+\newline\linebreak
 \textbf{QUESTIONS}
 \begin{enumerate}
     \item Two laser beams of equal intensity $I_0$ have orthogonal linear polarizations ($E_1 = E_0\cos(kz - \omega t)\hat{x}$ and $E_2 = E_0\cos(kz - \omega t + \pi)\hat{y}$). What is the total measured intensity $I$? What is the resulting state of polarization of the combined beam?
