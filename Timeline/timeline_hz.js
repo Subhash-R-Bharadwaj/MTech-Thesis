@@ -1,17 +1,29 @@
 const timelineEvents = [
   {
-    id: 36,
+    id: 38,
+    date: "01/10/2026",
+    title: "Presention on Electron Plasma Waves and Electron Trapping",
+    content: "",
+  },
+  {
+    id: 37,
     date: "29/09/2026",
     title: "Thesis work Deciding Meeting",
     content:
       "Had meeting with Anubal team, Prashant sir and Mukesh about eli proposal - Plasma Grating for HHG. Have been asked to work on producing accurate interference with beams and then Mukesh will focus onto liquid sheet. Finally plasma gradient should be made to move for HHG ",
   },
   {
+    id: 36,
+    date: "24/09/2026",
+    title:
+      "Presention on Nonlinear Effects - Self-Focusing and Ponderomotive Force",
+    content: "",
+  },
+  {
     id: 35,
-    date: "15/09/2026 - 25/09/2026",
-    title: "Paper Review and Presentation",
-    content:
-      "Propagation of EM waves in plasma, Ponderomotive force, Linear plasma waves, Wakefield generation, etc., No practical/experimental work in this time. Only reading up and making notes. Presentations are very interesting and fun - to be able to discuss and understand physics of LWFA.",
+    date: "17/09/2026",
+    title: "Presention on Propagation of Ultrashort Pulses in Plasma",
+    content: "",
   },
   {
     id: 34,
