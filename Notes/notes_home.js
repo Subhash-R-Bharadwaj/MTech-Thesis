@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 3. SEARCH AUTOCOMPLETE & NAVIGATION
+  // 3. SEARCH AUTOCOMPLETE & NAVIGATION (TITLES + KEYWORDS)
   if (searchInput && suggestionsBox && typeof notesCatalog !== "undefined") {
     // Filter matches on user keystroke
     searchInput.addEventListener("input", (e) => {
@@ -94,9 +94,32 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      currentMatches = notesCatalog.filter((item) =>
-        item.title.toLowerCase().includes(query),
-      );
+      const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const regex = new RegExp(`(${escaped})`, "gi");
+
+      // Match against both the topic title and the keywords array
+      currentMatches = notesCatalog
+        .map((item) => {
+          const titleMatch = item.title.toLowerCase().includes(query);
+
+          const matchedKeywords = Array.isArray(item.keywords)
+            ? item.keywords.filter((kw) => kw.toLowerCase().includes(query))
+            : [];
+
+          if (!titleMatch && matchedKeywords.length === 0) {
+            return null;
+          }
+
+          return {
+            ...item,
+            titleMatch,
+            matchedKeywords,
+            priority: titleMatch ? 1 : 2, // Title matches rank higher
+          };
+        })
+        .filter(Boolean)
+        .sort((a, b) => a.priority - b.priority)
+        .slice(0, 8); // Display top 8 results
 
       if (currentMatches.length === 0) {
         suggestionsBox.innerHTML = `<div class="suggestion-no-results">No topics found matching "${e.target.value}"</div>`;
@@ -104,19 +127,30 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Highlight matched characters in the dropdown
+      // Render suggestions list
       suggestionsBox.innerHTML = currentMatches
         .map((item, idx) => {
-          const regex = new RegExp(
-            `(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
-            "gi",
-          );
           const highlightedTitle = item.title.replace(regex, "<mark>$1</mark>");
+
+          const tagsHtml =
+            item.matchedKeywords.length > 0
+              ? `<div class="suggestion-tags">
+                  ${item.matchedKeywords
+                    .map(
+                      (kw) =>
+                        `<span class="kw-tag">${kw.replace(regex, "<mark>$1</mark>")}</span>`,
+                    )
+                    .join("")}
+                 </div>`
+              : "";
 
           return `
             <div class="suggestion-item" data-index="${idx}" data-url="${item.url}">
-              <span>${highlightedTitle}</span>
-              <span class="suggestion-badge">${item.page}</span>
+              <div class="suggestion-item-top">
+                <span class="suggestion-title">${highlightedTitle}</span>
+                <span class="suggestion-badge">${item.page}</span>
+              </div>
+              ${tagsHtml}
             </div>
           `;
         })
@@ -143,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (activeIndex >= 0 && currentMatches[activeIndex]) {
           window.location.href = currentMatches[activeIndex].url;
         } else if (currentMatches.length > 0) {
-          // If Enter is pressed without using arrows, jump to first suggestion
+          // Default to first match if Enter is pressed directly
           window.location.href = currentMatches[0].url;
         }
       } else if (e.key === "Escape") {
@@ -151,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Click handler for mouse selection
+    // Mouse click selection
     suggestionsBox.addEventListener("click", (e) => {
       const itemEl = e.target.closest(".suggestion-item");
       if (itemEl && itemEl.dataset.url) {

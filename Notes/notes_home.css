@@ -32,8 +32,9 @@ body.notes-page-body {
   font-size: 1rem;
 }
 
-/* Search Box */
+/* --- Search Box Positioning Anchor --- */
 .search-box {
+  position: relative;
   width: 100%;
   max-width: 560px;
   margin-bottom: 2.5rem;
@@ -61,7 +62,118 @@ body.notes-page-body {
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }
 
-/* Button Navigation */
+/* --- Autocomplete Dropdown Menu --- */
+.suggestions-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.55);
+  z-index: 100;
+  display: none;
+  text-align: left;
+}
+
+.suggestions-dropdown.show {
+  display: block;
+}
+
+/* Individual Suggestion Item */
+.suggestion-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.75rem 1rem;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+  cursor: pointer;
+  border-bottom: 1px solid #1e293b;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+.suggestion-item.active {
+  border-left: 3px solid #38bdf8;
+}
+
+.suggestion-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.suggestion-title {
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+/* Month Badge inside Suggestion */
+.suggestion-badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.suggestion-item:hover .suggestion-badge,
+.suggestion-item.active .suggestion-badge {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* Keyword Tag Sub-row */
+.suggestion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.1rem;
+}
+
+.kw-tag {
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  color: #94a3b8;
+}
+
+/* Highlight Matching Text */
+.suggestion-item mark {
+  background: transparent;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+/* No Results Notification */
+.suggestion-no-results {
+  padding: 1rem;
+  color: #64748b;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* --- Button Navigation --- */
 .button-group {
   display: flex;
   gap: 1rem;
@@ -112,7 +224,7 @@ body.notes-page-body {
 
 /* --- Dictionary Pop-up Modal --- */
 .modal-overlay {
-  display: none;
+  display: none; /* Keeps modal hidden until triggered */
   position: fixed;
   inset: 0;
   background: rgba(11, 17, 32, 0.85);
@@ -272,7 +384,7 @@ body.notes-page-body {
   white-space: nowrap;
 }
 
-/* Mobile adjustments for Notes Landing & Dictionary */
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .notes-container {
     padding: 2.5rem 1rem;
@@ -312,94 +424,4 @@ body.notes-page-body {
   .dictionary-body {
     padding: 1rem 1.25rem;
   }
-}
-
-/* --- Ensure Search Box is the Positioning Anchor --- */
-.search-box {
-  position: relative;
-  width: 100%;
-  max-width: 560px;
-  margin-bottom: 2.5rem;
-}
-
-/* --- Autocomplete Dropdown Menu --- */
-.suggestions-dropdown {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  right: 0;
-  background: #0f172a;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  max-height: 320px;
-  overflow-y: auto;
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.55);
-  z-index: 100;
-  display: none;
-  text-align: left;
-}
-
-.suggestions-dropdown.show {
-  display: block;
-}
-
-/* Individual Suggestion Item */
-.suggestion-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  color: #cbd5e1;
-  font-size: 0.92rem;
-  cursor: pointer;
-  border-bottom: 1px solid #1e293b;
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
-}
-
-.suggestion-item:last-child {
-  border-bottom: none;
-}
-
-.suggestion-item:hover,
-.suggestion-item.active {
-  background-color: #1e293b;
-  color: #f8fafc;
-}
-
-.suggestion-item.active {
-  border-left: 3px solid #38bdf8;
-}
-
-/* Highlight Matching Text */
-.suggestion-item mark {
-  background: transparent;
-  color: #38bdf8;
-  font-weight: 700;
-}
-
-/* Month Badge inside Suggestion */
-.suggestion-badge {
-  font-size: 0.75rem;
-  padding: 0.2rem 0.55rem;
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  color: #94a3b8;
-  white-space: nowrap;
-}
-
-.suggestion-item:hover .suggestion-badge,
-.suggestion-item.active .suggestion-badge {
-  background: #0f172a;
-  color: #e2e8f0;
-}
-
-/* No Results Notification */
-.suggestion-no-results {
-  padding: 1rem;
-  color: #64748b;
-  text-align: center;
-  font-size: 0.9rem;
 }

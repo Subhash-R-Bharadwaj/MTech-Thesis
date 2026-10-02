@@ -898,7 +898,7 @@ Liquid targets bridge the gap b/w solid-foil targets and gas jets in LPI. Provid
 \hrule`,
   },
   {
-    id: 28,
+    id: "28",
     title: "Optical Masks",
     content: String.raw`\subsection*{Optical Masks}
 Spatial filter placed in optical path to manipulate amplitude, phase or polarization across a beam's transverse profile. Depending on where the mask is placed, it serves various purposes - 
@@ -920,7 +920,7 @@ If field just before mask is $E_{in}(x,y)$, then field immediately after is $E_{
 `,
   },
   {
-    id: 29,
+    id: "29",
     title: "Beam Splitters",
     content: String.raw`\subsection*{Beam Splitters}
 Optical component that splits single incident beam into 2 separate paths - transmitted and reflected. BS establish reference arms, delay lines and synchronization channels.
@@ -971,11 +971,11 @@ Clean separation by state \\
 \bottomrule
 \end{tabularx}
 \end{table}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 30,
+    id: "30",
     title: "Mask vs BS",
     content: String.raw`\subsection*{Mask vs BS}
 \begin{itemize}
@@ -983,11 +983,11 @@ Clean separation by state \\
     \item \textbf{Mask} - Transverse spatial filter/modulator. Defined by having a spatially non-uniform transmission profile($t(x,y)$) across beam dia, specifically designed to shape beam profile, or block certain freq, etc.,
     \item \textbf{More in Delay Lines}
 \end{itemize}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 31,
+    id: "31",
     title: "Delay, Delay Lines",
     content: String.raw`\subsection*{Delay, Delay Lines}
 Optical delay line is an apparatus designed to introduce a controlled, variable time interval($\tau$) b.w 2 optical pulses derived from same master laser.
@@ -1052,11 +1052,11 @@ fs-ns($\mu$m-m path difference) &
 Fractions of an optical cycle - few waves(nm-$\mu$m optical path) \\
 \end{tabularx}
 \end{table}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 32,
+    id: "32",
     title: "Michelson vs Mach-Zehnder",
     content: String.raw`\subsection*{Michelson vs Mach Zehnder}
 Primary difference is beam path geometry - Michelson is double-pass, reflective geometry that uses a single BS; Mach Zehnder is single-pass, transmissive loop that uses 2 BS and 2 mirrors.
@@ -1091,11 +1091,11 @@ Because the phase change is tied to the optical path length difference($\Delta\p
     \item Michelson - reflective, folded, double-pass; ideal for distance, motion, reflection, spectroscopy.
     \item MZ - Transmissive, unidirectional, single-pass; ideal for transparent media, aerodynamics, communication.
 \end{itemize}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 33,
+    id: "33",
     title: "Superluminal Phase Velocity",
     content: String.raw`\subsection*{Superluminal Phase Velocity}
 Occurs when the phase crests of a wave propagate faster than the speed of light in a vacuum($v_p > c$).
@@ -1103,11 +1103,11 @@ Occurs when the phase crests of a wave propagate faster than the speed of light 
     \item Why it doesn't break relativity: The phase of a wave doesn't carry energy or information. Information and energy travel at the group velocity ($v_g$), which always remains $\le c$.
     \item Common occurrences: This is standard in hollow metallic waveguides and unmagnetized plasmas, where the refractive index is effectively less than 1.
 \end{itemize}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 34,
+    id: "34",
     title: "Sub-cycle Timescale",
     content: String.raw`\subsection*{Sub-cyle Timescale}
 Refers to a duration shorter than one single optical oscillation period of a laser's electromagnetic wave.
@@ -1115,11 +1115,11 @@ Refers to a duration shorter than one single optical oscillation period of a las
     \item Typical Scale: For a standard Ti:Sapphire laser, one optical cycle ($T = \lambda/c$) is roughly $2.67$ femtoseconds. "Sub-cycle" means dynamics occurring faster than this(often in the as regime).
     \item Significance: In strong-field physics(like HHG or LPI), the cycle-averaged intensity envelope is insufficient to describe the physics. Sub-cycle timescales are required because the instantaneous electric field directly drives electron tunneling, injection, and acceleration.
 \end{itemize}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 35,
+    id: "35",
     title: "Relativistic Oscillating Mirror(ROM) Mechanism",
     content: String.raw`\subsection*{Relativistic Oscillating Mirror(ROM) Mechanism}
 Describes the generation of high freq light when an ultra intense laser pulse reflects off a solid, overdense plasma surface.
@@ -1127,11 +1127,11 @@ Describes the generation of high freq light when an ultra intense laser pulse re
     \item Mechanism: The laser's immense electric field drives the plasma surface electrons to oscillate back and forth at velocities near the speed of light, acting as a relativistically moving mirror.
     \item Result: As the incident light reflects off this moving boundary, it undergoes extreme Doppler upshifting, facilitating HHG in the XUV regime and producing as light pulses.
 \end{itemize}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 36,
+    id: "36",
     title: "Phased Array Effect",
     content: String.raw`\subsection*{Phased Array Effect}
 Describes the directional shaping and steering of a macroscopic beam by controlling the relative phases of multiple individual wave emitters.
@@ -1139,11 +1139,11 @@ Describes the directional shaping and steering of a macroscopic beam by controll
     \item Mechanism: By introducing a calculated phase delay across an array of sources, their individual waves constructively interfere in a specific target direction and destructively interfere elsewhere.
     \item Applications in Optics: It is the principle behind optical phased arrays(OPAs) used for non-mechanical beam steering(like in solid-state LiDAR). In strong-field physics and HHG, the macroscopic phase matching of emissions from different atoms in a gas or plasma target effectively acts as a volumetric phased array.
 \end{itemize}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 37,
+    id: "37",
     title: "Carrier Phase Envelope - CEP",
     content: String.raw`\subsection*{Carrier Phase Envelope - CEP}
 Phase offset between the peak of an ultrashort laser pulse's intensity envelope and the nearest peak of its oscillating electric field (the carrier wave).
@@ -1162,11 +1162,11 @@ In the first pulse, the CEP is zero(a cosine pulse, where the field peak aligns 
     \item Mechanism: Because phase velocity and group velocity differ in dispersive media, the carrier wave slips relative to the envelope as the pulse propagates, causing the CEP to change from pulse to pulse unless actively stabilized.
     \item Significance: In few-cycle, ultrafast pulses, the CEP dictates the absolute maximum electric field the target experiences. It is a critical control parameter in extreme non-linear optics, determining the outcome of sub-cycle processes like as pulse generation, HHG, and electron tunneling.
 \end{itemize}
-\hrule
+\hrule,
 `,
   },
   {
-    id: 38,
+    id: "38",
     title: "Collinear, Noncollinear Beams, Recombination",
     content: String.raw`\subsection*{Collinear, Noncollinear Beams, Recombination}
 Relative geometry of interacting beams - collinear vs noncollinear and the method chosen to recombine them determine whether you are synthesizing temporal waveforms or sculpting transverse spatial structures.
@@ -1192,7 +1192,7 @@ Relative geometry of interacting beams - collinear vs noncollinear and the metho
     $$L_{int}=\frac{2\omega_0}{sin(2\theta)}$$
     \item Beams, generated harmonics and scattered signals exit at different angles allowing clean spatial filtering.
 \end{itemize}
-\hrule
+\hrule,
 `,
   },
 ];
