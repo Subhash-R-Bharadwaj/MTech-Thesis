@@ -1567,7 +1567,7 @@ where: $I_1, I_2\to\ $Individual beam intensities; $cos\theta_{pol}\to\ $angle b
 \newline
 The term $2\sqrt{I_1I_2}cos\theta_{pol}cos(\Delta\phi)$ is the interference term.
 \newline\linebreak
-\textbf{Interference Conditions and Fringe Visibility}
+\textbf{Interference Conditions, Fringe Visibility, Phase, Fringe Width}
 \newline
 Assuming parallel polarizations: $cos\theta_{pol}=1$
 \begin{itemize}
@@ -1578,6 +1578,21 @@ Assuming parallel polarizations: $cos\theta_{pol}=1$
     \item Fringe Visibility: Quality of interference pattern is quantified by Michelson's visibility:
     $$V=\frac{I_{max}-I_{min}}{I_{max}+I_{min}}=\frac{2\sqrt{I_1I_2}}{I_1+I_2}cos\theta_{pol}|\gamma_{12}(\tau)|$$
     where, $|\gamma_{12}(\tau)|\to\ $degree of mutual coherence($0\leq|\gamma_{12}|\leq1$).
+    \item Phase: tally of how many wave cycles fit into the distance the light just traveled. Since 1 full wave cycle corresponds to phase of $2\pi$ radians, the exact proportionality is written as:
+    $$\phi=2\pi\frac{nd}{\lambda}$$
+    where $nd/\lambda\ \to \text{No. of cycles; }nd\ \to \text{Optical path length}$
+    \item Fringe Width: Distance b/w fringes created by 2 waves given as:
+    $$\Lambda=\frac{\lambda}{2sin(\theta/2)}=\frac{\lambda D}{d}$$
+    where $\theta\to$ angle b/w waves; $D\to$ distance from slits to screen; $d\to$ distance b/w slits.
+\end{itemize}
+\textbf{Different Freq Beam Interference}
+\begin{itemize}
+    \item The superposition of two quasimonochromatic scalar waves of frequency difference $\Delta\omega=2\pi\Delta v$ of wave eqns - 
+    $$E_1 = E_{01}cos(k_1r-i(\omega)t+\phi_1)$$
+    $$E_2 = E_{02}cos(k_2r-i(\omega+\Delta\omega)t+\phi_2)$$
+    yields the time-dependent total field
+    $$I=I_1+I_2+2\sqrt{I_1I_2}.cos(\Delta\phi-\Delta\omega t)$$
+    \item Intensity becomes time dependent with beat frequency $\Delta\omega$. The phase of this beat signal is equal to the phase difference between the two waves.
 \end{itemize}
 \textbf{Key Constraints: Fresnel-Arago Laws}
 \begin{itemize}

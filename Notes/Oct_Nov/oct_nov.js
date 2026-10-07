@@ -141,8 +141,184 @@ In laser plasma physics, particles move at relativistic speeds. Special relativi
   },
   {
     id: "4",
-    title: "Fourier Optics",
-    content: String.raw``,
+    title: "Imaging",
+    content: String.raw`\subsection*{Imaging}
+Near-field and far-field dictate how we model light, how we simulate it, and what fundamental limits restrict our imaging resolution. The transition between them isn't just about physical distance; it is entirely about the curvature of the wavefronts relative to your observation plane.
+\newline\linebreak
+\textbf{Physical Intuition}
+\newline
+Imagine light passing through a small aperture or exiting a waveguide.
+\begin{itemize}
+    \item \textbf{Near-Field(Fresnel region)}: So close to the source that the light waves hitting your detector are still highly curved. The interference pattern is a complex, chaotic mapping of the aperture itself. If the aperture has a sharp edge, the near-field pattern has rapidly oscillating ripples right at the boundaries(Fresnel fringes).
+    \item \textbf{Far-Field(Fraunhofer Region)}: Far enough away that the expanding spherical wavefronts have flattened out into plane waves by the time they reach you. The chaotic ripples smooth out into a clean, stable pattern that simply scales up in size as you move further away.
+\end{itemize}
+\textbf{Mathematical Boundary - Fresnel Number}
+\newline
+To determine which regime you are in mathematically, we use a dimensionless parameter called the Fresnel Number:
+$$F = \frac{a^2}{L \lambda}$$
+$a$ - characteristic size(radius) of your aperture or beam waist; $L$ - distance to your observation screen; $\lambda$ - wavelength.
+\begin{itemize}
+    \item F>>1(Near field) - Distance(L) is small. You must use the Fresnel diffraction integral. Mathematically, this means you are forced to keep the quadratic term($x^2$) in the phase expansion of the wave equation. The math here is very difficult to solve analytically.
+    \item F<<1(far field) - Distance(L) is very large. The quadratic terms drop to zero. You only keep the linear terms, which collapses the massive diffraction integral into a simple 2D Spatial Fourier Transform.
+\end{itemize}
+\textbf{Far Field Imaging}
+\begin{itemize}
+    \item Capturing angular distribution(divergence/Fourier transform) of light, or using light to image macroscopic object.
+    \item Apparatus for Laser Beam Profiling - working with a high-power femtosecond laser system, have to regularly check the far-field profile to ensure the beam isn't distorted.
+    \begin{itemize}
+        \item ND Filters/Wedge Prisms - cannot shoot a high power laser directly into a camera. You need highly reflective wedges to dump 99\% of the power, followed by absorptive ND filters.
+        \item Fourier Lens - high quality spherical lens(Plano-Convex).
+        \item CCD/CMOS Beam profiler - camera is mounted on a linear translation stage. Slide the camera precisely to the focal length of the lens. The image on the sensor is the pure far-field angular spectrum of the laser.
+    \end{itemize}
+    \item Apparatus for plasma/fluid diagnostics(Z-type Schlieren) - if generating a plasma and want to image the refractive index changes, you are operating in the far-field of the plasma.
+    \begin{itemize}
+        \item Probe Laser - secondary, synchronized low power laser pulse.
+        \item OAP mirrors/spherical mirrors - 2 mirrors arranged in a "Z" configuration. The first collimates the probe beam through the plasma. The second focuses it.
+        \item Knife edge(spatial filter) - Placed exactly at the focal point of the second mirror to block the un-refracted(zeroth-order) light.
+        \item Imaging lens \& camera - Placed behind the knife-edge to relay the shadow/Schlieren image of the plasma onto the camera sensor.
+    \end{itemize}
+\end{itemize}
+\textbf{Near Field Imaging}
+\begin{itemize}
+    \item Aims to capture spatial intensity distribution exactly at the surface of the emitter. Captures details/evanescent waves before they spread out/decay.
+    \item Apparatus for macroscopic near-field(Relay Imaging): If you want to see the near-field mode of a photonic crystal fiber or a waveguide structure.
+    \begin{itemize}
+        \item Microscope objective lens(high NA) - placed just $\mu m$ away from the output facet of the waveguide. The high NA collects light at very steep angles.
+        \item Tube lens - works with the objective to magnify the microscopic near-field image(often 40x-100x magnification).
+        \item Precision multi-axis stage - sample must be mounted on a sub-micron resolution piezoelectric stage to align it perfectly with the objective's incredibly shallow depth of focus.
+        \item Exactly what software like Ansys Lumerical simulates when you place a 2D frequency domain field monitor just nm above a simulated structure.
+    \end{itemize}
+    \item Apparatus for nanoscopic near-field(NSOM/SNOM): to break the diffraction limit and image surface features smaller than the wavelength of light (imaging plasmons on a metamaterial).
+    \begin{itemize}
+        \item Tapered optical fiber - glass fiber is stretched until the tip is roughly 50-100nm wide, then coated in Al so light can only escape through that tiny nanoscopic hole.
+        \item AFM cantilever \& tuning fork - fragile fiber tip is mounted to a tuning fork vibrating at a specific frequency. As the tip approaches within 10nm of the surface, atomic shear forces dampen the vibration. A feedback loop uses this to keep the tip from crashing into the sample.
+        \item Piezo scanners - sample is raster-scanned underneath the stationary tip point-by-point, pixel-by-pixel.
+        \item APD/photomultiplier tube(PMT) - because the aperture is tiny, only a few photons make it through. You need highly sensitive single-photon counting detectors to build the image.
+    \end{itemize}
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "5",
+    title: "Ultrafast Imaging",
+    content: String.raw`\subsection*{Ultrafast Pulse Imaging}
+To capture an event that lasts a few fs(ignition of a plasma, electron accelerating in a wakefield) - there is no electronic shutter fast enough to freeze that action. The fastest photodiodes and oscilloscopes operate in the ps/ns regime.
+\newline
+To image ultrafast dynamics, we have to stop trying to make the camera fast, and instead make the light source fast.
+\newline\linebreak
+\textbf{Pump-Probe Technique}
+\begin{itemize}
+    \item \textbf{Split}: Main laser beam is split into two paths using a BS. One beam is the Pump(high energy), and the other is the Probe(low energy).
+    \item \textbf{Pump}: Hits the target and initiates the physics; ionizes the gas, creates the plasma, or drives the shockwave.
+    \item \textbf{Probe}: Routed through a mechanical delay line and then passes through the target at an angle perpendicular to the pump.
+    \item \textbf{Strobe Effect}: Probe pulse illuminates the plasma for exactly Xfs(depending on pulse duration of main laser beam), casting a shadow(or a Schlieren image, or an interference pattern) onto a standard camera.
+    \item Moving the delay stage by just $1.5\mu m$ delays the arrival of the probe by exactly 10fs($t = \frac{2d}{c}$). By firing the laser repeatedly and moving the stage micron by micron, we can build a stop-motion movie of the plasma dynamics, frame by frame at fs-scale.
+\end{itemize}
+\textbf{Group Delay Dispersion - GDD}
+Consider a 35fs laser:
+\begin{itemize}
+    \item To make pump-probe imaging work, pulse must be 35 fs when it hits the target. But short pulses are incredibly fragile.
+    \item The fundamental rule of ultrafast optics is the time bandwidth product. To create a pulse in the time domain($\Delta t$), we need a broad spectrum of colors in the frequency domain($\Delta \nu$).
+    \item A 35fs laser isn't just one wavelength(eg: 800nm); it contains a bandwidth spanning from roughly 770nm to 830nm.
+    \item When this broad spectrum travels through any dispersive medium(glass window on a vacuum chamber, water, air), the refractive index depends on the frequency($n(\omega)$).
+    \item Blue light sees a higher refractive index than red light, so the blue frequencies travel slower.
+    \item Mathematically, we describe how a material affects the pulse by expanding the spectral phase $\phi(\omega)$ as a Taylor series around the central frequency $\omega_0$:
+    $$\phi(\omega) = \phi(\omega_0) + \phi'(\omega_0)(\omega - \omega_0) + \frac{1}{2}\phi''(\omega_0)(\omega - \omega_0)^2 + \dots$$
+    $\phi(\omega_0)$ - absolute phase; $\phi'(\omega_0)$- Group Delay(how long it takes the peak of the pulse to travel through the material); $\phi''(\omega_0)$ - Group Delay Dispersion(GDD).
+    \item GDD is measured in $fs^2$. If GDD is positive(normal dispersion), the red freq outruns the blue freq. The pulse spreads out in time, dropping its peak intensity and acquiring a "chirp"(freq changing with time). A 35fs pulse can easily stretch into a 500fs pulse just by passing through a thick piece of glass.
+\end{itemize}
+\textbf{Detectors for Ultrafast Optics}
+\begin{enumerate}
+    \item Target Imaging - Camera:
+    \begin{itemize}
+        \item To capture the interference fringes on liquid sheet or the Schlieren shadow of a plasma, use a standard CCD or CMOS scientific camera.
+        \item The camera itself might have an integration time of a full millisecond, but it does not matter if the room is dark, and only light hitting the camera is the 35fs flash of the probe beam.
+        \item The light provides the temporal resolution, not the camera.
+    \end{itemize}
+    \item Measuring the Pulse -
+    \begin{itemize}
+        \item To check if GDD has stretched the beam or not. Cannot be done using a photodiode.
+        \item To measure a fs pulse, it has to measure itself $\to$ Autocorrelation, FROG, ...
+    \end{itemize}
+\end{enumerate}
+\hrule
+`,
+  },
+  {
+    id: "6",
+    title: "Interference and Delay Lines",
+    content: String.raw`\subsection*{Interference and Delay}
+Beam is split into 2 separate arms and recombined on a detector to see fringes. A delay line lengthens 1 arm.
+\newline\linebreak
+\textbf{Role of Coherence}
+\begin{itemize}
+    \item Coherence Length - length till which laser is in phase. 
+    \item Random quantum noise inside the laser cavity causes the phase of the wave to randomly jitter or jump after a certain amount of time.
+    \item Cheap laser - L$_c$~mm; Stable laser - L$_c\sim$m.
+    \item To get interference fringes, path difference b/w arms must be less than L$_c$.
+    $$\Delta L=|L_1-L_2|<L_c$$
+    \item If $L_1=10cm>L_2$ but laser's $L_c\sim1mm$, the 2 waves arriving at the detector will have completely uncorrelated phases. They won't interfere - will just wash out into a flat, average brightness.
+\end{itemize}
+\textbf{Fringe Requirement}
+\begin{itemize}
+    \item Appearance of fringes comes down to two specific physical conditions - geometric overlap when combining; inherent path length difference compared to the source's coherence length($L_c$).
+    \item \textbf{Geometric Requirement - Creating Stripes}
+    \begin{itemize}
+        \item If 2 beams recombine at BS2 perfectly parallel and exactly on top of each other(collinear) - we will not see fringes. Combined beam will have exact same phase difference so we will see single uniform spot - either fully bright or dark.
+        \item To see alternating fringes, we must introduce slight angular tilt to one of the beams at BS2. Tilt creates continuously varying phase difference across transverse plane of the beam.
+        \item If no BS2(non-collinear interaction) - recombination occurs only if beams intersect at an angle on the detector.
+        \item Now fringes will be unavoidable - because waves collide at an angle, their wavefronts slice through each other creating continuous varying phase difference across overlap zone.
+        \item Will always generate a periodic grating of bright and dark stripes(spatial fringes).
+    \end{itemize}
+    \item \textbf{Temporal Requirement - Path Difference}
+    \begin{itemize}
+        \item Even without explicit delay line, there will still be path difference($\Delta L=|L_1-L_2|$) because human hands and optical mounts are imperfect - at least mm path length difference.
+        \item \textbf{CW lasers} - has $L_c$ ranging from 20cm-several m. $\Delta L < L_c$), the waves are perfectly correlated when they meet.
+        \item \textbf{fs lasers} - A 35fs pulse has a coherence length of roughly 10$\mu$m. $\Delta L \gg L_c$ - pulse traveling the shorter arm will completely pass through interaction zone, long before the second pulse arrives.
+    \end{itemize}
+\end{itemize}
+\textbf{1-Color Ultrashort Pulse}
+\begin{itemize}
+    \item Replace CW laser with 30fs 800nm laser.
+    \item Instead of an endless stream, the light is a discrete bullet of energy flying through space. A 30fs pulse is physically only about 9$\mu$m thick.
+    \item \textbf{Why delay?}
+    \begin{itemize}
+        \item Pulse is split into pump-probe. Pump does physics, probe takes image.
+        \item By sending probe on a slightly longer physical path than pump, it arrives at the target a few trillionths of a second after pump - build a stop-motion movie of ultrafast physics.
+    \end{itemize}
+    \item \textbf{Coherence Length - Pulse Duration}
+    \begin{itemize}
+        \item For ultrashort pulse, L$_c$ is effectively equal to physical length of pulse - 30fs pulse : 9$\mu$m pulse length.
+        \item To interfere 2 beams, their \textbf{path length difference($\Delta L$)} must be within pulse length - see "Path Length Optimization" for more.
+        \item If you are using probe to take a shadowgraph picture of the pump's interaction, they don't need to interfere; only need to know exactly how much time separates them.
+    \end{itemize}
+\end{itemize}
+\textbf{2-Color Ultrashort Pulses}
+\begin{itemize}
+    \item If pump and probe are the same color, the blinding glare from the intense pump scattering off the target will completely wash out the camera trying to capture the weak probe. 
+    \item By converting probe to 400nm(SHG - blue) using a non-linear crystal, we can put a blue filter over camera lens.
+    \item The camera becomes completely blind to the 800nm pump, capturing only the clean snapshot from probe.
+    \item \textbf{Challenge of 2 colors - Dispersion}
+    \begin{itemize}
+        \item Light travels at $c$ in a vacuum, but in any material(glass of a lens, beam splitter, air), different colors travel at different speeds.
+        \item The 400nm blue pulse will travel slower through a glass viewport than the 800nm red pulse.
+        \item $\therefore$ cannot simply measure 2 arms to find exact moment both pulses hit target simultaneously - need to use \textbf{Cross-Correlation}:
+        \begin{enumerate}
+            \item Place BBO crystal.
+            \item Sweep mechanical delay stage back and forth.
+            \item When 800nm and 400nm pulses overlap in the crystal at the exact same fs, they generate a flash of a third color(Sum Frequency Generation, usually UV light).
+            \item That flash tells exactly where delay stage must sit for $t=0$.
+        \end{enumerate}
+    \end{itemize}
+\end{itemize}
+\textbf{Hardware for Delay Lines}
+\begin{itemize}
+    \item Translation Stage - highly precise, motorized linear stage; must have excellent pointing stability. If the stage wobbles even slightly as it moves, the probe beam will tilt and physically miss the microscopic target.
+    \item Hollow Roof Mirrors(Retroreflectors) - mount 2 flat mirrors at a perfect 90$^\circ$ angle on the stage; beam bounces off and returns parallel to its incoming path; use hollow mirrors(just coated glass reflecting off the front surface) rather than solid glass corner-cubes, because passing a fs pulse through inches of solid glass introduces dispersion, stretching the short pulse in time.
+\end{itemize}
+\hrule
+`,
   },
 ];
 

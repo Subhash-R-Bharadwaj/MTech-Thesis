@@ -1,5 +1,19 @@
 const timelineEvents = [
   {
+    id: 40,
+    date: "08/10/2026",
+    title: "Interference Alignment",
+    content:
+      "Started to align for interference using diode laser, NPBS, mirrors and lenses",
+  },
+  {
+    id: 39,
+    date: "05/10/2026 - 07/10/2026",
+    title: "Interference Alignment Setup",
+    content:
+      "Understanding interference pattern and delay line setup. Trying to design an interferometer for 2-color SHHG experiment.",
+  },
+  {
     id: 38,
     date: "01/10/2026",
     title: "Presention on Electron Plasma Waves and Electron Trapping",

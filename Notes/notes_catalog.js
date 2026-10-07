@@ -7,12 +7,6 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "ADC - ADS1115",
-    page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=28",
-    keywords: [],
-  },
-  {
     title: "Arduino",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=74",
@@ -49,13 +43,19 @@ const notesCatalog = [
     keywords: [],
   },
   {
+    title: "Beam Line Composition",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=80",
+    keywords: [],
+  },
+  {
     title: "Butter Paper",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=81",
     keywords: [],
   },
   {
-    title: "Bellows",
+    title: "Bellows & Flanges",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=85",
     keywords: [],
@@ -64,6 +64,18 @@ const notesCatalog = [
     title: "CW-Pulsed Lasers",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=1",
+    keywords: [],
+  },
+  {
+    title: "Coherence",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=17",
+    keywords: [],
+  },
+  {
+    title: "Importance of Coherence",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=18",
     keywords: [],
   },
   {
@@ -97,6 +109,18 @@ const notesCatalog = [
     keywords: [],
   },
   {
+    title: "Clean Room Classification",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=56",
+    keywords: [],
+  },
+  {
+    title: "Clean Rooms Acc.To Airflow Dynamics",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=57",
+    keywords: [],
+  },
+  {
     title: "Compressor",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=86",
@@ -106,12 +130,6 @@ const notesCatalog = [
     title: "CPA",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=87",
-    keywords: [],
-  },
-  {
-    title: "Dual Op-Amp - LM358N",
-    page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=28",
     keywords: [],
   },
   {
@@ -145,6 +163,12 @@ const notesCatalog = [
     keywords: [],
   },
   {
+    title: "Significance of Electron Temp",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=63",
+    keywords: [],
+  },
+  {
     title: "Electron Spectrometer",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=26",
@@ -169,7 +193,7 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Filters",
+    title: "Filters, K-Edge",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=37",
     keywords: [],
@@ -193,9 +217,9 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Flanges",
+    title: "Applications of Fabry-Pèrot Cavity",
     page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=85",
+    url: "Jun_Jul/jun_jul.html?id=72",
     keywords: [],
   },
   {
@@ -217,9 +241,9 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Hall Probe",
+    title: "Lower Order Harmonics",
     page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=28",
+    url: "Jun_Jul/jun_jul.html?id=23",
     keywords: [],
   },
   {
@@ -241,25 +265,13 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "K-Potentiometer",
-    page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=28",
-    keywords: [],
-  },
-  {
-    title: "K-edge",
-    page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=37",
-    keywords: [],
-  },
-  {
     title: "Lanex",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=27",
     keywords: [],
   },
   {
-    title: "Limit Switches",
+    title: "ESM Components",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=28",
     keywords: [],
@@ -271,9 +283,57 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "MOSFET - IRF540",
+    title: "Imaging Challenges",
     page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=28",
+    url: "Jun_Jul/jun_jul.html?id=32",
+    keywords: [],
+  },
+  {
+    title: "Angana Mondal Thesis",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=31",
+    keywords: [],
+  },
+  {
+    title: "Pulse Width & Duration",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=4",
+    keywords: [],
+  },
+  {
+    title: "NNLS Reconstruction",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=46",
+    keywords: [],
+  },
+  {
+    title: "EM Algorithm",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=47",
+    keywords: [],
+  },
+  {
+    title: "HSI Paper",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=48",
+    keywords: [],
+  },
+  {
+    title: "Iterative Reconstruction",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=45",
+    keywords: [],
+  },
+  {
+    title: "Kramer's Law; Duane-Hunt Law",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=42",
+    keywords: [],
+  },
+  {
+    title: "HSI Data Cube - Image Processing",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=40",
     keywords: [],
   },
   {
@@ -385,9 +445,15 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Regulator - 7805",
+    title: "Stepper Motor, resolution",
     page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=28",
+    url: "Jun_Jul/jun_jul.html?id=29",
+    keywords: [],
+  },
+  {
+    title: "HHG",
+    page: "June - July",
+    url: "Jun_Jul/jun_jul.html?id=24",
     keywords: [],
   },
   {
@@ -409,15 +475,9 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Stepper Motor",
+    title: "MeV Temp Electrons",
     page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=28",
-    keywords: [],
-  },
-  {
-    title: "Stepper Motor Driver - A4988",
-    page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=28",
+    url: "Jun_Jul/jun_jul.html?id=14",
     keywords: [],
   },
   {
@@ -500,39 +560,15 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Beam shaft coupler - ESM comp",
-    page: "August - September",
-    url: "Aug_Sep/aug_sep.html?id=6",
-    keywords: [],
-  },
-  {
-    title: "Beam splitters",
+    title: "Dichroic Mirrors; Beam splitters",
     page: "August - September",
     url: "Aug_Sep/aug_sep.html?id=4",
-    keywords: [],
-  },
-  {
-    title: "Bearing blocks(flanges, ball, pillow) - ESM comp",
-    page: "August - September",
-    url: "Aug_Sep/aug_sep.html?id=6",
     keywords: [],
   },
   {
     title: "Coherent Astrella",
     page: "August - September",
     url: "Aug_Sep/aug_sep.html?id=8",
-    keywords: [],
-  },
-  {
-    title: "Collar",
-    page: "August - September",
-    url: "Aug_Sep/aug_sep.html?id=6",
-    keywords: [],
-  },
-  {
-    title: "Dichroic mirrors",
-    page: "August - September",
-    url: "Aug_Sep/aug_sep.html?id=4",
     keywords: [],
   },
   {
@@ -551,18 +587,6 @@ const notesCatalog = [
     title: "EM waves - principles and equations",
     page: "August - September",
     url: "Aug_Sep/aug_sep.html?id=19",
-    keywords: [],
-  },
-  {
-    title: "Feedthroughs",
-    page: "August - September",
-    url: "Aug_Sep/aug_sep.html?id=1",
-    keywords: [],
-  },
-  {
-    title: "Ferrule",
-    page: "August - September",
-    url: "Aug_Sep/aug_sep.html?id=1",
     keywords: [],
   },
   {
@@ -590,7 +614,7 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Lead screw - ESM comp",
+    title: "ESM Stage Mechanical Components",
     page: "August - September",
     url: "Aug_Sep/aug_sep.html?id=6",
     keywords: [],
@@ -617,12 +641,6 @@ const notesCatalog = [
     title: "Pb uses in labs against radiation",
     page: "August - September",
     url: "Aug_Sep/aug_sep.html?id=14",
-    keywords: [],
-  },
-  {
-    title: "Pirani gauge",
-    page: "August - September",
-    url: "Aug_Sep/aug_sep.html?id=1",
     keywords: [],
   },
   {
@@ -686,9 +704,9 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Vimba",
+    title: "Quiver Velocity",
     page: "August - September",
-    url: "Aug_Sep/aug_sep.html?id=10",
+    url: "Aug_Sep/aug_sep.html?id=25",
     keywords: [],
   },
   {
@@ -783,9 +801,22 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "Fourier Optics",
+    title: "Imaging",
     page: "Ovtober - November",
     url: "Oct_Nov/oct_nov.html?id=4",
+    keywords: [],
+  },
+  {
+    title: "Ultrafast Imaging",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=5",
+    keywords: [],
+  },
+
+  {
+    title: "Interference and Delay Lines",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=6",
     keywords: [],
   },
 ];
