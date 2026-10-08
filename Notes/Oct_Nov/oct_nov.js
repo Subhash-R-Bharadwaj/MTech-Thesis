@@ -256,8 +256,8 @@ Beam is split into 2 separate arms and recombined on a detector to see fringes. 
     \item Coherence Length - length till which laser is in phase. 
     \item Random quantum noise inside the laser cavity causes the phase of the wave to randomly jitter or jump after a certain amount of time.
     \item Cheap laser - L$_c$~mm; Stable laser - L$_c\sim$m.
-    \item To get interference fringes, path difference b/w arms must be less than L$_c$.
-    $$\Delta L=|L_1-L_2|<L_c$$
+    \item To get interference fringes, path difference b/w arms must be less than $L_c$.
+    $$\Delta L = |L_1 - L_2| < L_c$$
     \item If $L_1=10cm>L_2$ but laser's $L_c\sim1mm$, the 2 waves arriving at the detector will have completely uncorrelated phases. They won't interfere - will just wash out into a flat, average brightness.
 \end{itemize}
 \textbf{Fringe Requirement}
