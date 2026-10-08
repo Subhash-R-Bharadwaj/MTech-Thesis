@@ -830,11 +830,16 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=8",
     keywords: [],
   },
-
   {
     title: "Beam Attenuation",
     page: "Ovtober - November",
     url: "Oct_Nov/oct_nov.html?id=9",
+    keywords: [],
+  },
+  {
+    title: "Lenses",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=10",
     keywords: [],
   },
 ];

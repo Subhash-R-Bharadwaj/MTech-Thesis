@@ -488,6 +488,54 @@ A camera sensor saturates at nJ or even pJ of energy per pulse. Attenuation is d
 \hrule
 `,
   },
+  {
+    id: "10",
+    title: "Lenses",
+    content: String.raw`\subsection*{Lenses}
+Physical geometry of a lens dictates how it bends light, but the material dictates how it handles dispersion. When mapping out a beam path(eg, in Zemax), swapping one lens type for another completely changes your spot size, pulse duration, and damage threshold.
+\newline\linebreak
+\textbf{I] Spherical Lenses}
+\begin{itemize}
+    \item Standard glass lenses. Their curved surfaces are perfectly uniform geometric slices of a sphere.
+    \item \textbf{Physics}: Light traveling through the thicker center of the glass accumulates more phase delay than light traveling near the thin edges, forcing the wavefront to curve and converge. We calculate the focal length using the Lensmaker's Equation:
+    $$\frac{1}{f} = (n - 1) \left( \frac{1}{R_1} - \frac{1}{R_2} \right)$$
+    \item \textbf{Adv}: Cheap, easy to manufacture, and readily available in almost any focal length and substrate (N-BK7, fused Silica).
+    \item \textbf{Disadv}:
+    \begin{itemize}
+        \item Suffer from Spherical Aberration - because the curvature is constant, rays hitting the outer edge of the lens bend too sharply and focus closer to the lens than the paraxial rays hitting the center.
+        \item Also suffer from Chromatic Aberration - because the refractive index changes with wavelength.
+    \end{itemize}
+    \item \textbf{Where to use}: General beam routing, simple telescopes, and focusing CW alignment beams.
+\end{itemize}
+\textbf{II]Aspheric Lenses}
+\begin{itemize}
+    \item Asphere is a lens where the radius of curvature physically flattens out as you move from the center to the edge. It departs from a perfect sphere, usually following a conic section.
+    \item \textbf{Physics}: By perfectly calculating that flattening curve, the outer marginal rays are not overbent. An asphere forces all rays(both paraxial and marginal) to cross the optical axis at the exact same infinitesimal focal point.
+    \item \textbf{Adv}: Completely eliminates spherical aberration. A single aspheric lens can replace a stack of three or four spherical lenses, tightening the focal spot to the theoretical diffraction limit.
+    \item \textbf{Disadv}: Expensive to manufacture, very sensitive to misalignment - if beam hits the lens slightly off-center or at a slight tilt, introduces massive amounts of coma(where the focal spot smears out like a comet tail).
+    \item \textbf{Where to use}: Coupling light into single-mode optical fibers, collimating highly divergent laser diodes, or tight focusing requirements where parabolic mirrors aren't physically viable.
+\end{itemize}
+\textbf{III] Achromatic Doublets}
+\begin{itemize}
+    \item Achromat is explicitly designed to fix chromatic aberration(color smearing). Consists of two different lenses cemented together.
+    \item \textbf{Physics}: 
+    \begin{itemize}
+        \item Glue a positive lens made of low dispersion glass(Crown glass) to a negative lens made of high dispersion glass(Flint glass).
+        \item The negative lens acts as a corrective element. It purposely diverges the colors just enough to perfectly cancel out the dispersion of the positive lens for 2 specific wavelengths(usually red and blue), forcing them to share the exact same focal plane.
+    \end{itemize}
+    \item \textbf{Adv}: Practically eliminates chromatic aberration for broadband light and significantly reduces spherical aberration compared to a standard spherical lens.
+    \item \textbf{Disadv}: 2 glass elements are bonded with an optical cement(epoxy).
+    \item \textbf{Where to use}: Standard for focusing a white light supercontinuum probe beam, or in the imaging relay of a microscope setup where you need to image multiple colors cleanly without colored halos.
+\end{itemize}
+\textbf{Femtosecond Limitation}
+\begin{itemize}
+    \item When working with the main pump beam of an amplified fs system, lens choices are strictly limited by two factors: GDD and damage threshold.
+    \item If a 7mJ, 35fs pulse is made to focus using an achromatic doublet, the peak intensity will instantly vaporize the optical epoxy bonding the two lenses together, leaving a permanent black burn mark in the center of the optic.
+    \item Also, the thick combination of 2 different glasses will add massive GDD, stretching the 35fs pulse to hundreds of fs before it even hits the target. This is why high power ultrafast beams are almost exclusively focused using reflective OAP mirrors rather than transmissive lenses.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
