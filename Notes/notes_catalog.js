@@ -824,4 +824,17 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=7",
     keywords: [],
   },
+  {
+    title: "Mirrors - Metallic, Dielectric, Dichoric, OAP",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=8",
+    keywords: [],
+  },
+
+  {
+    title: "Beam Attenuation",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=9",
+    keywords: [],
+  },
 ];

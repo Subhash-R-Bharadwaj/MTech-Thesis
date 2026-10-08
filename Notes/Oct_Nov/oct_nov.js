@@ -357,6 +357,137 @@ Achieving sub-micron precision movement is done in 2 phases -
 \hrule
 `,
   },
+  {
+    id: "8",
+    title: "Mirrors - Metallic, Dielectric, Dichoric, OAP",
+    content: String.raw`\subsection*{Mirrors}
+Mirrors are optical components that actively manage the phase, wavelength, dispersion, and focal geometry of a light wave. Choosing a wrong mirror will either instantly melt the optic, fatally stretch the pulse, or ruin focal spot.
+\newline\linebreak
+\textbf{Metallic Mirrors - Ag, Au, Al}
+\newline
+Most basic mirrors - rely on the free e$^-$ in the metal's conduction band. When the electric field of the laser hits the metal, it forces those free e$^-$ to oscillate, which immediately re-radiates/reflects the wave.
+\begin{itemize}
+    \item \textbf{Adv: }
+    \begin{itemize}
+        \item Completely \textbf{broadband}(Au reflects almost all IR, Ag is great for visible/near-IR).
+        \item More importantly, because reflection happens right at the surface, they introduce \textbf{zero Group Delay Dispersion(GDD)}. They will not stretch a fs pulse.
+    \end{itemize}
+    \item \textbf{Disadv:}
+    \begin{itemize}
+        \item Not perfectly reflective(usually 96-98\%). 
+        \item Missing 2-4\% of energy is absorbed as heat.
+        \item If a Ag-mirror is hit with a high energy fs pump pulse, that absorbed heat will instantly vaporize the metal coating and blow a hole in the mirror(low damage threshold).
+    \end{itemize}
+    \item \textbf{Where to use:}
+    \begin{itemize}
+        \item Hollow roof retroreflectors inside mechanical delay lines.
+        \item Because the beam in a delay line is usually wide(unfocused) and since it should not be stretched, metal mirrors are perfect
+    \end{itemize}
+\end{itemize}
+\textbf{Dielectric Mirrors - Bragg Reflectors}
+\newline
+Used when needed to bounce a fully amplified fs beam without blowing up optics.
+\begin{itemize}
+    \item \textbf{Physics:}
+    \begin{itemize}
+        \item Contain zero metal. They are made of dozens of alternating microscopic layers of transparent, insulating materials(SiO$_2$, TiO$_2$) with high and low refractive indices. 
+        \item Each layer is manufactured to be exactly 1/4 of a wavelength thick($\lambda/4$).
+        \item When light hits the mirror, a small amount reflects off every single layer boundary. Because of the $\lambda/4$ thickness, all those separate reflections perfectly constructively interfere backward.
+    \end{itemize}
+    \item \textbf{Adv:}
+    \begin{itemize}
+        \item Can achieve >99.9\% reflectivity.
+        \item Because they absorb virtually zero energy, they have an incredibly high damage threshold.
+    \end{itemize}
+    \item \textbf{Disadv:}
+    \begin{itemize}
+        \item Highly wavelength-specific(800nm dielectric mirror might be completely transparent to 400nm light).
+        \item Because the light penetrates deep into the alternating layers, different frequencies spend different amounts of time inside the mirror, introducing GDD.
+    \end{itemize}
+    \item \textbf{Where to use:}
+    \begin{itemize}
+        \item Main beam routing for high-power pump lines.
+        \item To fix dispersion issue, manufacturers use highly complex Chirped Mirrors, where the layer thickness changes systematically to actually reverse and compensate for GDD.
+    \end{itemize}
+\end{itemize}
+\textbf{Dichoric Mirrors - Beam Splitters/Combiners}
+\newline
+Specialized dielectric mirror engineered to manipulate 2 different wavelengths simultaneously.
+\begin{itemize}
+    \item \textbf{Physics:}
+    \begin{itemize}
+        \item Carefully designed thin-film interference layers creates a mirror that perfectly reflects one color but allows another color to pass right through it with 100\% transmission.
+    \end{itemize}
+    \item \textbf{Where to use:}
+    \begin{itemize}
+        \item Pump-Probe recombination.
+    \end{itemize}
+\end{itemize}
+\textbf{Spherical Mirrors vs OAP Mirrors}
+\newline
+To focus a high power beam down to a microscopic spot to ignite a plasma - cannot use a glass convex lens(it will add massive GDD and suffer from chromatic aberration). Must use a curved mirror.
+\begin{itemize}
+    \item \textbf{Spherical Mirror:}
+    \begin{itemize}
+        \item Cut from a sphere, cheap and easy to make.
+        \item Suffer from \textbf{spherical aberration}.
+        \item Geometry of a sphere dictates that light rays hitting the outer edge of the mirror will focus slightly closer than rays hitting the center; resulting in a blurry, smeared focal spot.
+        \item Only used for very long focal lengths or non-critical imaging.
+    \end{itemize}
+    \item \textbf{OAP:}
+    \begin{itemize}
+        \item Geometric slice taken out of a side of perfect paraboloid.
+        \item \textbf{Physics} - Parabola has a unique geometric property : any incoming ray parallel to its axis of symmetry will reflect and pass through exactly one single, infinitesimally small focal point; There is zero spherical aberration.
+        \item \textbf{Where to use} - Standard for focusing high power ultrafast lasers into LPI targets; Provide tightest possible focal spot(maximizing Intensity) without adding any dispersion.
+    \end{itemize}
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "9",
+    title: "Beam Attenuation",
+    content: String.raw`\subsection*{Beam Attenuation}
+When using an Astrella system, dealing with roughly 7mJ of energy per pulse compressed into 35 fs, yielding a peak power of 200GW - If beam is routed directly into a scientific camera to look at interference fringes, camera sensor will instantly vaporize, mounting hardware will melt, eyes will get damaged from the diffuse scatter.
+\newline
+A camera sensor saturates at nJ or even pJ of energy per pulse. Attenuation is done to strip away 99.9999\% of the beam's energy without destroying its spatial profile or stretching it in time.
+\newline\linebreak
+\textbf{I] First Pick Off - Fresnel Reflection}
+\begin{itemize}
+    \item Never put a dark ND filter or a polarizer in the raw Astrella beam - The plastic or glass will instantly undergo optical breakdown and shatter.
+    \item Use an uncoated glass wedge - when light hits bare glass, a tiny fraction is reflected solely due to the mismatch in the refractive index between air and glass ($n_a\approx1;n_g \approx 1.5$). 
+    \item Fresnel eqns show that at near-normal incidence, the reflection is:
+    $$R = \left( \frac{n_{glass} - n_{air}}{n_{glass} + n_{air}} \right)^2 = \left( \frac{1.5 - 1}{1.5 + 1} \right)^2 \approx 0.04$$
+    \item Exactly 4\% of the beam reflects off the front surface of the wedge. Remaining 96\% passes safely straight through which must be safely trapped in a high power beam dump.
+    \item Often done twice - use 2 wedges to drop power down. Beam is now safe enough to handle with standard optics.
+    $$7mJ \times 0.04 = 280\mu J\ \to\ 280\mu J\times0.04=11.2\mu J$$
+\end{itemize}
+\textbf{II] Variable Attenuator: HWP + TFP}
+\begin{itemize}
+    \item Have to be able to smoothly dial the intensity up and down to get the perfect fringe contrast on camera.
+    \item Done using a Half Wave Plate(HWP) followed by a Thin Film Polarizer(TFP).
+    \item Astrella beam is highly linearly polarized. When HWP is rotated by $\theta$, the polarization vector of the laser rotates by $2\theta$. 
+    \item TFP acts as a gatekeeper -  it perfectly transmits P-polarized light and reflects s-polarized light.
+    \item By physically turning the HWP mount, can control exactly how much of the beam aligns with the TFP's transmission axis. 
+    \item The transmitted intensity follows Malus's Law:
+    $$I = I_0\cos^2(2\theta)$$
+    \item This gives a smooth, physical dial to drop the remaining $11\mu J$ down to a few $\mu J$.
+\end{itemize}
+\textbf{III] ND Filters}
+\begin{itemize}
+    \item Once the beam is down to a few $\mu J$, place absorptive/reflective ND filters directly in front of the camera lens to bridge the final gap down to nJ.
+    \item ND filters are categorized by Optical Density(OD), which is a logarithmic scale - 
+    $$T = 10^{-OD}$$
+    \begin{itemize}
+        \item ND-1.0 filter transmits $10^{-1}$ (10\%).
+        \item ND-2.0 filter transmits $10^{-2}$(1\%).
+        \item ND-3.0 filter transmits $10^{-3}$(0.1\%).
+    \end{itemize}
+    \item If we have 10$\mu J$ of energy and your camera needs 10nJ to avoid saturating, we need to reduce the power by a factor of 1,000 - place an ND-3.0 filter in front of the sensor.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
