@@ -812,11 +812,16 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=5",
     keywords: [],
   },
-
   {
     title: "Interference and Delay Lines",
     page: "Ovtober - November",
     url: "Oct_Nov/oct_nov.html?id=6",
+    keywords: [],
+  },
+  {
+    title: "Path Length Optimization",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=7",
     keywords: [],
   },
 ];

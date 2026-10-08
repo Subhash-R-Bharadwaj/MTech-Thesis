@@ -320,6 +320,43 @@ Beam is split into 2 separate arms and recombined on a detector to see fringes. 
 \hrule
 `,
   },
+  {
+    id: "7",
+    title: "Path Length Optimization",
+    content: String.raw`\subsection*{Path Length Optimization}
+Achieving sub-micron precision movement is done in 2 phases - 
+\newline\linebreak
+\textbf{A. Hardware - Micrometers, Wedges}
+\begin{itemize}
+    \item Motorized Translation Stages - 
+    \begin{itemize}
+        \item Mount a retroreflector of delay line on a high precision motorized stage(driven by stepper motor or piezo actuator).
+        \item Standard lab stages easily achieve step sizes of $0.1\mu m$.
+        \item $0.1\mu m$ of mechanical movement equates to about 0.66fs optical delay - enough mechanical resolution to step cleanly through a 30fs pulse.
+    \end{itemize}
+    \item Glass Wedges(as Control) - 
+    \begin{itemize}
+        \item If mechanical stage is too jittery, use a pair of thin glass wedges in one arm. 
+        \item By sliding one wedge perpendicular to the beam, can gradually change the thickness of the glass the pulse travels through. 
+        \item Because light travels slower in glass, injecting just a few extra microns of glass shifts the optical path length by fractions of a wavelength, giving nm-level control of the delay without misaligning the beam's direction.
+    \end{itemize}
+\end{itemize}
+\textbf{B. Finding Zero Path Difference}
+\begin{itemize}
+    \item Cannot measure a 1m path down to a 9$\mu$m tolerance using a tape measure; have to find the overlap optically.
+    \item \textbf{Rough alignment}: Tape measure or cut piece of string to get the physical lengths of the two arms equal to within about 1mm.
+    \item \textbf{Sweep}: Overlap the 2 beams on camera to create spatial fringes. At this point, screen will show a uniform, flat intensity because the pulses are arriving ps apart.
+    \item \textbf{Flash of Fringes}: 
+    \begin{itemize}
+        \item Set motorized stage to slowly sweep forward across 1mm uncertainty zone while watching the live camera feed.
+        \item Suddenly, out of the uniform blur, high-contrast interference fringes will flash onto the screen and disappear just as fast. 
+        \item  Flash is the $9\mu m$ window where the two beams physically collided on the camera sensor.
+    \end{itemize}
+    \item  Stop the stage, reverse in $0.1\mu m$ steps, and stop exactly at the position where the fringes have the highest contrast - now aligned to within the coherence length.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
