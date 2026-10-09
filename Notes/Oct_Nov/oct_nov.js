@@ -599,6 +599,44 @@ $$\to$$
 \hrule
 `,
   },
+  {
+    id: "12",
+    title: "Angles",
+    content: String.raw`\subsection*{Angles}
+\textbf{1. Degrees - Human Value}
+\begin{itemize}
+    \item Arbitrary unit of measurement - long ago, Babylonian astronomers noticed it took roughly 360 days for the sun to complete its cycle through the constellations, so they divided a full circle into 360 slices.
+    \item Physics - There is no physical reason a circle has 360 degrees. It is just a convenient number that divides easily by 2, 3, 4, 5, 6, 8, 10, and 12.
+    \item Because it is arbitrary, the number 360 carries units ($^\circ$). Cannot cleanly mix degrees with physical distances in physics eqns without adding conversion constants.
+\end{itemize}
+\textbf{2. Radians - Mathematical Truth}
+\begin{itemize}
+    \item Not arbitrary - it is built directly into the geometry of a circle.
+    \item If radius of a circle is wrapped along the curved outer edge(arc length, $s$), the angle created is exactly 1rad.
+    \item Because the total circumference of a circle is $C = 2\pi r$, it takes exactly $2\pi$ radii to wrap all the way around.
+    \item Physics - A full circle is $2\pi$rad.
+    \item Mathematically dimensionless. It is a ratio of two lengths ($\text{arc} / \text{radius}$).
+    \item When $\theta = 2$rad, it is just a pure number - allows to mix angles directly with lengths and velocities in physics eqns, such as the formula for arc length:
+    $$s = r\theta$$
+    Eqn completely breaks if $\theta$ is in degrees. Conversion:
+    $$\text{Radians} = \text{Degrees} \times \frac{\pi}{180^\circ}$$
+\end{itemize}
+\textbf{3. Trigonometry - Angle $\to$ Ratio}
+\begin{itemize}
+    \item With an angle(deg or rad), use trigonometric functions to project that rotation onto a flat grid.
+    \item Imagine a unit circle; rotate an angle $\theta$ from the x-axis; $\cos \theta$ tells you exactly what your x-coordinate is; $\sin \theta$ tells you exactly what your y-coordinate is.
+    \item Feed the machine an angle, it spits out a ratio(a length bounded between -1 and 1).
+\end{itemize}
+\textbf{4. Inverse Trigonometry - Ratio $\to$ Angle}
+\begin{itemize}
+    \item In experimental physics, physical lengths are measured first and need to figure out the angle.
+    \item If y-coordinate(sine ratio) is 0.5, $\sin^{-1}(x)$ or $\arcsin(x)$ tells what angle gave a height of 0.5.
+    \item Feed the machine a ratio, it spits out an angle.
+    \item Why Arc sin? - the angle $\theta$(in rad) is physically identical to the arc length on the edge of the unit circle. When mathematicians write $\arcsin(0.5)$, it literally translates to: "Find the arc length on the unit circle whose sine is 0.5."
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
