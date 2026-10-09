@@ -52,7 +52,7 @@ $$P_p \approx \frac{E_p}{\tau_p}$$
   },
   {
     id: "7",
-    title: "Average and peak power",
+    title: "Average Power; Peak Power",
     content: String.raw`\subsection*{Average and peak power}
     Average power represents the total energy output of a laser over a sustained period. 
     It determines the overall heating effect and is the standard metric for CW lasers and safety classifications.

@@ -1,7 +1,7 @@
 // Master registry of all topics across all note pages
 const notesCatalog = [
   {
-    title: "Average Power",
+    title: "Average Power; Peak Power",
     page: "June - July",
     url: "Jun_Jul/jun_jul.html?id=7",
     keywords: [],
@@ -366,12 +366,12 @@ const notesCatalog = [
     url: "Jun_Jul/jun_jul.html?id=5",
     keywords: [],
   },
-  {
-    title: "Pulse Peak Power",
-    page: "June - July",
-    url: "Jun_Jul/jun_jul.html?id=6",
-    keywords: [],
-  },
+  // {
+  //   title: "Pulse Peak Power",
+  //   page: "June - July",
+  //   url: "Jun_Jul/jun_jul.html?id=6",
+  //   keywords: [],
+  // },
   {
     title: "Pulse Duration Measurement",
     page: "June - July",
