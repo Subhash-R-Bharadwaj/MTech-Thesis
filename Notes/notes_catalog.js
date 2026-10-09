@@ -854,4 +854,10 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=12",
     keywords: [],
   },
+  {
+    title: "Domains",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=13",
+    keywords: [],
+  },
 ];

@@ -637,6 +637,62 @@ $$\to$$
 \hrule
 `,
   },
+  {
+    id: "13",
+    title: "Domains",
+    content: String.raw`\subsection*{Domains}
+Mathematical term for X-axis of plot. Defines how we choose to organize info. 
+\newline
+Swapping domains is like switching languages.
+\begin{enumerate}
+    \item \textbf{Temporal Domain}
+    \begin{itemize}
+        \item Most intuitive domain because it is how we experience reality.
+        \item Xaxis - ime ($t$).
+        \item Shows when does it something happen, and how long does it last.
+        \item Eg: plot the intensity of Astrella pulse in the temporal domain, can see a sharp spike that starts at $t = 0$, peaks, and drops to zero by $t = 35$fs. 
+        \item An oscilloscope trace is a purely temporal domain measurement.
+    \end{itemize}
+    \item \textbf{Spatial Domain}
+    \begin{itemize}
+        \item Domain of geometry and physical dimensions.
+        \item Xaxis (and Yaxis) - position ($x, y, z$).
+        \item shows where and how big object is.
+        \item Eg: put a piece of paper in front of laser, the black scorch mark is a spatial domain measurement. 
+        \item A photograph from a CCD camera showing the physical shape of a plasma is in the spatial domain.
+    \end{itemize}
+    \item \textbf{Freq Domain}
+    \begin{itemize}
+        \item Abstract - doesn't care when or where something happens; it only cares about how fast things are oscillating.
+        \item Because we have two other domains(time and space), we actually have two different types of frequency:
+        \begin{itemize}
+            \item Temporal Frequency ($\omega$ or $\nu$) - how fast the wave oscillates in time(cycles/s-Hz). In optics, temporal frequency is color of light.
+            \item Spatial Frequency ($k$) - how fast a pattern repeats in space(cycles/mm). If you look at a barcode, the thin, closely packed lines have a high spatial frequency, while the thick, wide bars have a low spatial frequency.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+\textbf{Bridge}
+\begin{itemize}
+    \item Cannot mix domains randomly. They are strictly locked together by a mathematical operation - \textbf{Fourier Transform}.
+    \item It translates a signal from the temporal/spatial domain into the frequency domain by breaking it down into a sum of perfect sine waves.
+    \item Time-Bandwidth Product(Heisenberg's Uncertainty Principle) is a direct consequence of the Fourier Transform. A signal cannot be tightly compressed in both domains simultaneously.
+    \begin{enumerate}
+        \item Time vs Temporal Freq:
+        \begin{itemize}
+            \item For an ultrashort pulse, the mathematics of the Fourier transform dictate that it must be constructed using a massive bandwidth of frequencies(colors). 
+            \item A 35fs pulse in the temporal domain corresponds to a broad, spectrum stretching from 770nm to 830nm in the frequency domain. 
+            \item If you want a pure, single color(a narrow frequency domain spike), the pulse must stretch out infinitely in time(CW laser).
+        \end{itemize}
+        \item Space vs Spatial Freq:
+        \begin{itemize}
+            \item When trying to squeeze a beam through a tiny pinhole(making it incredibly small in the spatial domain), the Fourier transform dictates that it must spread out into a massive range of spatial frequencies(angles). 
+            \item Exactly why diffraction happens - a tight spatial limit forces the beam to diverge wildly on the other side.
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}
+\hrule 
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
