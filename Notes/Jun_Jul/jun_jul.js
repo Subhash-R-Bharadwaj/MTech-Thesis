@@ -54,6 +54,7 @@ $$P_p \approx \frac{E_p}{\tau_p}$$
     id: "7",
     title: "Average and peak power",
     content: String.raw`\subsection*{Average and peak power}
+$$P_{avg} = \frac{E}{T_r} = E*f_{rep}$$
 $$P_{avg} = P_{peak} * \textbf{Duty Cycle}$$
 Duty Cycle = $\tau_p * f_r$
 \hrule`,
