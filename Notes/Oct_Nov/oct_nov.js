@@ -536,6 +536,69 @@ Physical geometry of a lens dictates how it bends light, but the material dictat
 \hrule
 `,
   },
+  {
+    id: "11",
+    title: "Autocorrelation",
+    content: String.raw`\subsection*{Autocorrelation}
+There is no electronic detector fast enough to act as a stopwatch to measure ultrafast pulses. A standard fast photodiode has a response time of about 1ns. If a fs pulse is shot into it, the detector just sees a single, smeared-out spike of energy. Because electronics are millions of times too slow, the only optical event fast enough to measure a fs pulse is the pulse itself - foundation of Autocorrelation.
+\newline\linebreak
+\textbf{Physical Setup - NonCollinear Autocorrelator}
+\begin{itemize}
+    \item To make a pulse measure itself, we split it in half, delay one half, and force them to interact in a nonlinear medium.
+    \item Split - Incoming beam hits a 50/50 BS.
+    \item Delay - Pulse A travels a fixed distance; Pulse B is routed to a motorized mechanical delay line to introduce a controllable time delay, $\tau$.
+    \item Crossing - 2 beams are focused by a mirror so they cross at an angle inside a nonlinear crystal(typically BBO).
+    \item SHG -
+    \begin{itemize}
+        \item Normally, photons don't interact with each other. But inside BBO crystal, the intense electric fields rip at the e$^-$ clouds of the atoms. 
+        \item If a photon from Pulse A and a photon from Pulse B hit the exact same atom at the exact same time, the crystal combines them into a single photon with exactly twice the energy/freq(half the wavelength).
+        \item Because the two 800nm beams cross at an angle, momentum conservation dictates that this new 400nm blue light(2nd Harmonic) emerges perfectly straight down the middle, bisecting the angle.
+        \item Put a slow, cheap photodiode right in the middle to measure only the blue light. 
+        \item If Pulse B arrives at the crystal 100fs before Pulse A, they don't overlap in time, no blue light is generated, and the detector reads zero. As the motorized stage slides Pulse B through Pulse A, the blue light flares up and dies down.
+    \end{itemize}
+\end{itemize}
+\textbf{Maths and Trace}
+\begin{itemize}
+    \item Photodiode is slow, so it integrates the total energy of the blue light flash over time. 
+    \item The intensity of the blue light is proportional to the product of the intensities of the 2 fundamental pulses.
+    \item The signal $S(\tau)$ recorded by the computer as a function of the delay stage position $\tau$ is the Intensity Autocorrelation Integral:
+    $$S(\tau) \propto \int_{-\infty}^{\infty} I(t) I(t - \tau) dt$$
+    This eqn is a mathematical convolution of the pulse's intensity envelope $I(t)$ with a delayed copy of itself.
+\end{itemize}
+\textbf{Calculating Pulse Duration}
+\begin{itemize}
+    \item FWHM of the trace is not the actual pulse duration. Because it is a convolution of two pulses, the autocorrelation trace is always wider than the actual pulse.
+    \item To find true pulse duration ($\Delta t$), assume the shape of the laser pulse.
+    \item If perfect Gaussian temporal profile - conversion factor is $\sqrt{2} \approx 1.414$.
+    $$\Delta t_{Gaussian} = \frac{\Delta \tau_{measured}}{1.414}$$
+    \item If Hyperbolic Secant Squared (sech$^2$) profile(common for ultrafast oscillators) - conversion factor is 1.54.
+    \item If autocorrelator software says the FWHM of the trace is 50fs, and laser is assumed a Gaussian shape, your actual pulse duration is about 35fs.
+\end{itemize}
+\hrule
+\textbf{QUESTIONS}
+\begin{enumerate}
+    \item Because the eqn of trace relies purely on the Intensity profile $I(t)$, what critical information regarding the EM wave is completely lost during an intensity autocorrelation measurement? 
+    \item Consequently, what specific physical phenomenon happening inside the fs pulse can a standard autocorrelator never detect?
+\end{enumerate}
+$$\to$$
+\begin{itemize}
+    \item Polarization is a highly logical guess because photodiodes are polarization-blind. However, autocorrelators  actually have strict physical control over the polarization. 
+    \item The BBO crystal relies on a strict phase-matching to generate that 2nd harmonic flash - which only works if the incoming 800nm beams are polarized in a very specific orientation relative to the crystal axis.
+    \item Because you have to align this manually, polarization isn't the missing variable.
+    \item To find the real missing piece, look at how intensity is calculated from the fundamental Electric Field:
+    $$E(t) = E_0(t) e^{i(\omega_0 t + \phi(t))}$$
+    The electric field has 2 components: the amplitude envelope $E_0(t)$ and the phase $\phi(t)$.
+    \item Intensity is the absolute square of the electric field ($I \propto \vert{}E\vert{}^2$).
+    \item When you take the absolute square of that complex exponential, the phase term $\phi(t)$ mathematically vanishes. Because the intensity eqn completely erases the phase, a standard autocorrelator suffers from 2 massive physical blind spots - 
+    \begin{enumerate}
+        \item Cannot detect Chirp - An autocorrelator can tell that a pulse has stretched from 35fs to 60fs, but because it has no phase information, it cannot tell why; Cannot tell if the red frequencies are leading(+ve chirp) or if the blue frequencies are leading(-ve chirp). When trying to get absolute highest peak power out of the laser system, an autocorrelator gives no directional feedback on how to adjust the grating compressor to fix the dispersion.
+        \item Creates false symmetry - Integral $\int I(t) I(t-\tau) dt$ is an even function; meaning that even if actual laser pulse is  lopsided, the autocorrelator trace will always draw a perfectly smooth, symmetric bell curve on screen. It completely hides the true temporal shape of the pulse.
+    \end{enumerate}
+    This fundamental flaw is exactly  why optical physicists invented FROG - an autocorrelator where the simple photodiode is replaced by a spectrometer. By capturing both the intensity of the blue light and its exact frequency spectrum at every delay step, an algorithm can mathematically reconstruct the lost $\phi(t)$ term, revealing the true lopsided shape and chirp of the pulse.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;

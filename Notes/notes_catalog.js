@@ -842,4 +842,10 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=10",
     keywords: [],
   },
+  {
+    title: "Autocorrelation",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=11",
+    keywords: [],
+  },
 ];

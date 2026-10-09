@@ -86,7 +86,7 @@ $$I_0=\frac{1}{2}\epsilon_0E_0$$
     title: "How to measure pulse duration for ultrafast pulses?",
     content: String.raw`\subsection*{How to measure pulse duration for ultrafast pulses?}
 Ultrafast(ps/fs) pulses are vastly faster than the response time of electronics so they cannot be measure electronically using photodiodes or oscilloscopes. We have to use
-\textbf{light tot measure light}. Few techniques are:
+\textbf{light to measure light}. Few techniques are:
 \begin{enumerate}
         \item \textbf{Optical Intensity Autocorrelation}:
         \begin{itemize}
