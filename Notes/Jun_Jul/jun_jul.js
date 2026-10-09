@@ -54,10 +54,16 @@ $$P_p \approx \frac{E_p}{\tau_p}$$
     id: "7",
     title: "Average and peak power",
     content: String.raw`\subsection*{Average and peak power}
-$$P_{avg} = \frac{E}{T_r} = E*f_{rep}$$
-$$P_{avg} = P_{peak} * \textbf{Duty Cycle}$$
-Duty Cycle = $\tau_p * f_r$
-\hrule`,
+    Average power represents the total energy output of a laser over a sustained period. 
+    It determines the overall heating effect and is the standard metric for CW lasers and safety classifications.
+    $$P_{avg} = \frac{E}{T_{rep}} = E*f_{rep}$$
+    Peak power is the maximum instantaneous power achieved during a single pulse.
+    For pulsed lasers, peak power is significantly higher than average power, enabling intense energy concentration 
+    or applications like ablation or micromachining without excessive thermal damage to surrounding materials.
+    $$P_{peak} \approx \frac{E}{\tau_p}$$
+    $$P_{avg} = P_{peak} * \textbf{Duty Cycle}$$
+    Duty Cycle = $\tau_p * f_{rep}$
+    \hrule`,
   },
   {
     id: "8",
