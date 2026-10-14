@@ -1,10 +1,23 @@
 const timelineEvents = [
   {
+    id: 42,
+    date: "14/10/2026",
+    title: "Beam Expansion",
+    content:
+      "Designed mount and mask using AutoCAD. Got it 3D printed and aligned along diode laser beam path for expansion",
+  },
+  {
+    id: 41,
+    date: "12/10/2026-13/10/2026",
+    title: "Interferometer Setup",
+    content:
+      "Spoke with Prashanth sir about lack of optics for my setup. He told to start with 3D printed masks while procuring opto-mechanics. But Ravi and Abhisek said to get a metal mask machined because Astrella power will melt 3D printed material and pose as fire hazard. Started wtih diode laser now. Made do with whatever kind of optomechanics we have.",
+  },
+  {
     id: 40,
     date: "08/10/2026",
     title: "Interference Alignment",
-    content:
-      "Started to align for interference using diode laser, NPBS, mirrors and lenses",
+    content: "Managed to find very few opto-mechanics. Need more for my setup",
   },
   {
     id: 39,

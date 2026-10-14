@@ -860,4 +860,16 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=13",
     keywords: [],
   },
+  {
+    title: "Fourier Optics, Transformation",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=14",
+    keywords: [],
+  },
+  {
+    title: "Beam Expansion",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=15",
+    keywords: [],
+  },
 ];

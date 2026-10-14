@@ -693,6 +693,73 @@ Swapping domains is like switching languages.
 \hrule 
 `,
   },
+  {
+    id: "14",
+    title: "Fourier Transform",
+    content: String.raw`\subsection*{Fourier Optics, Fourier Transformations}
+\textbf{Fourier Transform} - mathematically is an eqn that breaks a complex, messy signal into a clean sum of perfect sin and cos waves. In laser labs, it is a physical event performed instantaneously by a glass lens.
+\newline\linebreak
+\textbf{Fourier Optics} - physical realization that a lens doesn't just focus light; it translates the light from the spatial domain(where the beam is) into the spatial frequency domain(the angles at which the beam is traveling).
+\newline\linebreak
+Framework in wave optics that uses spatial Fourier transforms to analyze light propagation by decomposing optical fields into a spectrum of plane waves.  It treats the spatial frequency domain($k_x.k_y$) as the conjugate of the spatial domain(x,y), allowing complex diffraction and imaging problems to be solved using linear systems theory.
+\newline
+Core Transformations:
+\begin{itemize}
+    \item Lens Fourier Transform - Ideal thin lens performs a spatial Fourier transform of an input field located at its front focal plane, projecting the result into its back focal plane where spatial positions correspond to spatial frequencies.
+    \item Free Space Propagation - Light propagation through homogeneous media is modeled by multiplying the spatial Fourier transform of the field by a transfer function, often implemented numerically using the Fast Fourier Transform(FFT) algorithm.
+    \item Spatial Filtering - By placing masks(apertures or filters) in the Fourier plane(back focal plane), one can selectively modify amplitude or phase of specific spatial frequencies, enabling operations like low-pass filtering(smoothing) or high-pass filtering(edge enhancement).
+    \item Fraunhofer Diffraction - Far-field diffraction pattern of an aperture is mathematically equivalent to the Fourier transform of the aperture's pupil function, linking physical diffraction directly to spectral analysis.
+\end{itemize}
+\newline\linebreak
+\textbf{Physical Fourier Transform}
+\begin{itemize}
+    \item Imagine a perfectly flat, wide laser beam(plane wave) hitting a spherical lens. Because it is flat and traveling perfectly $\parallel$ optical axis, the lens focuses all of it to a tiny, intense focal point.
+    \item In Fourier terms, a flat plane wave has zero variation across its surface - spatial frequency of 0.
+    \item The lens maps a spatial frequency of zero to the exact center coordinate(0,0) of the focal plane.
+    \item Now, plane wave hits a lens at a slight upward angle($\theta$) - lens still focuses it to a tight point, but because of the angle, that focal point is shifted downward, off-center.
+    \item The steeper the angle of the incoming light(higher the spatial frequency), the further away from the center it focuses.
+    \item Golden Rule of Fourier Optics - At the exact focal plane of a lens, the physical distance from the center axis is directly proportional to the spatial frequency($k$) of the incoming light.
+    $$x_{focal} \propto f \cdot k$$
+    The focal plane is literally the 2D Fourier Transform of laser beam.
+\end{itemize}
+\textbf{Application - Spatial Filtering}
+\begin{itemize}
+    \item When laser beam travels across the table, it picks up noise. Dust on the mirrors, microscopic scratches on lenses, and diffraction from irises create high freq ripples/halos on otherwise perfect Gaussian beam.
+    \item Focusing a dirty beam into a plasma target creates a messy, low intensity focal spot. So beam is cleaned using spatial filter.
+    \begin{enumerate}
+        \item \textbf{Transform}: Pass dirty beam through lens. Smooth Gaussian part of beam(low spatial frequency) focuses to a tiny, intense point exactly in the center; sharp, jagged noise from the dust(high spatial frequency) is scattered at wider angles, so it focuses into a faint halo outside that central point.
+        \item \textbf{Filter}: Place a microscopic pinhole(often $20-50 \mu m$ wide) exactly at the focal plane, dead center.
+        \item \textbf{Cut}: Pinhole physically blocks the high freq halo; acts as a low pass filter in the spatial frequency domain.
+        \item \textbf{Inverse Transform}: Place a 2nd lens one focal length after the pinhole - performs an Inverse Fourier Transform, taking the light from the frequency domain back to the spatial domain. The beam emerges perfectly smooth and clean.
+    \end{enumerate}
+\end{itemize}
+\hrule 
+`,
+  },
+  {
+    id: "15",
+    title: "Beam Expansion",
+    content: String.raw`\subsection*{Beam Expansion}
+\textbf{Why}
+\begin{itemize}
+    \item \textbf{Intensity Management(avoiding damage)} - Astrella outputs roughly 7mJ in 35fs; if that energy is compressed into a beam that is only 5mm wide, the peak intensity is enough to melt dielectric coatings or crack vacuum windows via self-focusing.
+    \item By expanding the beam diameter by a factor of 5, can increase the area by a factor of 25 - intensity drops by a factor of 25, making the beam safe to route across the table.
+    \item \textbf{The Diffraction Limit} - directly connects to Fourier Transform; physical size of the beam on mirror(the spatial domain) dictates the angles it can take when focusing(the spatial frequency domain).
+    \item The formula for the focused beam waist ($w_0$) is:
+    $$w_0 = \frac{2\lambda f}{\pi D}$$
+    A narrow(small D) input beam gives weak focal spot. To get the tightest possible spot to ignite a plasma($w_0$ gets smaller) - must fill the entire aperture of your focusing OAP(large D).
+    \item \textbf{Collimation (Reducing Divergence)} - when expanded, the magnification factor($M = D_{out} / D_{in}$) directly reduces this spreading. If beam is expanded $5\times$, the divergence angle($\theta$) shrinks by a factor of 5, keeping the beam tight and parallel over the long distance to the vacuum chamber.
+\end{itemize}
+\textbf{How}
+\begin{itemize}
+    \item \textbf{Galilean - UF standard} - use a negative/concave input lens and a positive/convex output lens; compact, lighter, and avoids an internal focal point; preferred choice for UF lasers to prevent air breakdown or optical damage.
+    \item $\to$ diverges/expands $\to$ collimation.
+    \item \textbf{Keplerian} - use 2 positive/convex lenses with an internal focal point between them; offer higher expansion ratios and allow for spatial filtering, the concentrated energy at the focus makes them less suitable for high power applications.
+    \item $\to$ converge to focus then naturally diverge $\to$ collimation.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;

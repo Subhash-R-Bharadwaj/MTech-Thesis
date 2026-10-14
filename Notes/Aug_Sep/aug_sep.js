@@ -901,6 +901,8 @@ Liquid targets bridge the gap b/w solid-foil targets and gas jets in LPI. Provid
     id: "28",
     title: "Optical Masks",
     content: String.raw`\subsection*{Optical Masks}
+Patterned/opaque/phase-modulating plate/component used to control, shape, filter or transform a beam.
+\newline
 Spatial filter placed in optical path to manipulate amplitude, phase or polarization across a beam's transverse profile. Depending on where the mask is placed, it serves various purposes - 
 \begin{itemize}
     \item Real image plane - Wavefront diagnostics.
