@@ -760,6 +760,63 @@ Core Transformations:
 \hrule
 `,
   },
+  {
+    id: "16",
+    title: "Laser Beam c/s, Profiles and Corrections",
+    content: String.raw`\subsection*{Laser Beam c/s and Profiles}
+TEM Mode = Laser beam c/s
+\newline
+Dictates exactly how photon energy is distributed in the x-y plane perpendicular to the direction the light is traveling.
+\newline
+Shape of scorch mark by burning a piece of burn paper in front of a laser, tells exactly what spatial mode the laser is operating in.
+\newline\linebreak
+\textbf{1. Gaussian - TEM$_{00}$}
+\begin{itemize}
+    \item Perfectly circular, symmetrical bell curve; intensity is highest at center and smoothly drops off toward the edges following the function
+    $$I(r) = I_0 e^{-2r^2/w^2}$$
+    \item Fundamental, lowest-order eigenmode of a stable optical cavity; If light is trapped bouncing back and forth between 2 spherical mirrors, the boundary conditions of the mirrors naturally force the light to adopt a Gaussian shape because it \textbf{suffers the least amount of diffraction loss at the edges}.
+    \item Only spatial profile that is mathematically immune to the Fourier transform; a lens performs a spatial Fourier transform - but If Gaussian beam is shot through a lens, the focused spot on the other side is still a perfect Gaussian. It gives the tightest possible focal spot without any diffractive ringing.
+    \item Applications - LPI, pushing maximum peak power into a target, coupling light into single-mode optical fibers,...
+\end{itemize}
+\textbf{Flat Top Beam}
+\begin{itemize}
+    \item Intensity is completely uniform across the entire circular(or rectangular) area, and then drops off a cliff to zero at the edges.
+    \item Not naturally generated in any laser cavity. Gaussian beam is physically reshaped to get this.
+    \item Applications - Semiconductor wafer annealing, laser eye surgery, laser ablation,...
+    \item If a Gaussian beam is used to drill a hole in metal, the hole will be V-shaped because the center burns deeper than the edges; A flat-top beam drills a perfectly flat, cylindrical hole.
+\end{itemize}
+\textbf{Rectangular, Elliptical Beams}
+\begin{itemize}
+    \item Shape depends on gain medium. Standard SC laser diodes(cheap laser pointers, pump sources for bigger lasers) have long, flat, rectangular light emitting regions.
+    \item Because of the Fourier limit, the axis that is physically narrowest at the diode face will diffract and spread out the fastest in the air. As the beam travels, it becomes a wildly diverging elliptical oval.
+    \item Applications - unnecessary beam, no real applications.
+\end{itemize}
+\textbf{Donut Mode - Laguerre-Gaussian/Vortex)}
+\begin{itemize}
+    \item Bright ring of intensity with a perfect, pitch black node of absolute zero intensity in the dead center.
+    \item Beam carries Orbital Angular Momentum(OAM) - while standard Gaussian beam has flat, parallel wavefronts, Vortex beam's wavefront twists as it travels through space. 
+    \item Because the phase is spinning around the center, the phase is mathematically undefined exactly on the axis, forcing the amplitude to physically drop to zero. 
+    \item Generate using Spiral Phase Plates(a piece of glass shaped like a spiral staircase) or SLMs.
+    \item Applications - Optical tweezers(trapping microscopic particles inside the dark central minimum),...
+\end{itemize}
+\textbf{Correction}
+\begin{enumerate}
+    \item \textbf{Correcting Rectangular/Elliptical Beam}
+    \begin{itemize}
+        \item Usually faced in SC laser diodes because diode's light emitting region is microscopic rectangular slit and because of Fourier Limit, diffracts unusually.
+        \item Solution - \textbf{Cyclindrical lens}: has curvature in only one dimension; acts as a lens on the x-axis, but acts like a flat window on the y-axis; by placing a highly curved cylindrical lens close to the diode to grab and collimate the rapidly expanding fast axis, and a second, weaker cylindrical lens further down the table to collimate the slow axis, can independently control the 2 dimensions, squishing the rectangular beam into a perfect, collimated circle.
+        \item Solution - \textbf{Anamorphic Prism Pairs}: Instead of lenses, pass the elliptical beam through 2 triangular glass prisms; by tilting the prisms at specific angles, beam is geometrically stretched in exactly 1D as it refracts through the glass; literally stretching the short side of the rectangle until it matches the long side, creating a circular beam. 
+    \end{itemize}
+    \item \textbf{Correction Flat-Top Beam}
+    \begin{itemize}
+        \item Unlike Gaussian, flat-top beam immediately begins to diffract; sharp outer edges start to ripple, and the flat center begins to spike and sag. 
+        \item \textbf{Recover clean Gaussian}: pass the degraded beam through a Spatial Filter; only the smooth, low freq Gaussian core survives the pinhole.
+        \item \textbf{Reconstruct flat-top}: flat-top profile degrades as it travels, so optical engineers route a stable Gaussian beam all the way across the optical table, and place the beam shaper(the diffractive optic or Pi-Shaper) as the very last component before the focusing lens to get rectangle profile.
+    \end{itemize}
+\end{enumerate}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;

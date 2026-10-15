@@ -872,4 +872,10 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=15",
     keywords: [],
   },
+  {
+    title: "Laser Beam c/s, Profiles and Corrections",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=16",
+    keywords: [],
+  },
 ];
