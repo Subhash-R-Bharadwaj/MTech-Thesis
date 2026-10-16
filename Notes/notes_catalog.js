@@ -878,4 +878,28 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=16",
     keywords: [],
   },
+  {
+    title: "Photodetectors - Photodiodes, CCD/CMOS, PMT, APD, UF Streak",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=17",
+    keywords: [],
+  },
+  {
+    title: "Fringes",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=18",
+    keywords: [],
+  },
+  {
+    title: "Femotometer™",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=19",
+    keywords: [],
+  },
+  {
+    title: "Camera With/Without Lens",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=20",
+    keywords: [],
+  },
 ];

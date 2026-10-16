@@ -817,6 +817,136 @@ Shape of scorch mark by burning a piece of burn paper in front of a laser, tells
 \hrule
 `,
   },
+  {
+    id: "17",
+    title: "Photodetectors - Photodiodes, CCD/CMOS, PMT, APD, UF Streak",
+    content: String.raw`\subsection*{Photodetectors - Photodiodes, CCD/CMOS, PMT, APD, UF Streak}
+Photodetectors: Convert photons to electrons/current, i.e., measurable signal - PE effect.
+\textbf{Photodiode}
+\begin{itemize}
+    \item Used to know when a pulse arrived or its total raw energy, but don't care about its spatial shape.
+    \item SC p-n junction operated in reverse bias; apply a voltage across the chip to create a thick depletion region(internal electric field) where no free charges exist.
+    \item When a laser photon hits this depletion region, it creates an electron-hole pair; strong E instantly rips the electron and hole in opposite directions before they can recombine, creating a sudden spike of electrical current that shoots down the BNC cable to the oscilloscope.
+    \item Fast photodiode(to see a clean, sharp rising edge on an oscilloscope), must have small physical area. 
+    \item The junction acts as a capacitor ($C = \frac{\epsilon A}{d}$) - large area(A) creates high capacitance, which acts like an electronic shock absorber, smoothing out and slowing down your signal. 
+    \item 10GHz photodiode is so fast it can resolve ps features, but its active area is practically microscopic, making it incredibly frustrating to align in the dark.
+\end{itemize}
+\textbf{CCD and CMOS Cameras}
+\begin{itemize}
+    \item Used when needed to know the spatial profile(burn spots, interference fringes, or shadowgraphs).
+    \item 2D grid of millions of microscopic photodiodes(pixels).
+    \item Instead of immediately sweeping the electrons away to create a live current, the camera applies a small voltage to create a potential well at each pixel. 
+    \item When fs probe pulse flashes, the photons knock electrons free, and they get trapped in the well. When the camera reads out, an ADC counts the exact number of electrons in each pixel and assigns a grayscale value(eg: 0-65,535 for a 16-bit camera).
+    \item Blooming \& Saturation - A pixel has a finite Full Well Capacity(eg: 20k electrons); if incoming beam is not attenuated and some 50k photoelectrons fall into a single pixel, the well overflows; electrons physically spill over into the adjacent pixels. 
+    \item On screen, the tightly focused laser spot will look like a massive, glowing, smeared-out cross or a giant white blob ruining spatial measurements - Blooming.
+\end{itemize}
+\textbf{Photomultiplier Tubes(PMT) \& APD - Amplifiers}
+\begin{itemize}
+    \item While observing Thomson scattering or looking at weak plasma fluorescence, we get only 10-20 photons hitting your detector. A standard camera/photodiode cannot see this; it will be buried in electronic thermal noise.
+    \item PMT operates in a vacuum - single photon hits a photocathode, ejecting exactly one electron; that electron is accelerated by a high voltage(1000V) into a metal plate(dynode); it hits so hard that it knocks 5 secondary electrons loose;  those 5 are accelerated into the next plate, knocking 25 loose, then 125, then 625.
+    \item Single photon cascade creates an avalanche of a million electrons, yielding a massive, easily measurable voltage spike.
+    \item APDs do the exact same thing, but entirely inside a solid state Si chip using internal high voltage breakdown.
+\end{itemize}
+\textbf{Streak Camera - UF Domain}
+\begin{itemize}
+    \item Standard electronics(fast photodiode + oscilloscope) max out around 10-50ps. Cannot actively watch the temporal evolution of a plasma over range of 5ps.
+    \item Streak camera completely bypasses the electronic speed limit by mapping time into space.
+    \item UF light pulse hits a photocathode, converting the photon pulse into an identical flying cloud of electrons. As this electron cloud flies down a vacuum tube, it passes between 2 deflection plates.
+    \item Rapidly increasing voltage is applied across those plates while the cloud is passing through - electrons at the very front of the cloud(earliest time) experience a low voltage and hit the bottom of a phosphor screen; electrons at the back of the cloud(latest time) experience a high voltage and are deflected to the top of the screen.
+    \item By looking at the vertical smear(streak) on phosphor screen, can measure temporal events down to 100fs.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "18",
+    title: "Fringes",
+    content: String.raw`\subsection*{Fringes - fringe shift, traveling fringe pattern, fringe width, number of fringes, etc.,}
+Fringes are visual, spatial representation of phase difference.
+\newline\linebreak
+\textbf{Fringe Width, Number of Fringes}
+\begin{itemize}
+    \item Physical distance b/w 2 bright fringes on camera is determined by the angle($\theta$) at which the 2 beams cross.
+    \item For small angles, the fringe width $\Lambda$ is inversely proportional to the crossing angle:
+    $$\Lambda \approx \frac{\lambda}{\theta}$$
+    \item If beams cross at a very steep, wide angle(large $\theta$), $\Lambda$ is small; fringes will be packed so tightly together they might be smaller than a single pixel on CCD camera, washing out into a gray blur.
+    \item Number of fringes - total number of fringes is the width of beam(D) divided by the fringe width($\Lambda$). 
+    \item Eg: To get exactly 10 thick, highly visible fringes across 10mm beam, tilt the mirror in the interferometer to make the crossing angle incredibly shallow(almost perfectly collinear).
+\end{itemize}
+\textbf{Fringe Shift - $\Delta\phi$}
+\begin{itemize}
+    \item Split a probe beam in 2; reference arm travels through empty vacuum, other arm travels through the plasma; they recombine at the camera to form straight, parallel fringes.
+    \item Plasma is full of free electrons; gives it a refractive index(n) that is less than 1; phase velocity of light inside a plasma is actually faster than the speed of light in a vacuum.
+    \item Beam that travels through the plasma arrives at the camera with its phase slightly advanced compared to the reference beam. This phase delay($\Delta \phi$) physically pushes the bright and dark peaks sideways on the camera sensor.
+    \item A straight fringe will suddenly hook or bulge right where the plasma is. By counting exactly how many fractions of a fringe it shifted ($\Delta N = \Delta \phi / 2\pi$), computer can mathematically work backward(using an Abel inversion) to tell the exact 3D density of the plasma.
+\end{itemize}
+\textbf{Traveling Fringes - Heterodyne Interference}
+\begin{itemize}
+    \item Normally, fringes are perfectly stationary on camera screen; because both beams came from the same laser - have the same frequency.
+    \item Phase difference between them depends only on their spatial paths, not on time. But, if freq of any 1 beam is slightly shifted(eg: by bouncing it off a rapidly moving mirror which causes a Doppler shift, or by passing it through an Acousto-Optic Modulator), the frequencies are no longer equal.
+    \item Phase difference is now $\Delta \phi(t) = (\omega_1 - \omega_2)t$; it is constantly growing over time. 
+    \item The constructive and destructive peaks continuously slide past each other. On camera, the fringes will look like they are continuously flowing or traveling sideways across the beam profile like a waterfall.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "19",
+    title: "Femtometer™",
+    content: String.raw`\subsection*{Femtometer™ Few-Cycle Pulse Autocorrelators}
+Commercially built by Femtolasers, now part of Spectra-Physics/MKS to measure pulses so short that it barely has any waves inside.
+\newline
+For a 35fs pulse (which contains about 13 full optical cycles of 800nm light), losing the phase is annoying, but acceptable. But, if pulse is compressed to 5fs, that pulse is less than 2 optical cycles long; basically a single spike of an E; phase underneath the envelope(CEP) completely dictates the peak electric field. 
+\newline
+Standard intensity autocorrelator will fail completely here - must use an Interferometric Autocorrelator.
+\newline\linebreak
+\textbf{Setup}
+\begin{itemize}
+    \item In standard autocorrelator, 2 beams cross non-collinearly inside BBO crystal generating 2nd harmonic down the middle.
+    \item In Femtometer, system is like strict Michelson - 2 beams recombine collinearly.
+    \item Because they have same spatial axis, electric fields physically add together before SHG - 
+    $$E_{total}(t, \tau) = E_1(t) + E_2(t - \tau)$$
+    \item Detector measure time-integrated intensity of SHG, which is $\proptp$ E$_{total}^4$ - 
+    $$I_{SHG}(\tau) \propto \int|(E_1(t) + E_2(t-\tau))^2|^2 dt$$
+\end{itemize}
+\textbf{8:1 Ratio}
+\begin{itemize}
+    \item Expanding the integral gives highly complex trace on screen - not smooth bell curve. It is wildly oscillating wave(\textbf{fringes}) trapped in larger envelope.
+    \item Most critical diagnostic of autocorrelator is checking extreme limits - 
+    \begin{itemize}
+        \item Background($\tau=\infty$) - 2 pulses arrive at completely different times; do not overlap; BBO crystal sees pulse 1 and then 2; intensity is just $I_1^2+I_2^2$
+        \item Peak($\tau=0$) - 2 pulses arrive at exact same fs perfectly in phase; electric fields add coherently($E_1+E_2=E_{total}$); BBO crystal squares the field so peak intensity is $E_{total}^2$; final measured SHG intensity is $(E_{total}^2)^2$
+    \end{itemize}
+    \item Ratio of peak-background simplifies to 8:1.
+    \item If Femtometer trace on computer does not perfectly hit an 8:1 ratio; alignment is wrong, beams are clipping, or stage is jittering.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "20",
+    title: "Camera With/Without Lens",
+    content: String.raw`\subsection*{Camera With/Without Lens}
+Whether we use a lens in front of camera entirely depends on what the light is doing before it reaches the sensor.
+\newline
+In a laser lab - bare sensor(no lens) is used to record light that is already highly structured and directional; lens is added to record light that is scattering in all directions or to map a specific, distant physical location onto camera chip.
+\newline\linebreak
+\textbf{Without Lens - Bare Sensor}
+\begin{itemize}
+    \item Without lens, camera simply acts as an electronic piece of graph paper - it records the exact intensity of the light hitting that specific (x,y) coordinate in space.
+    \item App-I: Laser Beam Profiling(Near-Field) - To know if laser beam is a perfect Gaussian or messy oval; beam is heavily attenuated(using wedges, ND filters) and fired directly onto the bare CCD chip; camera captures the exact c/s of the laser beam at that exact point in space.
+    \item App-II: Collimated Shadowgraphy - Shine a wide, collimated probe beam across a plasma, the plasma will refract some of the light; place a bare camera sensor directly behind the plasma - the unrefracted light hits the sensor, while the refracted light misses it; casts a direct shadow of the plasma onto the sensor.
+    \item Diffraction Limit - If sensor is placed too far away from the plasma, the shadow doesn't stay sharp; because of diffraction, the sharp edges of the shadow will blur, create ripples, and spread out as the light travels through the air toward the camera.
+\end{itemize}
+\textbf{With Lens - Imaging Relay}
+\begin{itemize}
+    \item Lens in front of camera, fundamentally changes the physics - camera is no longer recording what the light looks like at the sensor's physical location; it is recording an optical reconstruction of a distant object plane.
+    \item App-III: Resolving Fine Details(Magnification) -  while taking a shadowgraph of plasma, but plasma is only $100 \mu m$ wide, a bare sensor will only register a tiny speck; lens uses the Thin Lens Equation($1/f = 1/d_o + 1/d_i$) to project that shadow onto the sensor; by moving the lens closer to the plasma($d_o$) and further from the camera($d_i$), can magnify($M = d_i/d_o$) plasma to completely fill the small(~mm) camera chip.
+    \item App-II: Capturing Scattered Light(Emission): Plasma glows when formed; this self-emission is incoherent — the photons radiate outward in every possible direction(a full $4\pi$ solid angle); a bare sensor near a glowing plasma, just catches a uniform, blurry wash of light, no shape; with lens, the curved glass catches all the diverging rays of light and physically forces them to bend back together, reconverging on the camera sensor to form a sharp, distinct picture of the plasma channel.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
