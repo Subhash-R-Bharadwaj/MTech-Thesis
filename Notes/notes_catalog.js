@@ -902,4 +902,10 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=20",
     keywords: [],
   },
+  {
+    title: "Pinhole Camera",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=21",
+    keywords: [],
+  },
 ];

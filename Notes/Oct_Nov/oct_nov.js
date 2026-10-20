@@ -947,6 +947,40 @@ In a laser lab - bare sensor(no lens) is used to record light that is already hi
 \hrule
 `,
   },
+  {
+    id: "21",
+    title: "Pinhole Camera",
+    content: String.raw`\subsection*{Pinhole Camera}
+Placing a microscopic pinhole in front of a bare camera sensor transforms it into the oldest imaging device - Pinhole Camera.
+In an UF laser lab, this is an absolutely essential diagnostic tool for imaging things that physically cannot be imaged by glass lenses.
+\newline\linebreak
+\textbf{Pinhole Image Formation}
+\begin{itemize}
+    \item When imaging glowing plasma using bare sensor, light from the top of the plasma hits the entire sensor, and light from the bottom hits the entire sensor. They overlap, resulting in a featureless, blurry wash.
+    \item Pinhole acts as a brutal angular filter - it physically blocks 99.99\% of the scattered light and only allows a single, perfectly straight pencil of light from the top of the plasma to pass through and hit the bottom of the sensor. Light from the bottom of the plasma passes through and hits the top of the sensor.
+    \item Perfectly maps specific spatial coordinates of the object to specific spatial coordinates on the CCD chip, generating a sharp, inverted image without using a single piece of curved glass.
+\end{itemize}
+\textbf{Why used inspite of having lenses?}
+\begin{itemize}
+    \item \textbf{XUV Imaging(primary use case)} -  Focusing 200GW Astrella pulse onto a solid metal target creates an overdense plasma that emits X-rays; standard optical lenses are completely opaque to X-rays - acts like a brick wall; also X-rays cannot easily be refracted -  cannot manufacture an X-ray lens.
+    \item Pinhole is drilled into a piece of lead or tungsten in front of an X-ray CCD camera to take picture of the plasma's X-ray emission profile.
+    \item \textbf{Infinite depth of field} - Because a pinhole does not rely on refraction or Thin Lens Equation, it does not have a focal plane; rays simply travel in straight lines whether an object is 10mm or 10m away, the rays; everything in the vacuum chamber(plasma, target mount, back wall) will be simultaneously in focus.
+    \item \textbf{Extreme geometric attenuation} - Because the pinhole rejects almost all the off axis light, it acts as a massive attenuator, ensuring sensitive CCD is not blinded by the intense broadband flash of the plasma.
+\end{itemize}
+\textbf{Trade Off}
+\begin{itemize}
+    \item Hardest part of building a pinhole camera is choosing the hole size, because of - 
+    \begin{enumerate}
+        \item Geometric Blur(large pinhole): If the hole is wide (~$500\mu m$), a single point of light on plasma doesn't map to a single pixel on the sensor; it maps to a $500 \mu m$ wide circle - image becomes incredibly blurry.
+        \item Diffraction Blur(small pinhole): When a wave is forced through an impossibly tight spatial aperture, it diffracts violently; small hole causes the light waves to bend and fan outward, creating a massive, smeared-out Airy disk on your sensor. 
+        \end{enumerate}
+        \item To get the sharpest possible image, find the exact mathematical focal point where geometric blur perfectly crosses diffraction blur - given by Lord Rayleigh’s optimal pinhole equation:
+        $$d_{opt} = 1.9 \sqrt{f \lambda}$$
+        where $d\to\ $ pinhole dia; $f\to\ $ distance from pinhole to the sensor.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
