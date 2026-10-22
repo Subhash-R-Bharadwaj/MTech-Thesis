@@ -981,6 +981,41 @@ In an UF laser lab, this is an absolutely essential diagnostic tool for imaging 
 \hrule
 `,
   },
+  {
+    id: "22",
+    title: "Ti:Sapphire Laser",
+    content: String.raw`\subsection*{Ti:Sapphire Laser}
+Until the invention of the Ti-doped Sapphire crystal, fs pulses were incredibly difficult to generate and completely impossible to amplify to high energies.
+\newline\linebreak
+\textbf{Gain Medium}
+\begin{itemize}
+    \item Sapphire($Al_2O_3$) crystal where small fraction of Al atoms are replaced by $Ti^{3+}$ ions.
+    \item Pure sapphire has incredibly high thermal conductivity -  when pumped with massive amounts of power, it doesn't melt, shatter, or distort easily.
+    \item Pump - $Ti^{3+}$ ions heavily absorb green light; Therefore, a Ti:Sapphire laser is always pumped by a secondary green laser(532nm Nd:YAG or Argon-ion laser).
+    \item Bandwidth - When $Ti^{3+}$ fluoresce and emit light, they do not emit a single sharp color but emit a massive, broad spectrum of NIR light stretching from roughly 650nm to 1100nm(peaking around 800nm).
+    \item Fourier Limit -the only mathematical way to create a pulse that is incredibly short in time($\Delta t$) is to build it out of a massive bandwidth of frequencies($\Delta \nu$)
+    \item Because Ti:Sapphire has the broadest emission bandwidth of any conventional laser crystal, it is the only crystal capable of supporting pulses down to < 5fs.
+\end{itemize}
+\textbf{Pulse Generation - Kerr Lens Mode Locking(KLM)}
+\begin{itemize}
+    \item Just because a crystal has a broad bandwidth doesn't mean it automatically output fs pulses - normally, it still outputs a CW beam; To force it to pulse, the oscillator relies on a non-linear Optical Kerr Effect.
+    \item At extreme intensities, the refractive index of sapphire physically changes. Intense center of the laser beam causes the crystal to act like a positive, converging lens.
+    \item Mechanism - Inside the oscillator cavity, there are billions of random, small noise spikes of light - 1 random spike will naturally be slightly more intense than the rest.
+    \item Self-Focusing - when the intense spike passes through the Ti:Sapphire crystal, Kerr effect kicks in - crystal turns into a temporary lens and tightly focuses that specific spike of light; CW wave is not focused.
+    \item Slit - small metal slit(aperture) is placed inside the cavity - tight, intensely focused spike passes perfectly through the slit; wide CW light hits the metal walls and is destroyed.
+    \item Result - to not lose energy laser crams all its energy to the slit leading to oscillation of single, highly intense spike; laser has been mode-locked.
+\end{itemize}
+\textbf{Amplification - CPA}
+\begin{itemize}
+    \item In case of Astrella, oscillator makes the 35fs pulse, but the energy is very small(~nJ); need around 7mJ to create plasma.
+    \item Simply routing a 35fs pulse into a large Ti:Sapphire amplifier crystal and pumping will instantly exceed the damage threshold of sapphire - crystal will blow up.
+    \item Stretch(Chirp) - Before amplifying, the 35fs pulse is sent into a pair of diffraction gratings; gratings force the red frequencies to travel a shorter path than the blue frequencies; this stretches the pulse out to hundreds of ps; because the energy is now spread out over a long time, the peak intensity drops by a factor of 10,000.
+    \item Amplify - Long, low intensity pulse is routed into a massive Ti:Sapphire regenerative amplifier; crystal safely amplifies the energy to 7mJ.
+    \item Compress - Amplified pulse is sent into a 2nd set of gratings that do the exact opposite; red light is delayed, blue light catches up, slamming all the colors back together to perfectly reconstruct the 35fs pulse, now with very high power.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;

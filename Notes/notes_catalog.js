@@ -908,4 +908,10 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=21",
     keywords: [],
   },
+  {
+    title: "Ti:Sapphire Laser",
+    page: "Ovtober - November",
+    url: "Oct_Nov/oct_nov.html?id=22",
+    keywords: [],
+  },
 ];
