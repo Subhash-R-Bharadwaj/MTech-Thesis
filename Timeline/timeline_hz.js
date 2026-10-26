@@ -1,10 +1,24 @@
 const timelineEvents = [
   {
+    id: 44,
+    date: "26/10/2026",
+    title: "Reverse Algorithm",
+    content:
+      "Wrote reverse algorithm code in Python to calculate distance b/w holes in mask using fringe spacing. Used 1D FFT slice to calculate - got an error of ~3mm, spoke with Prashant sir and he said it could be because of alignemnt. Told to go ahead with random slits and 2D FFT reverse algorithm. Need to get circular c/s beam. Don't have access to cylindrical lenses to convert rectangular c/s to circular, no pinhole also to do spatial filtering. Tried with green diode laser but couldn't get fringes at all at focal point. Mostly because of camera resolution or coherence of new laser.",
+  },
+  {
+    id: 43,
+    date: "22/10/2026-24/10/2026",
+    title: "Interference Pattern",
+    content:
+      "Got outer fringes but still no central fringes with 2 ND filters(OD4 and OD1). Got one more ND filter(OD 2) on 24th and attenuated the beam. Got central fringes.",
+  },
+  {
     id: 42,
-    date: "14/10/2026",
+    date: "16/10/2026",
     title: "Beam Expansion",
     content:
-      "Designed mount and mask using AutoCAD. Got it 3D printed and aligned along diode laser beam path for expansion",
+      "Designed mount and mask using AutoCAD. Got it 3D printed. Couldn't get required expansion using 2 lenses as diode laser is rectnagular c/s. Used microscope objective with 3D printed mount and collimating lens to expand to around 8x magnification - length expanded but width not much, but enough for mask holes.",
   },
   {
     id: 41,
@@ -321,8 +335,30 @@ function renderPanoramic() {
     });
 
     card.addEventListener("mousemove", (e) => {
-      tooltip.style.left = `${e.clientX + 16}px`;
-      tooltip.style.top = `${e.clientY + 16}px`;
+      const offset = 16;
+      const tooltipWidth = tooltip.offsetWidth || 300;
+      const tooltipHeight = tooltip.offsetHeight || 120;
+      const winWidth = window.innerWidth;
+      const winHeight = window.innerHeight;
+
+      // Position horizontally: flip to left if it extends past right window boundary
+      let left = e.clientX + offset;
+      if (left + tooltipWidth > winWidth - offset) {
+        left = e.clientX - tooltipWidth - offset;
+      }
+      // Safety clamp for left window boundary
+      left = Math.max(offset, left);
+
+      // Position vertically: flip above cursor if it extends past bottom window boundary
+      let top = e.clientY + offset;
+      if (top + tooltipHeight > winHeight - offset) {
+        top = e.clientY - tooltipHeight - offset;
+      }
+      // Safety clamp for top window boundary
+      top = Math.max(offset, top);
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
     });
 
     card.addEventListener("mouseleave", () => {

@@ -166,6 +166,7 @@
 }
 
 /* Tooltip */
+/* Hover Tooltip (contained within viewport) */
 .event-tooltip {
   position: fixed;
   display: none;
@@ -175,7 +176,14 @@
   border: 1px solid #38bdf8;
   border-radius: 8px;
   padding: 1rem 1.2rem;
-  max-width: 320px;
+  width: max-content;
+  max-width: min(
+    340px,
+    calc(100vw - 32px)
+  ); /* Prevents horizontal overflow on small screens */
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   pointer-events: none;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
 }

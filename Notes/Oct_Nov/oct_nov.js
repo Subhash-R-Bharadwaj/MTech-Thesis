@@ -574,6 +574,17 @@ There is no electronic detector fast enough to act as a stopwatch to measure ult
     \item If Hyperbolic Secant Squared (sech$^2$) profile(common for ultrafast oscillators) - conversion factor is 1.54.
     \item If autocorrelator software says the FWHM of the trace is 50fs, and laser is assumed a Gaussian shape, your actual pulse duration is about 35fs.
 \end{itemize}
+\textbf{SHG Stopwatch - Autocorrelation}
+\begin{itemize}
+    \item SHG occurs when an intense laser electric field drives the electrons in a non-centrosymmetric crystal lattice(like BBO) so violently that their oscillation becomes an-harmonic. 
+    \item Because the electrons hit a physical wall in the asymmetric lattice, they radiate an overtone; Mathematically, the induced polarization scales with the square of the electric field ($P \propto \chi^{(2)} E^2$), meaning 2 fundamental photons ($\omega$) combine to instantly create one photon at exactly twice the frequency ($2\omega$).
+    \item The resultant blue SHG beam acts as an instantaneous, optical stopwatch to measure the initial red beam.
+    \item The Logical AND Gate - Because SHG intensity is proportional to the square of the input intensity ($I_{2\omega} \propto I_\omega^2$), the non-linear crystal requires massive peak power to convert efficiently.
+    \item The Temporal Map - If 2 red pulses arrive at different times, they individually generate a weak background of blue light; But, if both pulses arrive at the exact same fs, their electric fields add together inside the crystal before squaring.
+    \item This perfectly overlapped peak generates a massive, instantaneous spike in blue light(8:1 ratio in an interferometric setup).
+    \item By recording the brightness of the generated blue light on a slow CCD camera while mechanically sweeping the delay stage, can physically map out the temporal overlap of the 2 pulses.
+    \item The SHG beam allows to translate an impossibly fast temporal event into a slow, measurable spatial/intensity curve, revealing the exact pulse duration of the original beam.
+\end{itemize}
 \hrule
 \textbf{QUESTIONS}
 \begin{enumerate}
@@ -597,6 +608,7 @@ $$\to$$
     This fundamental flaw is exactly  why optical physicists invented FROG - an autocorrelator where the simple photodiode is replaced by a spectrometer. By capturing both the intensity of the blue light and its exact frequency spectrum at every delay step, an algorithm can mathematically reconstruct the lost $\phi(t)$ term, revealing the true lopsided shape and chirp of the pulse.
 \end{itemize}
 \hrule
+
 `,
   },
   {
@@ -834,6 +846,10 @@ Shape of scorch mark by burning a piece of burn paper in front of a laser, tells
         \item Solution - \textbf{Cyclindrical lens}: has curvature in only one dimension; acts as a lens on the x-axis, but acts like a flat window on the y-axis; by placing a highly curved cylindrical lens close to the diode to grab and collimate the rapidly expanding fast axis, and a second, weaker cylindrical lens further down the table to collimate the slow axis, can independently control the 2 dimensions, squishing the rectangular beam into a perfect, collimated circle.
         \item Solution - \textbf{Anamorphic Prism Pairs}: Instead of lenses, pass the elliptical beam through 2 triangular glass prisms; by tilting the prisms at specific angles, beam is geometrically stretched in exactly 1D as it refracts through the glass; literally stretching the short side of the rectangle until it matches the long side, creating a circular beam. 
     \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{rec_circ.png}
+    \end{figure}
     \item \textbf{Correction Flat-Top Beam}
     \begin{itemize}
         \item Unlike Gaussian, flat-top beam immediately begins to diffract; sharp outer edges start to ripple, and the flat center begins to spike and sag. 
