@@ -711,6 +711,33 @@ Core Transformations:
     \item Fraunhofer Diffraction - Far-field diffraction pattern of an aperture is mathematically equivalent to the Fourier transform of the aperture's pupil function, linking physical diffraction directly to spectral analysis.
 \end{itemize}
 \newline\linebreak
+\textbf{Continuous Fourier Transform - Math}
+\begin{itemize}
+    \item Fourier Transform acts as a mathematical resonance filter. The governing equation is:
+    $$X(\omega) = \int_{-\infty}^{\infty} x(t) e^{-i\omega t} dt$$
+    \item By using Euler’s formula ($e^{-i\omega t} = \cos(\omega t) - i\sin(\omega t)$), this integral physically takes raw signal $x(t)$ and multiplies it by a pure sine wave of a specific test frequency $\omega$. 
+    \item If signal actually contains that test frequency, the peaks of signal will perfectly align with the peaks of the test wave. When multiplied together and integrated(calculating the total area under the curve), the result is a massive positive number indicating a strong match.
+    \item If signal does not contain that frequency, the peaks and troughs misalign randomly. When integrated, the positive and negative areas cancel each other out to exactly zero.
+    \item The transform systematically scans through every possible frequency $\omega$ from zero to infinity, plotting a spike wherever it finds a resonant match.
+\end{itemize}
+\newline\linebreak
+\textbf{Discrete Fourier Transform(DFT) - Digital reality}
+\begin{itemize}
+    \item Computers cannot integrate continuous functions to infinity; they can only process finite, discrete grids of numbers(like the pixels in camera sensor).
+    \item The Discrete Fourier Transform(DFT) performs the exact same matching process, but as a summation over $N$ individual data points instead of a continuous integral.
+    \item To determine the amplitude of a single freq, the computer must perform $N$ multiplications. To check all $N$ possible freq, the computer must perform $N^2$ operations. 
+    \item If a 1-megapixel camera image is fed into a standard DFT, the processor must execute 1 trillion calculations, which is prohibitively slow for real-time analysis.
+\end{itemize}
+\newline\linebreak
+\textbf{Fast Fourier Transform(FFT) - Algorithm}
+\begin{itemize}
+    \item FFT solves the computational bottleneck by exploiting the geometric symmetry of sine waves.
+    \item Instead of brute forcing the $N^2$ matrix, FFT uses a divide and conquer recursive method - splits data array into 2 smaller halves: even-indexed pixels and odd-indexed pixels. 
+    \item It calculates the transform of those smaller, simpler arrays and geometrically stitches the results back together.
+    \item This recursive halving mathematically reduces the processing time from $O(N^2)$ down to $O(N \log_2 N)$. 
+    \item For 1-megapixel camera image, FFT algorithm drops the required calculations from 1 trillion down to roughly 20 million, allowing lab computers to extract live spatial frequencies and phase maps from interference patterns instantaneously.
+\end{itemize}
+\newline\linebreak
 \textbf{Physical Fourier Transform}
 \begin{itemize}
     \item Imagine a perfectly flat, wide laser beam(plane wave) hitting a spherical lens. Because it is flat and traveling perfectly $\parallel$ optical axis, the lens focuses all of it to a tiny, intense focal point.
@@ -906,7 +933,7 @@ Standard intensity autocorrelator will fail completely here - must use an Interf
     \item In Femtometer, system is like strict Michelson - 2 beams recombine collinearly.
     \item Because they have same spatial axis, electric fields physically add together before SHG - 
     $$E_{total}(t, \tau) = E_1(t) + E_2(t - \tau)$$
-    \item Detector measure time-integrated intensity of SHG, which is $\proptp$ E$_{total}^4$ - 
+    \item Detector measure time-integrated intensity of SHG, which is $\propto$ E$_{total}^4$ - 
     $$I_{SHG}(\tau) \propto \int|(E_1(t) + E_2(t-\tau))^2|^2 dt$$
 \end{itemize}
 \textbf{8:1 Ratio}
@@ -1012,6 +1039,91 @@ Until the invention of the Ti-doped Sapphire crystal, fs pulses were incredibly 
     \item Stretch(Chirp) - Before amplifying, the 35fs pulse is sent into a pair of diffraction gratings; gratings force the red frequencies to travel a shorter path than the blue frequencies; this stretches the pulse out to hundreds of ps; because the energy is now spread out over a long time, the peak intensity drops by a factor of 10,000.
     \item Amplify - Long, low intensity pulse is routed into a massive Ti:Sapphire regenerative amplifier; crystal safely amplifies the energy to 7mJ.
     \item Compress - Amplified pulse is sent into a 2nd set of gratings that do the exact opposite; red light is delayed, blue light catches up, slamming all the colors back together to perfectly reconstruct the 35fs pulse, now with very high power.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "23",
+    title: "BBO Crystal - 2nd Harmonic Generation",
+    content: String.raw`\subsection*{BBO Crystal - 2nd Harmonic Generation}
+Beta-Barium Borate is predominantly used in non-linear optics - why?
+\newline
+But, 2nd harmonic won't be generated by just shooting a laser through a piece of BBO; have to actively fight the physics of optical dispersion to make it work.
+\newline\linebreak
+\textbf{Non-linear Physics - $\chi^{(2)}$}
+\begin{itemize}
+    \item Normally, when light passes through a dielectric material like glass, the electrons oscillate linearly with the electric field.
+    \item But BBO is a non-centro-symmetric crystal - its molecular lattice lacks inversion symmetry. 
+    \item When BBO crystal is hit with high intensity electric field, the electrons are pulled harder in one direction than the other; oscillation becomes distorted(nonlinear).
+    \item Polarization of the material responds according to $P = \epsilon_0 (\chi^{(1)}E + \chi^{(2)}E^2 + ...)$.
+    \item $\chi^{(2)}$ term - because electric field is squared($E^2$), the crystal takes two incoming photons of frequency $\omega$, destroys them, and instantaneously creates a single new photon with exactly twice the energy and frequency $2\omega$.
+\end{itemize}
+\textbf{$\omega\ \to\ 2\omega$}
+\begin{itemize}
+    \item To understand this, look at what the laser's electric field is actually doing to the electrons inside the BBO crystal lattice.
+    \item Imagine an electron in standard glass; If a light wave hits it, the electric field pushes the electron up, then pulls it down; It swings smoothly like a pendulum; Because it swings at the exact frequency of the incoming light($\omega$), it re-radiates light at that exact same frequency($\omega$).
+    \item Now imagine an electron inside BBO; BBO crystal lattice is asymmetrical; Electron sits in a lopsided/leaning potential well.
+    \item Asymmetric swing -  when hihg power laser electric field pushes the electron up, it moves easily; But when the field pulls the electron down, the electron hits a rigid wall of neighboring atoms.
+    \item Overtone - because the electron is violently slamming into this wall on every cycle, its physical motion is no longer a smooth sine wave; It becomes distorted; In Fourier terms, any distorted wave is made up of a fundamental frequency($\omega$) plus a second harmonic overtone($2\omega$).
+    \item New wave - because the electron is physically vibrating at $2\omega$, it acts as a tiny antenna and radiates a brand new EM wave at $2\omega$.
+    \item Conservation of energy - to radiate a $2\omega$ photon, the electron must absorb exactly that amount of energy from the pump beam; Therefore, it absorbs 2 $\omega$ photons, combines their energy, and emits one blue photon.
+    \item As the 800nm($\omega$, red) pulse travels through the crystal, it acts like a snowplow, constantly generating new blue waves at every single $\mu m$.
+    \item For the final blue beam to be bright, the blue wave generated at the front of the crystal must perfectly overlap with the blue wave generated at the back of the crystal.
+    \item If they overlap perfectly, the amplitudes add($1+1 = 2$), and the intensity squares($2^2 = 4$) - constructive interference exploding.
+    \item Only problem - dispersion; Blue light naturally travels slower through glass than red light; so, the blue wave generated at the front of the crystal gets left behind; By the time the red pulse reaches the back of the crystal, the new blue wave it generates is completely out of sync with the old blue wave - they undergo destructive interference, and the intensity drops back to zero.
+\end{itemize}
+\textbf{Phase-Matching Problem}
+\begin{itemize}
+    \item Because of dispersion, $2\omega$ beam travels slower through glass and crystals than $\omega$ beam does($n_{2\omega} > n_{\omega}$).
+    \item As the $\omega$ pump beam travels through the crystal generating 2nd harmonic, that newly generated light lags behind the pump beam.
+    \item Within a few $\mu m$, newly generated 2nd harmonic beam falls completely out of phase with the 2nd harmonic beam generated slightly earlier - They destructively interfere, and the SHG process completely kills itself. 
+    \item Must perfectly match the velocities of the 2 colors so they stay in phase to get any usable SHG light out - Phase Matching.
+\end{itemize}
+\textbf{Birefringence Solution}
+\begin{itemize}
+    \item SHG is always slower than main freq beam.
+    \item But BBO is birefringent, meaning its refractive index changes depending on the polarization and the angle at which the light travels through the lattice.
+    \item \textbf{Type I Phase Matching} - send 800nm($\omega$) beam in as o-ray wave; crystal naturally generates the 400nm($2\omega$) blue light as e-ray wave, polarized at exactly 90 degrees to the pump beam.
+    \item \textbf{Angle Tuning} - because the 400nm light is an e-ray, its refractive index physically changes as the crystal is tilted.
+    \item Mount the BBO crystal on a high precision rotation stage; as crystal is gently tilted relative to the incoming laser beam, the index for the 400nm(blue light) drops.
+    \item At exact specific angle($\theta \approx 29.2^\circ$ for 800nm in BBO) the index of the blue e-ray perfectly matches the index of the red o-ray; 2 waves travel at the exact same speed, constructive interference explodes, and blue beam emerges from the crystal.
+\end{itemize}
+\textbf{Ultrafast Penalty - Group Velocity Mismatch}
+\begin{itemize}
+    \item Cannot use a thick BBO crystal to measure a 5fs pulse, because of Group Velocity Mismatch(GVM).
+    \item Phase matching only matches the phase velocity; even when perfectly phase-matched, the 400nm blue pulse travels slower than the 800nm red pulse.
+    \item If using a thick BBO crystal(2mm thick), the 800nm pulse will physically outrun the 400nm pulse it is creating; blue pulse gets smeared out and stretched in time.
+    \item To preserve a 35fs pulse duration, use an incredibly thin BBO crystal(often $50 \mu m$ or $100 \mu m$ thick); sacrifice conversion efficiency(get less blue light) to maintain perfect temporal resolution.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "24",
+    title: "FFT(Fast Fourier Transform) Algorithm",
+    content: String.raw`\subsection*{FFT(Fast Fourier Transform) Algorithm}
+Mathematically translates a signal from original domain(time/space) into the frequency domain, breaking down complex, messy data into pure constituent sine and cosine waves. 
+\newline
+In case of below image, FFT is being used to separate high freq interference fringes from the low freq background laser profile.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{1.png}
+\end{figure}
+\textbf{Raw data - Spatial domain}
+\newline
+Looking at the cropped fringes and the corresponding 1D Fringe Profile - raw signal is a composite of 2 distinct physical features:
+\begin{itemize}
+    \item Broad, slowly varying intensity envelope representing the overall spatial profile of the laser beam.
+    \item Superimposed on top of that is a rapidly oscillating sine wave representing the interference fringes.
+\end{itemize}
+\textbf{FFT output - Freq domain}
+When FFT algorithm processes spatial data, it maps it into the 2D FFT(Spatial Frequencies) and 1D Spatial Frequency Profile plots. The algorithm physically separates the slow changing background from the fast changing fringes along an axis of spatial frequency.
+\begin{itemize}
+    \item Central Peak(DC Component) - Massive spike perfectly in the center of the plots represents a spatial frequency of zero(or near-zero); corresponds to the wide Gaussian beam envelope and any flat background illumination. 
+    \item It changes very slowly across the pixels, so it lives at the lowest frequency coordinate.
+    \item Side Lobes(Fringe Carrier Freq) - 2 distinct, symmetrical peaks represent the actual interference fringes; horizontal distance from the center to these peaks mathematically dictates the spatial frequency(how many pixels wide a single fringe is). 
+    \item Because the raw fringes are vertical lines, the frequency components extend strictly along the horizontal axis in the 2D FFT.  
 \end{itemize}
 \hrule
 `,

@@ -1160,7 +1160,7 @@ $$u(t) = K_pe(t)\ +\ K_i\int_0^te(\tau)d\tau \ +\ K_d\frac{de(t)}{dt}$$
     \begin{itemize}
         \item I term($K_i$) looks at history. Accumulates remaining error over time.
         \item Even if small error persists, integral terms continues to grow forcing the system to eliminate final steady state offset.
-        \item Can cause overshoot \& windup if $K_i$ is too high, because accumulated history forces system past target before it realizes to slow down.
+        \item Can cause overshoot & windup if $K_i$ is too high, because accumulated history forces system past target before it realizes to slow down.
     \end{itemize}
     \item Derivative - predication of future error
     \begin{itemize}
