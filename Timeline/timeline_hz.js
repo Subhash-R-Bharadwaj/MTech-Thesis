@@ -1,5 +1,18 @@
 const timelineEvents = [
   {
+    id: 46,
+    date: "30/10/2026",
+    title: "Enlarged Fringes",
+    content: "Used 20x objective to get enlarged fringes used ",
+  },
+  {
+    id: 45,
+    date: "27/10/2026",
+    title: "IMPALA Algorithm",
+    content:
+      "Got 3 new masks printed. Got to know about IMPALA Algorithm used to get spatiotemporal couplings(STC's) of incoming beam. Started reading up on IMPALA and Zernike Polynomials",
+  },
+  {
     id: 44,
     date: "26/10/2026",
     title: "Reverse Algorithm",

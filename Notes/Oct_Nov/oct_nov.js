@@ -1134,12 +1134,180 @@ Looking at the cropped fringes and the corresponding 1D Fringe Profile - raw sig
     \item Superimposed on top of that is a rapidly oscillating sine wave representing the interference fringes.
 \end{itemize}
 \textbf{FFT output - Freq domain}
+\newline
 When FFT algorithm processes spatial data, it maps it into the 2D FFT(Spatial Frequencies) and 1D Spatial Frequency Profile plots. The algorithm physically separates the slow changing background from the fast changing fringes along an axis of spatial frequency.
 \begin{itemize}
     \item Central Peak(DC Component) - Massive spike perfectly in the center of the plots represents a spatial frequency of zero(or near-zero); corresponds to the wide Gaussian beam envelope and any flat background illumination. 
     \item It changes very slowly across the pixels, so it lives at the lowest frequency coordinate.
     \item Side Lobes(Fringe Carrier Freq) - 2 distinct, symmetrical peaks represent the actual interference fringes; horizontal distance from the center to these peaks mathematically dictates the spatial frequency(how many pixels wide a single fringe is). 
     \item Because the raw fringes are vertical lines, the frequency components extend strictly along the horizontal axis in the 2D FFT.  
+\end{itemize}
+\textbf{How Transformation Occurs?}
+\newline
+FFT translates the physical cropped fringes into freq plots by treating the image strictly as a grid of numbers and systematically searching it for repeating patterns.
+\begin{enumerate}
+    \item \textbf{Digitizing the Spatial Domain}
+    \begin{itemize}
+        \item When the processing script reads cropped fringes image, the computer does not see a picture; it sees a 2D matrix of pixel intensity values, where black is near zero and pure white hits maximum intensity.
+        \item 1D Fringe Profile plot shows exactly what a single horizontal row of this matrix looks like - flat baseline of near zero values that spikes up and down as it crosses the bright and dark vertical fringes.
+    \end{itemize}
+    \item \textbf{Mathematical Probing - 2D FFT}
+    \begin{itemize}
+        \item To build 2D FFT heatmap, the algorithm mathematically compares raw image matrix against thousands of test matrices - Test matrices are pure, perfect 2D sine waves(essentially mathematically generated black-and-white gratings) of different spacings and angles.
+        \item Algorithm multiplies raw image by a test grating pixel-by-pixel and adds up the total sum.
+        \item If it tests a flat, non-repeating gray screen(0  freq), it perfectly matches the overall average brightness of beam - resulting sum is big, which the algorithm plots as the bright horizontal streak perfectly in the center of the 2D FFT plot.
+        \item If it tests a grating with perfectly vertical stripes that exactly match the physical spacing of laser fringes - bright peaks of the test wave perfectly align with the bright peaks of data; this big constructive sum is plotted as the distinct, bright side-lobes located horizontally away from the center.
+        \item If the test grating is tilted/horizontal/has the wrong spacing - bright and dark spots multiply against each other and cancel out to near zero; These failed matches become the dark, purple background in the 2D plot.
+    \end{itemize}
+    \item \textbf{Extracting Freq profile}
+    \begin{itemize}
+        \item Final 1D Spatial Frequency Profile is just a data extraction step.
+        \item Algorithm takes a single horizontal slice directly through the center of the 2D FFT heatmap, converting the color coded 2D matrix into a standard X-Y line graph.
+        \item The central DC spike and the 2 symmetrical fringe freq spikes are exactly the same data points as the bright dots in the 2D plot, allowing to mathematically pinpoint the exact pixel index of the carrier frequency.
+    \end{itemize}
+\end{enumerate}
+\hrule
+`,
+  },
+  {
+    id: "25",
+    title: "Spatial Patterns - Diffraction Rings/Interference Patterns,...",
+    content: String.raw`\subsection*{Spatial patterns}
+Parasitic spatial patterns are physical manifestation of high freq spatial noise(physical objects, thermal gradients, nonlinear material interactions, etc.,) interfering with primary Gaussian beam. If these rings reach experimental vacuum chamber, they will create localized hotspots that can prematurely ionize a target, ruin a probe image, or destroy downstream optics.
+\newline\linebreak
+\textbf{Diffraction and Interference Patterns}
+\begin{itemize}
+    \item \textbf{Fresnel Edge Diffraction} - Sharp optical boundary, such as a clipped mirror edge or an undersized iris, acts as a spatial step function; Generates high freq sinc-wave ripples that propagate outward as concentric rings.
+    \item \textbf{Holographic Dust Rings} - Microscopic particulates on lens surfaces scatter spherical waves that perfectly interfere with the main plane wave; Creates static, high contrast concentric bullseyes superimposed on the beam.
+    \item \textbf{Speckle Patterns} - When coherent light reflects off a microscopically rough surface like a target card, randomized phase delays create a chaotic, granular mosaic of bright and dark microscopic spots.
+\end{itemize}
+\newline\linebreak
+\textbf{UF and Nonlinear Distortions}
+\begin{itemize}
+    \item \textbf{Spatial Chirp} - In a CPA system, misaligned compressor gratings cause the red and blue frequencies to physically separate in space; Beam looks oval and changes color across its profile.
+    \item \textbf{Hotspots and Filamentation} - If peak power exceeds the critical self-focusing threshold in air or glass, Kerr effect causes the beam to spontaneously collapse into intense, localized microscopic filaments.
+    \item \textbf{Self-Phase Modulation Rings} - High intensity propagation through thick optical windows induces localized refractive index changes; Breaks the smooth profile into thick, high intensity rings due to extreme phase accumulation.
+\end{itemize}
+\newline\linebreak
+\textbf{Preventions}
+\begin{itemize}
+    \item \textbf{Oversizing Optics} - Ensure all mirrors, lenses, and viewports possess a clear aperture at least 2.5-3 times larger than the $1/e^2$ beam diameter to eliminate hard-edge diffraction.
+    \item \textbf{Spatial Filtering} - Focus the beam through a microscopic pinhole at the Fourier plane to physically block high freq spatial noise, allowing only the fundamental Gaussian mode to pass.
+    \item \textbf{B-Integral Management} - Expand the beam diameter prior to routing it through vacuum viewports or thick optics to lower the peak intensity and prevent nonlinear Kerr distortions.
+    \item \textbf{Rigorous Metrology} - Use near-field cameras and spatial interferometry to perfectly align compressor gratings and verify the complete elimination of spatial chirp.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "26",
+    title: "2D FFT Plot",
+    content: String.raw`\subsection*{2D FFT Plot}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{2d_fft.png}
+\end{figure}
+2D FFT plot translates a standard photograph from the physical space domain(pixels) into the spatial frequency domain; Heatmap maps exactly how rapidly the brightness oscillates across the original image.
+\newline\linebreak
+\textbf{Axes - Spatial Freq}
+\begin{itemize}
+    \item Axes do not represent physical X-Y coordinates.
+    \item The exact center of the plot is the origin, representing a spatial frequency of zero.
+    \item Horizontal axis represents the horizontal spatial frequency - Moving left/right from the center means looking at patterns that oscillate horizontally(physically look like vertical stripes).
+    \item Vertical axis represents the vertical spatial frequency - Moving up/down from the center represents patterns that oscillate vertically(horizontal stripes).
+\end{itemize}
+\newline\linebreak
+\textbf{The DC Center(Zero Freq)}
+\begin{itemize}
+    \item Bright point directly in the middle represents the zero freq component - physically captures the average overall brightness of the image and the slow-varying, wide Gaussian envelope of main laser beam.
+    \item Because the main beam profile changes so slowly across the camera sensor, it does not count as an oscillation, so it sits exactly at the origin.
+\end{itemize}
+\textbf{The Detected 2D Peaks(Fringes)}
+\begin{itemize}
+    \item 2 bright symmetrical dots flanking the center represent the actual laser interference fringes.
+    \item Because these peaks sit strictly on the horizontal axis, the raw image contains a strong pattern oscillating horizontally, proving physical interference fringes are perfectly vertical.
+    \item The physical distance from the center to these peaks dictates the fringe density - If the fringes in raw image were packed closer together(higher freq), these two cyan marks would move further outward away from the center.
+    \item There are 2 identical peaks instead of one because the FFT of any real valued image always produces a mathematically symmetric mirror image around the origin.
+\end{itemize}
+\textbf{The Crosshair Streaks(Edge Artifacts)}
+Distinct bright vertical line and a horizontal line forming a cross through the DC center - Boundary artifacts - FFT algorithm assumes the image tiles infinitely.
+\newline
+Because the physical edges of the camera sensor abruptly cut off the laser profile, that sharp step creates artificial horizontal and vertical high freq noise that bleeds strictly along the axes.
+\newline\linebreak
+\textbf{Background}
+Dark, noisy purple background across the rest of the plot represents randomized spatial frequencies - Captures random phase noise, microscopic dust scattering on optics, and thermal read noise from the camera sensor distributed across all frequencies.
+\newline\linebreak
+\textbf{Transformation}
+\hrule
+`,
+  },
+  {
+    id: "27",
+    title: "IMPALA Algorithm",
+    content: String.raw`\subsection*{IMPALA Algorithm - Iterative Multispectral Phase Analysis for LAsers}
+Technique used to measure the spectrally resolved wavefront of an ultrashort laser pulse based on the linear far-field interferometry of multiple beamlets. It eliminates the need for complex spectrometers by extracting wavelength specific phase data directly from far-field intensity measurements.
+\newline\linebreak
+\textbf{Setup - Pinhole Mask}
+\begin{itemize}
+    \item Method relies on placing a specialized mask containing a pattern of tiny pinholes directly into the path of the laser beam.
+    \item Pinholes break the main laser beam into several smaller beamlets - beamlets pass through the mask and are focused by a standard optical element(like a parabolic mirror or lens), causing them to overlap and physically interfere at the focal plane.
+    \item Camera placed at this focal plane captures the resulting polychromatic far-field intensity, which appears as a complex speckle or interference pattern.
+\end{itemize}
+\textbf{Data Acquisition - Mask Rotation}
+\newline
+To capture the full spatial profile of the beam, single image is not enough. Process involves physically rotating the pinhole mask to different orientations and capturing the interference pattern at each step.
+\newline\linebreak
+\textbf{Phase Retrieval and Zernike Extraction}
+\begin{itemize}
+    \item Once camera captures the interference data across multiple mask rotations, the IMPALA algorithm performs the computational phase retrieval.
+    \item In the far-field interference pattern, the physical distance between the interference fringes is dependent on the wavelength.
+    \item Allows the algorithm to computationally isolate and resolve specific wavelengths from the raw polychromatic data without a prism or grating.
+    \item For each specific wavelength and each mask rotation, the algorithm iteratively calculates the monochromatic wavefront.
+    \item Once these individual monochromatic wavefronts are retrieved, the algorithm extracts their Zernike coefficients, providing a standardized mathematical description of the optical aberrations(defocus, astigmatism, coma) present at that specific color.
+\end{itemize}
+\textbf{Nonlinear Stitching Requirement}
+\begin{itemize}
+    \item Because IMPALA is strictly a linear measurement of spatial interference, it cannot independently measure the temporal arrival time of the different colors. 
+    \item To build a complete 3D space-time map of a fs pulse, IMPALA must be paired with a separate nonlinear spectral phase measurement(FROG/SPIDER).
+    \item This external nonlinear data provides the temporal anchor required to correctly stitch the individual monochromatic wavefronts back together into a single, cohesive ultrashort pulse.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "28",
+    title: "Zernike Polynomials",
+    content: String.raw`\subsection*{Zernike Polynomials(Coefficients)}
+Sequence of continuous mathematical functions that act as the standard building blocks for describing the exact 3D shape of a distorted optical wavefront.
+\newline
+When a laser beam passes through imperfect lenses, reflects off warped mirrors, or travels through atmospheric turbulence - its flat phase front becomes physically distorted. Zernike coefficients are the numerical weights assigned to these mathematical shapes, telling exactly how much of each specific distortion is present in the beam.
+\newline\linebreak
+\textbf{Mathematical Foundation - Unit Disk}
+\begin{itemize}
+    \item Most optical beams and lenses are circular. Zernike polynomials are mathematically designed to be orthogonal over a circular unit disk.
+    \item Orthogonality - every single Zernike shape is mathematically independent; Cannot build 1 Zernike shape by adding together a combination of the others.
+    \item Basis set - Because they are independent, they form a complete basis set - Just as a Fourier transform breaks a complex 1D wave into simple sine waves, Zernike polynomials break a complex 2D spatial wavefront into a sum of simple, recognizable 3D geometric bowls and saddles.
+    \item Coordinates - defined using polar coordinates ($r, \theta$).
+\end{itemize}
+\textbf{Aberrations Pyramid}
+\newline
+Polynomials are ordered in a hierarchy, starting from simple macroscopic shapes and moving up to highly complex, microscopic ripples. The Zernike coefficient is simply the amplitude(typically measured in fractions of a wavelength, like $\lambda/4$) of that specific shape.
+\begin{itemize}
+    \item \textbf{Zero Order(Piston)} - Flat, uniform phase shift across the entire beam; does not change the shape of the focal spot at all.
+    \item \textbf{First Order(Tilt)}: Entire wavefront is a flat plane, but it is physically tilted; means beam is pointing in the slightly wrong direction and will miss the center of camera.
+    \item \textbf{Second Order} - 
+    \begin{itemize}
+        \item \textbf{Defocus} - Wavefront is a perfect parabolic bowl; camera is simply sitting slightly in front of or behind the true focal plane.
+        \item \textbf{Astigmatism} - saddle shape; beam focuses at different distances for the X and Y axes, usually caused by tilting a spherical lens or mirror. 
+    \end{itemize}
+    \item \textbf{Third Order(Coma)} - Wavefront has a cubic distortion, causing the focused laser spot to look like a comet with a smudged tail; classic signature of an optical component being aligned off-axis.
+    \item \textbf{Fourth Order(Spherical Aberration)} - Wavefront looks like a sombrero; light rays at the outer edge of your beam focus at a different geometric point than the light rays in the exact center, a fundamental flaw of using spherical lenses instead of parabolic ones.
+\end{itemize}
+\textbf{Why IMPALA uses Zernike Coefficients?}
+\begin{itemize}
+    \item If IMPALA algorithm just gave a raw 2D array of a million phase values, the data would be useless for alignment.
+    \item By projecting that messy phase map onto the Zernike basis set, IMPALA collapses a million pixels down to roughly 15 to 20 numbers(coefficients).
+    \item If the software reports a large coefficient for Astigmatism, can immediately understand the physical solution - check if focusing mirror is tilted at an angle too steep relative to incoming beam.
 \end{itemize}
 \hrule
 `,

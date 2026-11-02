@@ -926,4 +926,28 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=24",
     keywords: [],
   },
+  {
+    title: "Spatial Patterns - Diffraction Rings/Interference Patterns,...",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=25",
+    keywords: [],
+  },
+  {
+    title: "2D FFT Plot",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=26",
+    keywords: [],
+  },
+  {
+    title: "IMPALA Algorithm",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=27",
+    keywords: [],
+  },
+  {
+    title: "Zernike Polynomials",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=28",
+    keywords: [],
+  },
 ];
