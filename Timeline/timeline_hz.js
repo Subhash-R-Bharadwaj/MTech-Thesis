@@ -3,7 +3,8 @@ const timelineEvents = [
     id: 46,
     date: "30/10/2026",
     title: "Enlarged Fringes",
-    content: "Used 20x objective to get enlarged fringes used ",
+    content:
+      "Used 20x objective to get enlarged fringes with all 4 masks. Reverse algorithm still giving error in mask geometry after factoring magnification factor. ",
   },
   {
     id: 45,
