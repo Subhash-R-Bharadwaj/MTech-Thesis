@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thesis Work - MTech Thesis</title>
 
-    <!-- MathJax for rendering LaTeX formulas[cite: 2] -->
+    <!-- MathJax Configuration[cite: 4] -->
     <script>
       window.MathJax = {
         tex: {
@@ -39,67 +39,61 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     ></script>
 
-    <!-- Root global styles (3 folder levels up)[cite: 2] -->
     <link rel="stylesheet" href="../../../styles.css" />
-    <!-- Local thesis page styles[cite: 2] -->
     <link rel="stylesheet" href="thesis.css" />
   </head>
   <body class="thesis-page-body">
-    <!-- Container where global top navbar renders[cite: 2] -->
     <div id="navbar-container"></div>
 
     <main class="thesis-wrapper">
-      <!-- 1. Back button[cite: 2] -->
       <nav class="back-nav">
         <a href="../../home.html" class="back-btn">&larr; Back</a>
       </nav>
 
-      <!-- 2. Heading[cite: 2] -->
       <header class="thesis-header">
         <h1>
           Characterization of Interference Pattern on Liquid Sheet to Produce
-          Dynamically Controlled Traveling Plasma Grating for Relativistic HHG
+          Dynamically Controlled Traveling Plasma Grating for Relativistic SHHG
         </h1>
       </header>
 
-      <!-- 3. Vertical Timeline -->
+      <!-- Vertical Timeline -->
       <article class="thesis-timeline-container" id="thesisContent">
         <div class="timeline-track"></div>
 
-        <!-- Timeline Event 1 -->
         <div class="timeline-item" data-event-id="phase1">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <span class="timeline-date">Phase 1</span>
-            <h2>Literature Review & Theory</h2>
+            <h2>Theory and Fringe Analysis</h2>
             <p>
-              Formulation of relativistic momentum and Lorentz transformations.
+              Observe fringe pattern using diode laser and charaterize the
+              pattern for fringe spacing and other parameters.
             </p>
           </div>
         </div>
 
-        <!-- Timeline Event 2 -->
         <div class="timeline-item" data-event-id="phase2">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <span class="timeline-date">Phase 2</span>
-            <h2>Setup & Alignment</h2>
+            <h2>Integrate with Astrella & Analyze Fringes</h2>
             <p>
-              Interaction geometry, mirror alignment, and laser wakefield
-              preparation.
+              Route Astrella beam through interferometer setup and observe the
+              fringe pattern formed. Place liquid sheet target at interference
+              plane and optimize to achieve efficient fringe visibility.
             </p>
           </div>
         </div>
 
-        <!-- Timeline Event 3 -->
         <div class="timeline-item" data-event-id="phase3">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <span class="timeline-date">Phase 3</span>
-            <h2>Data Acquisition</h2>
+            <h2>2 Color Interference</h2>
             <p>
-              Dipole spectrometer magnetic field mapping and real-time beam
-              stabilization.
+              Introduce BBO in path of one of the interfering beams. Optimize
+              interferometer to observe transient traveling grating.
             </p>
           </div>
         </div>
@@ -114,18 +108,16 @@
           <span id="modalDate" class="modal-date"></span>
           <h2 id="modalTitle"></h2>
         </div>
-        <div id="modalBody" class="modal-body thesis-content">
+        <!-- Added paper-view class for LaTeX styling -->
+        <div id="modalBody" class="modal-body thesis-content paper-view">
           <!-- Content injected dynamically via thesis.js -->
         </div>
       </div>
     </div>
 
-    <!-- Root global script (3 folder levels up)[cite: 2] -->
     <script src="../../../app.js"></script>
-    <!-- Local thesis page script[cite: 2] -->
     <script src="thesis.js"></script>
     <script>
-      // 3 folder levels up to reach root[cite: 2]
       loadNavbar("../../../");
     </script>
   </body>

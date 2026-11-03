@@ -1312,6 +1312,48 @@ Polynomials are ordered in a hierarchy, starting from simple macroscopic shapes 
 \hrule
 `,
   },
+  {
+    id: "29",
+    title: "Focal Spot Characterization, Profile Extraction, Gaussian Fitting",
+    content: String.raw`\subsection*{Focal Spot Characterization, Profile Extraction, Gaussian Fitting}
+Characterizing the focal spot is the definitive method for calculating the absolute peak intensity delivered to target, requiring translating raw camera pixels into a mathematical Gaussian model. 
+\newline
+This process takes the visual light on sensor and converts it into strict thermodynamic variables.
+\newline\linebreak
+\textbf{Focal Spot Math}
+$$d=\frac{4M^2\lambda f}{\pi D_{in}};\ \omega_0=\frac{\lambda f}{\pi \omega_{in}}$$
+While using a microscope objective and collimated beam overfills the lens entrance aperture, the hard edge of the objective clips the beam - no longer focuses as pure Gaussian but as a diffraction limited Airy disk.
+\newline
+Diffraction limited spot size - $d=1.22\frac{\lambda}{\text{NA}}$
+\newline\linebreak
+\textbf{Focal Spot Plotting - Pixel to Spatial coordinates}
+\begin{itemize}
+    \item When bare camera sensor is placed exactly at the focal plane of microscope objective, the camera software outputs a 2D matrix of digital brightness values.
+    \item Plotting this data requires taking the known physical size of each pixel on your specific sensor(such as the $1.55 \mu m$ pixel pitch of a modern CMOS chip) and converting the arbitrary pixel index(0, 1, 2...) into a physical spatial axis.
+    \item This generates a true scale 2D heatmap or 3D surface plot representing the exact physical geometry of the concentrated light.
+\end{itemize}
+\textbf{Extracting the Profile - 1D Slice}
+\begin{itemize}
+    \item A raw 2D array containing millions of pixels is computationally heavy and visually noisy.
+    \item To analyze the beam mathematically - reduce its dimensionality -  programmatically locate the absolute brightest pixel in the array(centroid) and extract a single horizontal row of pixels(X-axis) and a single vertical column(Y-axis) intersecting at that exact point. 
+    \item This collapses the 2D heatmap into 2 1D line graphs showing intensity versus physical distance from the center.
+\end{itemize}
+\textbf{Gaussian Fitting - Algorithm}
+\begin{itemize}
+    \item Lab laser profiles are jagged, contaminated by thermal camera noise, air currents, and optical dust scattering; cannot accurately measure its width by just counting bright pixels. 
+    \item Instead, use a computational regression algorithm(typically a least-squares optimizer in Python) to drop a perfect, theoretical Gaussian equation over your raw data:
+    $$I(r) = I_0 e^{-2r^2/\omega_0^2}$$
+    \item The algorithm iteratively adjusts the theoretical peak height($I_0$) and the theoretical beam radius($\omega_0$) until this perfect mathematical curve smoothly overlaps the noisy data with the lowest possible error.
+\end{itemize}
+\textbf{Calculations}
+\begin{itemize}
+    \item The goal of the Gaussian fitting is to mathematically lock down $\omega_0$, which is the exact $1/e^2$ beam waist(the radius where the beam's intensity drops to 13.5\% of the maximum). 
+    \item Once $\omega_0$ is accurately measured in $\mu m$, calculate the focal area($A = \pi \omega_0^2 / 2$).
+    \item By taking the known energy of pulse and dividing it by the pulse duration and this calculated focal area, can derive the true peak intensity in $W/cm^2$ to predict plasma ionization thresholds.
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;

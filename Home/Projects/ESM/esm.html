@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESM - MTech Thesis</title>
+
+    <!-- MathJax Configuration[cite: 12] -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          packages: {
+            "[+]": ["amsmath", "amssymb", "amsbsy", "amsfonts", "textcomp"],
+          },
+        },
+        options: {
+          skipHtmlTags: [
+            "script",
+            "noscript",
+            "style",
+            "textarea",
+            "pre",
+            "code",
+          ],
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <link rel="stylesheet" href="../../../styles.css" />
+    <link rel="stylesheet" href="esm.css" />
+  </head>
+  <body class="esm-page-body">
+    <div id="navbar-container"></div>
+
+    <main class="esm-wrapper">
+      <nav class="back-nav">
+        <a href="../../home.html" class="back-btn">&larr; Back</a>
+      </nav>
+
+      <header class="esm-header">
+        <h1>Electon Spectrometer Mini-Project</h1>
+      </header>
+
+      <!-- Vertical Timeline -->
+      <article class="esm-timeline-container" id="esmContent">
+        <div class="timeline-track"></div>
+
+        <div class="timeline-item" data-event-id="phase1">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Phase 1</span>
+            <h2>Theory, Arduino-GCode Integration,CNC Stage Calibration</h2>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-event-id="phase2">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Phase 2</span>
+            <h2>Magnetic Field Mapping and ESM Stage Assembly</h2>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-event-id="phase3">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Phase 3</span>
+            <h2>Observe Electron Beam from Astrealla-Droplet Interaction</h2>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Customizable Event Modal -->
+    <div class="event-modal" id="eventModal">
+      <div class="event-modal-content">
+        <span class="modal-close" id="eventModalClose">&times;</span>
+        <div class="modal-header-data">
+          <span id="modalDate" class="modal-date"></span>
+          <h2 id="modalTitle"></h2>
+        </div>
+        <!-- Added paper-view class for LaTeX styling -->
+        <div id="modalBody" class="modal-body esm-content paper-view">
+          <!-- Content injected dynamically via esm.js -->
+        </div>
+      </div>
+    </div>
+
+    <script src="../../../app.js"></script>
+    <script src="esm.js"></script>
+    <script>
+      loadNavbar("../../../");
+    </script>
+  </body>
+</html>

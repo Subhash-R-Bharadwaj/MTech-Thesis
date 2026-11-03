@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mirror Alignment Work - MTech Thesis</title>
+
+    <!-- MathJax Configuration[cite: 14] -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          packages: {
+            "[+]": ["amsmath", "amssymb", "amsbsy", "amsfonts", "textcomp"],
+          },
+        },
+        options: {
+          skipHtmlTags: [
+            "script",
+            "noscript",
+            "style",
+            "textarea",
+            "pre",
+            "code",
+          ],
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <link rel="stylesheet" href="../../../styles.css" />
+    <link rel="stylesheet" href="mirror.css" />
+  </head>
+  <body class="mirror-page-body">
+    <div id="navbar-container"></div>
+
+    <main class="mirror-wrapper">
+      <nav class="back-nav">
+        <a href="../../home.html" class="back-btn">&larr; Back</a>
+      </nav>
+
+      <header class="mirror-header">
+        <h1>Automated Motorized-Mirror Alignment System</h1>
+      </header>
+
+      <!-- Vertical Timeline -->
+      <article class="mirror-timeline-container" id="mirrorContent">
+        <div class="timeline-track"></div>
+
+        <div class="timeline-item" data-event-id="phase1">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Phase 1</span>
+            <h2>Vimba and Alvium G1-240M Camera Setup</h2>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-event-id="phase2">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Phase 2</span>
+            <h2>Motorized Mount Control, Integration with Camera</h2>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-event-id="phase3">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Phase 3</span>
+            <h2>Algorithm Optimization</h2>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Customizable Event Modal -->
+    <div class="event-modal" id="eventModal">
+      <div class="event-modal-content">
+        <span class="modal-close" id="eventModalClose">&times;</span>
+        <div class="modal-header-data">
+          <span id="modalDate" class="modal-date"></span>
+          <h2 id="modalTitle"></h2>
+        </div>
+        <!-- Added paper-view class for LaTeX styling -->
+        <div id="modalBody" class="modal-body mirror-content paper-view">
+          <!-- Content injected dynamically via mirror.js -->
+        </div>
+      </div>
+    </div>
+
+    <script src="../../../app.js"></script>
+    <script src="mirror.js"></script>
+    <script>
+      loadNavbar("../../../");
+    </script>
+  </body>
+</html>

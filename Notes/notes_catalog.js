@@ -950,4 +950,10 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=28",
     keywords: [],
   },
+  {
+    title: "Focal Spot Characterization, Profile Extraction, Gaussian Fitting",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=29",
+    keywords: [],
+  },
 ];
