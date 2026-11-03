@@ -22,7 +22,7 @@ const eventDictionary = {
       \item Horizontal and vertical fringes are forming efficiently. But any other orientation of holes, close distance not producing good fringes. Need to understand why.
       \item Objective not placed at exact focal/interference plane. Could not get another 200mm focusing lens to capture fringe pattern(object) onto camera sensor.
       \item Aquired data is of unkown magnification. Reverse algorithm not giving correct mask geometry.
-      \item Green laser, focusing lens not available. Couldn't get access to cylindrical lenses so trying to do spatial filtering to convert rectangular beam to circular c/s.
+      \item Green laser, focusing lens not available. Using red laser but rectangular c/s expansion isn't efficient. Couldn't get access to cylindrical lenses so trying to do spatial filtering to convert rectangular beam to circular c/s.
     \end{enumerate}`,
   },
   phase2: {
