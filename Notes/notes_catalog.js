@@ -956,4 +956,46 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=29",
     keywords: [],
   },
+  {
+    title: "USAF Calibration Card and Scale",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=30",
+    keywords: [],
+  },
+  {
+    title: "Finite Conjugate/Inifinty Corrected Microscope Objectives",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=31",
+    keywords: [],
+  },
+  {
+    title: "Notations - Cartesian, Polar, Phasor, etc.,",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=32",
+    keywords: [],
+  },
+  {
+    title: "Types of Fringes",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=33",
+    keywords: [],
+  },
+  {
+    title: "Gerchberg-Saxton(GS) Algorithm",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=34",
+    keywords: [],
+  },
+  {
+    title: "Near-Field, Far-Field",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=35",
+    keywords: [],
+  },
+  {
+    title: "Laser Phase",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=36",
+    keywords: [],
+  },
 ];

@@ -1354,6 +1354,274 @@ Diffraction limited spot size - $d=1.22\frac{\lambda}{\text{NA}}$
 \hrule
 `,
   },
+  {
+    id: "30",
+    title: "USAF Calibration Card and Scale",
+    content: String.raw`\subsection*{USAF Calibration Card and Scale}
+Fundamental difference between these two optical designs lies in the geometric path of the light rays exiting the rear aperture of the objective - dictates how modular and flexible optical table can be.
+\newline\linebreak
+\textbf{Finite Conjugate Objective - Fixed Path}
+\begin{itemize}
+    \item traditionally marked with 160/- on the barrel is designed to project a focused image at an exact, fixed distance.
+    \item Ray Geometry - When a point source is placed at the focal point, the light exiting the rear of the objective is actively converging toward that focal physical plane.
+    \item Limitation - Because the light is converging, the optical path is extremely rigid; If a thick piece of glass(BS, ND filter, polarizer) is introduced into this converging beam, the refraction through the flat glass introduces severe spherical aberration and physically shifts focal plane.
+\end{itemize}
+\textbf{Infinity Corrected Objective - Parallel Path}
+\begin{itemize}
+    \item Marked with an $\infty$ does not focus light on its own - designed to project the image to optical infinity.
+    \item Ray Geometry - When a point source is placed at the focal point, the light exiting the rear aperture is perfectly parallel(collimated); Requires a secondary optical element(tube lens) placed further down the line to catch this parallel light and focus it onto a camera sensor.
+    \item Lab Advantage - Because the light b/w objective and tube lens is perfectly parallel, can insert as many flat optical components(ND filters, waveplates, custom spatial masks, or dichroic mirrors) as needed; Parallel rays pass straight through the flat glass without bending, preserving the wavefront and maintaining a perfect diffraction-limited spot.
+\end{itemize}
+\hrule`,
+  },
+
+  {
+    id: "31",
+    title: "Finite Conjugate/Inifinty Corrected Microscope Objectives",
+    content: String.raw`\subsection*{Finite Conjugate/Inifinty Corrected Microscope Objectives}
+Difference is the geometric path of light rays exiting the rear aperture of objectives - dictates how modular/flexible optical setup can be.
+\newline\linebreak
+\textbf{Finite Conjugate Objective - Fixed Path}
+\begin{itemize}
+    \item Designed to project a focused image at an exact, fixed distance.
+    \item Ray Geometry - when a point source is placed at the focal point, light exiting the rear of the objective is actively converging at focus.
+    \item Limitation - Because light is converging, optical path is rigid. Introduction of thick piece of glass(BS, ND filter, polarizer) into this converging beam leads to refraction through the flat glass and then to severe spherical aberration and physically shifts focal plane.
+\end{itemize}
+\textbf{Infinity Corrected Objective - Parallel Path}
+\begin{itemize}
+    \item Does not focus light; designed to project image to optical infinity.
+    \item Ray Geometry - when a point source is placed at focal point, light exiting the rear aperture is collimated; requires a secondary optical element(tube lens) further down the line to catch this parallel light and focus it.
+    \item Advantage - Can insert as many optical components as required in it's path while preserving its wavefronts.
+\end{itemize}
+\hrule
+`,
+  },
+
+  {
+    id: "32",
+    title: "Notations - Cartesian, Polar, Phasor, etc.,",
+    content: String.raw`\subsection*{Notations - Cartesian, Polar, Phasor, etc.,}
+\begin{enumerate}
+    \item \textbf{Trigonometric(Regular) Notations}
+    \begin{itemize}
+        \item Literal description of physical quantity through space time.
+        \item eg: electric field
+        $$E(z,t)=E_0cos(kz-\omega t+\phi)$$
+        $E_0\ \to\ $peak amplitude; $kz-\omega t\ \to\ $propagating term; $\phi\ \to\ $spatial phase offset.
+        \item Limitation - While physically accurate, calculating interference with cosines is computationally inaccurate.
+        \item overlapping beamlets requires expanding massive, complex trigonometric identities to find resulting pattern.
+    \end{itemize}
+    \item \textbf{Complex Exponential Notation}
+    \begin{itemize}
+        \item To bypass trig., quantity is translated into complex field using Euler's formula: $e^{i\theta}=cos\theta +isin\theta$
+        \item Electric field:
+        $$E(z,t)=E_0e^{(kz-\omega t+\phi)}$$
+        \item Advantage - By treating wave as exponent, complex calculus becomes easier.
+        \item When solving wave equations, taking spatial/temporal derivative simply pulls constant($ik$ or $-i\omega$) to the front of the equation, preserving the core wave function rather than flipping cosines into negative sines.
+        \item Because cameras and targets only interact with real energy, entire simulation can be run in complex space and physical answer can be extracted at the very end by taking the real part: $Re\{E\}$.
+    \end{itemize}
+    \item \textbf{Phasor Notation}
+    \begin{itemize}
+        \item Striped down shortcut used strictly for linear optics.
+        \item During interference of  multiple beams split from same coherent laser source, every beam shares the identical temporal freq.
+        $$\tilde{E} = E_0 e^{i\phi}$$
+        \item Advantage - Because the time term($e^{-i\omega t}$) is identical and constantly spinning for all waves in the setup, it can be mathematically factored out entirely. 
+        \item Phasors freeze time, reducing a dynamic, propagating laser beam down to just two static variables - amplitude($E_0$) and spatial phase shift($\phi$).
+    \end{itemize}
+\end{enumerate}
+\hrule
+`,
+  },
+  {
+    id: "33",
+    title: "Types of Fringes",
+    content: String.raw`\subsection*{Types of Fringes}
+Fringes act as a topological contour map of the phase difference between 2 overlapping optical wavefronts. The physical shape of the resulting pattern directly reveals the geometric relationship and the optical aberrations present in the interfering beams.
+\newline\linebreak
+\textbf{Shape}
+\begin{enumerate}
+    \item Straight Fringes - Linear Phase Gradient
+    \begin{itemize}
+        \item Occur when 2 perfectly flat plane waves intersect at a slight geometric angle. 
+        \item Because the wavefronts are flat, OPD b/w them accumulates at a strict linear rate across the camera sensor. 
+        \item Act as a pure 1D spatial carrier frequency(like a barcode) and are the ideal baseline pattern for interferometry, as they can be easily cleanly isolated using a 1D Fast Fourier Transform.
+    \end{itemize}
+    \item Circular Fringes - Quadratic Phase Gradient
+    \begin{itemize}
+        \item Often called Newton's rings - occur when a flat plane wave interferes with an expanding spherical wave, or when 2 spherical waves with different radii of curvature overlap. 
+        \item Phase difference scales quadratically with the radial distance from the center. 
+        \item In lab setting, circular fringes indicate either a severe defocus aberration in one of the beam paths or the presence of microscopic point-source scattering(such as a dust particle on a lens generating a spherical wave).
+    \end{itemize}
+    \item Curved/Distorted Fringes - Topological Phase Maps
+    \begin{itemize}
+        \item When a reference plane wave interferes with a wavefront that has passed through a complex refractive medium(such as laser induced plasma/thermal gradient/warped optical window), the initially straight fringes physically bend.
+        \item Fringes curve to trace the exact OPD across the 2D space. 
+        \item A physical shift or bend of exactly one full fringe spacing corresponds to a localized phase delay of exactly one wavelength.
+    \end{itemize}
+\end{enumerate}
+\textbf{Dimension}
+\begin{enumerate}
+    \item 1D
+    \begin{itemize}
+        \item Optical intensity oscillates strictly along a single axis, indicating a simple angular tilt between two coherent sources.
+    \end{itemize}
+    \item 2D
+    \begin{itemize}
+        \item Optical intensity oscillates in both the X and Y axes simultaneously.
+        \item Occurs when dealing with extreme, asymmetric optical aberrations(like severe astigmatism crossed with coma) or in deliberate multi-beam interference. 
+        \item If 3-4 beams overlap simultaneously non-collinearly, the resulting interference pattern forms a complex 2D optical lattice( hexagonal grid) rather than simple linear stripes.
+    \end{itemize}
+\end{enumerate}
+\textbf{2D Fringes}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{2d_fringes.png}
+\end{figure}
+\begin{itemize}
+    \item Unlike simple 1D straight fringes caused by 2 overlapping beams, this pattern exhibits intensity modulation in both the horizontal and vertical axes simultaneously.
+    \item The geometric structure(bright central peak surrounded by a symmetrical, clustered array of secondary bright spots) proves that multiple coherent beams are overlapping in that space.
+    \item In lab context, this is the classic far-field interference pattern generated by a spatial mask - when primary laser beam is passed through a multi-hole pinhole array; mask physical breaks the single wavefront into a grid of smaller beamlets.
+    \item When a lens focuses those beamlets, they all cross paths at the exact same focal plane; Their electric fields mathematically add together in 2D space, creating this highly structured, multi-lobed optical lattice rather than simple linear stripes.
+\end{itemize}
+\textbf{Information from 2D Fringes}
+\newline
+Can extract complete spatial phase profile, optical aberrations and spatial coherence of original beam.
+\begin{itemize}
+    \item Info from Pattern:
+    \begin{itemize}
+        \item Relative Phase - exact spacing, contrast, and physical shift of the interference lobes reveal the phase delay between the different beamlets created by the mask.
+        \item Wavefront Aberrations - If incoming beam was perfectly flat, resulting optical lattice would be perfectly symmetric; any geometric distortion/smudging/intensity imbalance in these side lobes mathematically maps to specific optical errors like astigmatism/coma/spherical aberration.
+        \item Spatial Coherence - sharpness(fringe visibility) of the bright spots relative to the dark valleys tells how coherent laser source is across its spatial profile.
+    \end{itemize}
+    \item Plots needed for analysis:
+    \begin{itemize}
+        \item 2D FFT - needed to mathematically isolate high freq interference lobes from the central DC envelope.
+        \item 2D Phase Map - topological heatmap generated by the phase retrieval software, showing the physical 3D shape of the laser's wavefront.
+        \item Zernike Coefficient Bar Chart - histogram plot that takes the messy 2D phase map and breaks it down into standard optical aberration values(measured in fractions of $\lambda$).
+        \item 1D Cross-Sectional Lineouts - standard X and Y line graphs taken directly through the center of the raw interference pattern to measure the exact peak-to-valley contrast ratio of the fringes.
+    \end{itemize}
+    \item \textbf{Inverse Mask Geometry Prediction - Phase Retrieval}
+    \begin{itemize}
+        \item Because this far-field image is mathematically the squared Fourier transform of the light passing through the mask, the exact geometry of the mask(hole size, shape, and grid spacing) is completely encoded in the diffraction pattern. 
+        \item Problem is camera only records light intensity, permanently losing the optical phase data required to simply run a direct inverse Fourier transform.
+        \item To solve this, algorithms like the \textbf{Gerchberg-Saxton(GS)} or \textbf{Error Reduction} algorithm are used. 
+        \item Raw image is fed into the algorithm along with a physical constraint(eg: mask is made of solid metal with fully transparent holes). 
+        \item Software computationally bounces back and forth between the spatial and freq domain, iteratively guessing and refining the missing phase data. 
+        \item Once the algorithm converges, it performs a final inverse Fourier transform, outputting a high-fidelity 2D picture of your physical mask.
+    \end{itemize}
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "34",
+    title: "Gerchberg-Saxton(GS) Algorithm",
+    content: String.raw`\subsection*{Gerchberg-Saxton(GS) Algorithm}
+\begin{itemize}
+    \item Fundamentally operating as an Error Reduction algorithm, GS is a computational method used to mathematically recover the lost optical phase of a beam by iteratively bouncing between the spatial domain and the frequency domain.
+    \item When a camera captures a diffraction pattern or focal spot, it only records the intensity(the amplitude squared) of the light; phase(timing of the wave) is permanently lost. 
+    \item Because an optical field requires both amplitude and phase to be mathematically complete, a single inverse Fourier transform cannot be used to see what the beam looked like before it was focused. 
+    \item GS algorithm solves this by using known physical constraints to computationally guess the missing phase.
+\end{itemize}
+\textbf{Iterative Loop}
+\newline
+Algorithm relies on knowing the intensity profile in two different planes — source plane(the physical mask,lens) \& Fourier plane(camera sensor).
+\begin{enumerate}
+    \item Step 1: The Initial Guess - Algorithm starts at the source plane; Takes the known physical amplitude(eg: geometric layout of the holes in mask) and assigns a completely random mathematical phase to it.
+    \item Step 2: Forward Propagation - Software performs 2D FFT to computationally propagate this guessed wave to the focal plane; Output is matrix of complex numbers containing a calculated amplitude and a calculated phase.
+    \item Step 3: The Far-Field Constraint - Algorithm discards its computationally guessed amplitude and replaces it with the actual, physical intensity captured by camera; Keeps the calculated phase intact.
+    \item Step 4: Inverse Propagation - Software performs an inverse FFT on this merged data, propagating the wave backward in space to return to the source plane.
+    \item Step 5: The Near-Field Constraint - Back at the starting plane, algorithm again discards the computationally calculated amplitude; Replaces it with the strict physical constraint of mask(eg: enforcing that the amplitude must be exactly zero wherever there is solid metal); Keeps the new, slightly refined phase.
+\end{enumerate}
+\textbf{Error Reduction and Convergence}
+\begin{itemize}
+    \item Loop repeats hundreds/thousands of times. 
+    \item It is classified as Error Reduction algorithm because at each step, the strict application of real world physical boundaries forces the mathematically guessed phase to become more accurate.
+    \item The mean squared error between the computer's simulated diffraction pattern and physical camera image strictly decreases with every cycle. 
+    \item Once that error bottoms out and stops changing, the algorithm has converged, successfully rebuilding the complete 3D electric field of the original beam.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "35",
+    title: "Near-Field, Far-Field",
+    content: String.raw`\subsection*{Near-Field, Far-Field}
+Difference is how a laser wavefront fundamentally evolves as it propagates away from an aperture. These 2 regimes dictate which mathematical models must be used to calculate diffraction and interference.
+\newline\linebreak
+\textbf{Near-Field : Fresnel Diffraction}
+\newline
+Physical space immediately following an optical boundary/component.
+\begin{itemize}
+    \item \textbf{Physics} -  When a collimated beam hits the holes in a mask, the light passing through violently diffracts, creating highly curved, spherical wavefronts.
+    \item In this region, the waves from different edges of a single hole are crossing paths at steep angles.
+    \item \textbf{Visual Pattern} - Light pattern is highly unstable and changes completely with every mm.
+    \item Looks like a messy, rippling mix of the physical shadow of optics and complex interference rings.
+    \item \textbf{Math} - Because the wavefronts are strongly curved, simple geometry cannot be used; must calculate the exact phase delay of every individual ray using complex Fresnel integrals.
+\end{itemize}
+\textbf{Far-Field : Fraunhofer Diffraction}
+\newline
+Optical regime achieved after light has traveled a distance from the optical component(mask/aperture/...)
+\begin{itemize}
+    \item \textbf{Physics} - After sufficient propagation, the violently curved spherical wavefronts gently flatten out, effectively becoming parallel plane waves.
+    \item \textbf{Visual Pattern} - The diffraction pattern locks into its final, permanent shape. Going further back in the far-field, the interference fringes simply scale up in size, but their geometric structure never changes again.
+    \item \textbf{Math} - In the far-field, the complex integrals collapse;  The electric field distribution becomes the exact, literal 2D spatial Fourier Transform of the optical component.
+\end{itemize}
+\textbf{Focal Plane}
+\begin{itemize}
+    \item In a lab setting, achieving true far-field Fraunhofer diffraction organically might require propagating the beam for dozens of m, which is impossible on a standard optical table.
+    \item This is the exact physical purpose of a focusing optic - when a beam passes through an optical component and is incident on a focusing lens directly after it, the lens physically bends the optical paths to perfectly mimic infinite propagation.
+    \item The lens instantly pulls the true far-field Fourier transform(complex 2D multi-lobed interference fringes) directly onto the camera sensor located at the exact focal plane.
+    \item This duality is the entire engine of the Gerchberg-Saxton error reduction algorithm.
+    \item When the algorithm runs its iterative loop, the near-field constraint forces the math to obey the hard physical boundaries of the solid mask, while the far-field constraint forces the math to obey the actual optical fringe intensity captured by the camera at the focal plane.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "36",
+    title: "Laser Phase",
+    content: String.raw`\subsection*{Laser Phase}
+\newline
+Because optical sensors and cameras only detect the time averaged intensity(amp squared) of light, phase is completely invisible to direct measurement; yet it physically dictates how a laser beam focuses, interferes, and compresses.
+\newline\linebreak
+\textbf{Phase} is the exact position of EM wave within its oscillation cycle at any specific point in space and time. It tells where/when something is within its oscillations irrespective of amp(how big the motion is) or freq(how fast the motion repeats).
+\newline
+Phase is measured in angles. 1 complete cycle is 360$^\circ$ or 2$\pi$ rad.
+\begin{itemize}
+    \item 0$^\circ$ - wave is at 0.
+    \item 90$^\circ(\pi/2)$ - crest.
+    \item $180^\circ(\pi)$ - back to 0.
+    \item $270^\circ(3\pi/2)$ - trough.
+\end{itemize}
+\newline\linebreak
+\textbf{Spatial Phase - Wavefront Geometry}
+\begin{itemize}
+    \item Describes the physical 3D surface connecting all points of the laser beam that are at the exact same point in their oscillation cycle.
+    \item Ideally, perfectly collimated beam has a flat spatial phase, meaning the wavefront is a perfect geometric plane; When focused, every part of the wave arrives at the focal spot at the exact same instant, constructively interfering to create the maximum possible peak intensity.
+    \item In reality, passing a beam through glass optics/windows/turbulent air delays certain parts of the beam relative to others, physically wrinkling the flat surface.
+    \item This localized phase delay, $\phi(x,y)$, is what physically causes the optical aberrations(like astigmatism and spherical aberration) that are mathematically described by Zernike coefficients.
+    \item Because a camera cannot see this wrinkled surface, the spatial phase must be extracted using far-field interferometry or computational phase retrieval algorithms like Gerchberg-Saxton.
+\end{itemize}
+\textbf{Spectral Phase - Pulse Compressor}
+\begin{itemize}
+    \item UF fs lasers are not monochromatic - has thousands of different freq(colors) traveling together.
+    \item Spectral phase($\phi(\omega)$ dictates the exact temporal timing of how all colors overlap.
+    \item If all freq are perfectly locked in phase, their peaks overlap at one single point in time; they constructively interfere to form shortest, most explosive burst of light physically possible - like 30fs pulse.
+    \item When this broadband pulse passes through any dispersive media(BM, lens, ...), higher freq travel slower.
+    \item Phase of blue is delayed causing colors to separate and pulse to smear out in time - pulse becomes chirped; intensity drops.
+    \item Above phase distortion is corrected by bouncing beam of pair of parallel diffraction gratings which imparts reverse dispersion - flattening the spectral phase to 0.
+\end{itemize}
+\textbf{Carrier Envelope Phase - CEP}
+\begin{itemize}
+    \item Laser pulse has a Gaussian envelope containing rapidly oscillating internal carrier wave.
+    \item During HHG, absolute timing of raw electric field becomes critical.
+    \item CEP - Absolute physical offset b/w peak of envelope and highest peak of internal electric field.
+    \item For long ps pulses, this drift is negligible. But for fs pulses, shift in CEP fundamentally alters the instantaneous electric field strength at the moment of peak intensity - completely changes ionization dynamics and kinetic trajectories of accelerated e$^-$. 
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
