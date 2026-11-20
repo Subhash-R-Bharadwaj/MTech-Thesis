@@ -957,7 +957,7 @@ const notesCatalog = [
     keywords: [],
   },
   {
-    title: "USAF Calibration Card and Scale",
+    title: "USAF Resolution Targets",
     page: "October - November",
     url: "Oct_Nov/oct_nov.html?id=30",
     keywords: [],
@@ -1014,12 +1014,6 @@ const notesCatalog = [
     title: "Plasma Lifecycle, Measurement, Dynamics, ...",
     page: "October - November",
     url: "Oct_Nov/oct_nov.html?id=39",
-    keywords: [],
-  },
-  {
-    title: "USAF Resolution Targets",
-    page: "October - November",
-    url: "Oct_Nov/oct_nov.html?id=40",
     keywords: [],
   },
 ];

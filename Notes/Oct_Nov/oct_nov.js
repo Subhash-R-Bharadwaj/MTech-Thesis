@@ -1356,21 +1356,54 @@ Diffraction limited spot size - $d=1.22\frac{\lambda}{\text{NA}}$
   },
   {
     id: "30",
-    title: "USAF Calibration Card and Scale",
-    content: String.raw`\subsection*{USAF Calibration Card and Scale}
-Fundamental difference between these two optical designs lies in the geometric path of the light rays exiting the rear aperture of the objective - dictates how modular and flexible optical table can be.
+    title: "USAF Resolution Targets",
+    content: String.raw`\subsection*{USAF Resolution Targets}
+USAF 1951 resolution targets are microscopic rulers made of alternating dark and bright bars. Each pattern has a precise physical size that can be compared against it's size in pixels.
 \newline\linebreak
-\textbf{Finite Conjugate Objective - Fixed Path}
+\textbf{Groups and Elements}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{usaf_target.jpeg}
+\end{figure}
 \begin{itemize}
-    \item traditionally marked with 160/- on the barrel is designed to project a focused image at an exact, fixed distance.
-    \item Ray Geometry - When a point source is placed at the focal point, the light exiting the rear of the objective is actively converging toward that focal physical plane.
-    \item Limitation - Because the light is converging, the optical path is extremely rigid; If a thick piece of glass(BS, ND filter, polarizer) is introduced into this converging beam, the refraction through the flat glass introduces severe spherical aberration and physically shifts focal plane.
+    \item \textbf{Group(G)} - identifies overall size range of patterns. Higher group numbers = smaller bars.
+    \item \textbf{Element(E)} - identifies 1 of 6 progressively smaller patterns within the group.
+    \item Each element consists of 2 sets of 3 bars - vertical and horizontal. Both represent same spatial freq, allowing to check resolution in perpendicular directions.
 \end{itemize}
-\textbf{Infinity Corrected Objective - Parallel Path}
+\textbf{Line Pair(lp)?}
 \begin{itemize}
-    \item Marked with an $\infty$ does not focus light on its own - designed to project the image to optical infinity.
-    \item Ray Geometry - When a point source is placed at the focal point, the light exiting the rear aperture is perfectly parallel(collimated); Requires a secondary optical element(tube lens) placed further down the line to catch this parallel light and focus it onto a camera sensor.
-    \item Lab Advantage - Because the light b/w objective and tube lens is perfectly parallel, can insert as many flat optical components(ND filters, waveplates, custom spatial masks, or dichroic mirrors) as needed; Parallel rays pass straight through the flat glass without bending, preserving the wavefront and maintaining a perfect diffraction-limited spot.
+    \item 1 dark bar + 1 bright bar = 1 lp.
+    \item eg: if 1 dark bar is 15.625$\mu$m wide and adjacent bright bar is also 15.625$\mu$m long, then 1lp = 31.25$\mu$m.
+    \item Distance from center of 1 dark bar to another is also 1lp - called the \textbf{Period}. 3 dark bars contain 2 complete center-to-center periods.
+    \item Real size of 1 lp $\to\ f=2^{G+(E-1)/6}$. Here f: spatial freq(lp/mm)
+    \item eg: G5, E1 has f = 32lp/mm $\to$ 32 complete center-to-center periods fit in 1mm; $\therefore$ actual physical period $\to\ P=1/f = \frac{1}{32\times10^{-3}}=31.25\mu m$
+\end{itemize}
+\textbf{Measurement}
+\begin{itemize}
+    \item Camera stores brightness at each pixel - dark bar gives low intensity and surrounding bright region gives high intensity.
+    \item Camera turns bars into intensity profile - 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{usaf_measurement.png}
+    \end{figure}
+    \item Instead of looking at single row of noisy pixels, smooth intensity profiles is produced by averaging many rows parallel to the bars.
+    \item eg: 3 dark bar centers are detected at 3 horizontal pixel coordinates : 120px, 301px, 482px; center-to-center periods are calculated as : 
+    $$d_{12} = 301-120=181px$$
+    $$d_{23}=482-301=181px$$
+    $$\text{avg period} = 181px$$
+    \item WKT real period = 31.25$\mu$m, calculated lp period = 181px.
+    \item \textbf{Calibration factor:}
+    $$C=\frac{\text{Real period}}{\text{Measured pixel period}}\ \to\ C=\frac{31.25}{181}=0.17265\mu m/px$$
+    \item Any distance in any images taken under exactly same calibrated conditions , at exact same object plane can be converted to real physical distance.
+    \item eg: fringe spacing for any interference fringe pattern is 200px; Actual physical fringe spacing is :
+    $$\Lambda = 200\times0.17625 = 41.44\mu m$$
+    \item \textbf{Optical Magnification:} 
+    \begin{itemize}
+        \item Magnification compares physical image size on camera sensor with original size of target.
+        \item To obtain actual mag. camera's eff. pixel pitch must be known.
+        $$M_{act} = \text{eff. pixel pitch}\ /\ \text{C}$$
+        \item eg: eff. pixel pitch = 3.45$\mu$m/px; C=0.17625$\mu$m\px; M$_{act}\approx$19.7X
+    \end{itemize}
 \end{itemize}
 \hrule`,
   },
@@ -1737,60 +1770,6 @@ In this setup, single laser pulse is split - Massive pump strikes target and ini
         \item By sliding the optical delay line, map the diffracted intensity over time. When the signal drops to zero, it proves the thermal ion motion has completely washed out the grating structure, marking the end of the grating's functional lifetime.
     \end{itemize}
 \end{enumerate}
-\hrule
-`,
-  },
-  {
-    id: "40",
-    title: "USAF Resolution Targets",
-    content: String.raw`\subsection*{USAF Resolution Targets}
-USAF 1951 resolution targets are microscopic rulers made of alternating dark and bright bars. Each pattern has a precise physical size that can be compared against it's size in pixels.
-\newline\linebreak
-\textbf{Groups and Elements}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{usaf_target.jpeg}
-\end{figure}
-\begin{itemize}
-    \item \textbf{Group(G)} - identifies overall size range of patterns. Higher group numbers = smaller bars.
-    \item \textbf{Element(E)} - identifies 1 of 6 progressively smaller patterns within the group.
-    \item Each element consists of 2 sets of 3 bars - vertical and horizontal. Both represent same spatial freq, allowing to check resolution in perpendicular directions.
-\end{itemize}
-\textbf{Line Pair(lp)?}
-\begin{itemize}
-    \item 1 dark bar + 1 bright bar = 1 lp.
-    \item eg: if 1 dark bar is 15.625$\mu$m wide and adjacent bright bar is also 15.625$\mu$m long, then 1lp = 31.25$\mu$m.
-    \item Distance from center of 1 dark bar to another is also 1lp - called the \textbf{Period}. 3 dark bars contain 2 complete center-to-center periods.
-    \item Real size of 1 lp $\to\ f=2^{G+(E-1)/6}$. Here f: spatial freq(lp/mm)
-    \item eg: G5, E1 has f = 32lp/mm $\to$ 32 complete center-to-center periods fit in 1mm; $\therefore$ actual physical period $\to\ P=1/f = \frac{1}{32\times10^{-3}}=31.25\mu m$
-\end{itemize}
-\textbf{Measurement}
-\begin{itemize}
-    \item Camera stores brightness at each pixel - dark bar gives low intensity and surrounding bright region gives high intensity.
-    \item Camera turns bars into intensity profile - 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=\linewidth]{usaf_measurement.png}
-    \end{figure}
-    \item Instead of looking at single row of noisy pixels, smooth intensity profiles is produced by averaging many rows parallel to the bars.
-    \item eg: 3 dark bar centers are detected at 3 horizontal pixel coordinates : 120px, 301px, 482px; center-to-center periods are calculated as : 
-    $$d_{12} = 301-120=181px$$
-    $$d_{23}=482-301=181px$$
-    $$\text{avg period} = 181px$$
-    \item WKT real period = 31.25$\mu$m, calculated lp period = 181px.
-    \item \textbf{Calibration factor:}
-    $$C=\frac{\text{Real period}}{\text{Measured pixel period}}\ \to\ C=\frac{31.25}{181}=0.17265\mu m/px$$
-    \item Any distance in any images taken under exactly same calibrated conditions , at exact same object plane can be converted to real physical distance.
-    \item eg: fringe spacing for any interference fringe pattern is 200px; Actual physical fringe spacing is :
-    $$\Lambda = 200\times0.17625 = 41.44\mu m$$
-    \item \textbf{Optical Magnification:} 
-    \begin{itemize}
-        \item Magnification compares physical image size on camera sensor with original size of target.
-        \item To obtain actual mag. camera's eff. pixel pitch must be known.
-        $$M_{act} = \text{eff. pixel pitch}\ /\ \text{C}$$
-        \item eg: eff. pixel pitch = 3.45$\mu$m/px; C=0.17625$\mu$m\px; M$_{act}\approx$19.7X
-    \end{itemize}
-\end{itemize}
 \hrule
 `,
   },
