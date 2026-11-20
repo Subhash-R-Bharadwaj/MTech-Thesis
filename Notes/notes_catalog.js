@@ -998,4 +998,28 @@ const notesCatalog = [
     url: "Oct_Nov/oct_nov.html?id=36",
     keywords: [],
   },
+  {
+    title: "Separation Vectors",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=37",
+    keywords: [],
+  },
+  {
+    title: "Angular Distribution of Charged Particle Beams",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=38",
+    keywords: [],
+  },
+  {
+    title: "Plasma Lifecycle, Measurement, Dynamics, ...",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=39",
+    keywords: [],
+  },
+  {
+    title: "USAF Resolution Targets",
+    page: "October - November",
+    url: "Oct_Nov/oct_nov.html?id=40",
+    keywords: [],
+  },
 ];

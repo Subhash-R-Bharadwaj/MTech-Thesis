@@ -1622,6 +1622,178 @@ Phase is measured in angles. 1 complete cycle is 360$^\circ$ or 2$\pi$ rad.
 \hrule
 `,
   },
+  {
+    id: "37",
+    title: "Separation Vector",
+    content: String.raw`\subsection*{Separation Vector}
+2D geometric arrow pointing directly from the center of 1 pinhole to center of another on a physical mask. It dictates exactly how interference fringes for that specific pair of holes will appear on camera sensor.
+\newline
+\begin{itemize}
+    \item For a 4-hole mask, light from every single hole interferes with the light from every other hole; 4-hole geometry creates 6 distinct intersecting pairs, meaning there are 6 unique separation vectors simultaneously generating their own interference patterns in the exact same focal space.
+    \item Vector controls 2 physical properties:
+    \begin{enumerate}
+        \item Magnitude - fringe spacing/spatial freq.
+        \begin{itemize}
+            \item Physical length of the vector(distance b/w the 2 holes) determines the spatial frequency of the fringes.
+            \item If 2 holes are close together(short vector), they create wide, spread-out fringes(low spatial freq). 
+            \item If 2 holes are far apart(long vector), the beams cross at a steeper angle, creating tightly packed, narrow fringes(high spatial freq).
+        \end{itemize}
+        \item Direction - fringe orientation
+        \begin{itemize}
+            \item Angle of the vector on the mask determines the tilt of the fringes on the camera.
+            \item Resulting interference stripes are always perfectly orthogonal to their separation vector. 
+            \item If the 2 holes sit on a horizontal line(horizontal vector), the interference stripes will be strictly vertical. If the holes are situated diagonally across the mask, the resulting fringes will tilt diagonally across the sensor.
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}
+\textbf{4-hole pattern}
+\begin{itemize}
+    \item When the complex, overlapping 2D interference lattice is run through a 2D FFT, the math uses these unique spatial freq to untangle the beams. 
+    \item In the resulting Fourier plane plot, each specific separation vector manifests as an isolated, distinct pair of bright amplitude spikes at exact coordinates. 
+    \item This mathematical separation is what allows computational algorithms to isolate and extract the optical phase data for one specific pair of holes while completely ignoring the other five. 
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "38",
+    title: "Angular Distribution of Charged Particle Beams",
+    content: String.raw`\subsection*{Angular Distribution of Charged Particle Beams}
+Angular distribution of a charged particle beam describes it's geometric divergence.
+\newline
+While laser photons in vacuum travel in straight lines, charged particles(accelerated from LPI) constantly fight complex EM forces that push them off-axis. Angular distribution is fundamentally a map of the transverse momentum of the particles($p_\perp$) relative to their forward longitudinal momentum($p_\parallel$).
+\newline
+For a highly directional beam, we need a tight angular distribution(measured in mrad) - requires $p_\parallel >> p_\perp$.
+\newline\linebreak
+\textbf{Initial Emittance and Betatron Oscillations)}
+\begin{itemize}
+    \item When $e^-$ are violently ionized and injected into an acceleration phase, they are not perfectly aligned - they enter with thermal KE, giving them initial transverse momentum. 
+    \item As they are accelerated forward, the strong EM restoring forces inside the plasma channel whip the $e^-$ side-to-side. 
+    \item These transverse sinusoidal paths are called betatron oscillations - when the electrons exit the plasma and enter a vacuum, whatever transverse angle they possessed at the exact moment of exit permanently locks in, dictating the beam's geometric spread.
+\end{itemize}
+\textbf{Space Charge Effect - Coulomb Repulsion}
+\begin{itemize}
+    \item Because all the particles in the beam share the same electrical charge, they violently repel each other. 
+    \item In low energy particle beams, this space-charge force rapidly blows the beam apart, resulting in a wide, diffuse angular distribution.
+\end{itemize}
+\textbf{Relativistic Self-Pinching}
+\begin{itemize}
+    \item As a particle beam approaches the speed of light, the physics drastically changes - the forward moving charges constitute an electrical current, which generates a strong azimuthal magnetic field around the beam.
+    \item This self generated magnetic field physically pinches the electrons inward via the Lorentz force, combating the outward Coulomb repulsion.
+    \item Mathematically, the repulsive electric force is suppressed by the relativistic Lorentz factor ($\gamma$). 
+    \item In highly relativistic beams, the space-charge effect almost entirely cancels out, allowing the beam to maintain a highly collimated, narrow angular distribution.
+\end{itemize}
+\textbf{Measurement and Plotting}
+\begin{itemize}
+    \item Unlike optical laser fringes, particle beams cannot be measured with a standard CCD camera. In labs, the beam is typically fired into a scintillating phosphor screen(LANEX).
+    \item Resulting plot is a 2D Angular Profile; The axes are not physical distance(X and Y), but divergence angles ($\theta_x$ and $\theta_y$). 
+    \item A high-quality beam appears as a tight, intensely bright Gaussian spot at the origin $(0,0)$, while a beam suffering from severe transverse scattering will appear as a wide, scattered cloud spreading across high mrad values.
+\end{itemize}
+\hrule
+`,
+  },
+  {
+    id: "39",
+    title: "Plasma Lifecycle, Measurement, Dynamics, ...",
+    content: String.raw`\subsection*{Plasma Lifetime, Measurement, Dynamics, ...}
+Lifecycle of laser-plasma is highly transient, dictated by violent initial energy deposition and subsequent thermodynamic expansion.
+\newline\linebreak
+\textbf{Timeline of Plasma Dynamics}
+\begin{enumerate}
+    \item \textbf{0-30fs : Electron dynamics and excitaiton}
+    \begin{itemize}
+        \item As the fs pulse arrives, the target undergoes multiphoton and tunnel ionization almost instantaneously. 
+        \item The extreme ponderomotive force physically pushes the ultra-light electrons out of the high intensity regions. 
+        \item If crossing two beams, this is the exact window where the electrons stack into the dark fringes, creating a strong space-charge field. The heavy ions, constrained by their massive inertia, remain entirely frozen in place.
+    \end{itemize}
+    \item \textbf{1-100ps : Ion mobility and ambipolar diffusion}
+    \begin{itemize}
+        \item Laser pulse is long gone, but the plasma remains violently out of equilibrium. 
+        \item The displaced electrons exert a massive electrostatic pull on the stationary ions(ambipolar diffusion). Over tens of ps, the ions begin to move. 
+        \item For a structured optical plasma grating, this is its functional lifetime - As the ions heat up and expand hydrodynamically, the sharp density peaks of the grating physically wash out and smear into a uniform plasma cloud.
+    \end{itemize}
+    \item \textbf{1ns-beyond : Recombination and dissipation}
+    \begin{itemize}
+        \item Plasma rapidly expands into the surrounding vacuum - as the density drops, the plasma cools, electrons recombine with the ions to emit broadband radiation, and the macroscopic structure completely dissipates.
+    \end{itemize}
+\end{enumerate}
+\textbf{For a 1kHz system, wait time b/w 2 pulses is 1ms. For a 5kHz, it's 200$\mu$s. Plasma lifecycle is much shorter.}
+\newline\linebreak
+\textbf{Measuring UF Plasma}
+Because electronic sensors and mechanical shutters are very slow to capture fs/ps dynamics, plasma lifetime is always measured using optical pump-probe diagnostics.
+\newline
+In this setup, single laser pulse is split - Massive pump strikes target and initiates plasma dynamics; weaker probe through a motorized delay line arrives at plasma exactly $\Delta t$ after pump.
+\begin{enumerate}
+    \item \textbf{Time Resolved Interferometry(Density Measurement)}
+    \begin{itemize}
+        \item To measure the absolute density and physical expansion of the plasma cloud, the probe beam is passed sideways through the plasma and overlapped with a pristine reference beam(often in a Mach-Zehnder configuration). 
+        \item The plasma acts as a transient refractive medium, shifting the spatial phase of the probe. 
+        \item By capturing the interference fringes on a camera at different $\Delta t$ delays, you can mathematically extract the 2D electron density map($n_e$) and watch the plasma physically expand over ps.
+    \end{itemize}
+    \item \textbf{Diffraction Efficiency(Grating Lifetime Measurement)}: 
+    \begin{itemize}
+        \item To specifically measure the lifespan of a plasma grating, there is no need of an interferometer.
+        \item Fire the probe beam directly at the grating structure and measure the intensity of the diffracted light(first-order beam) hitting a photodiode. 
+        \item By sliding the optical delay line, map the diffracted intensity over time. When the signal drops to zero, it proves the thermal ion motion has completely washed out the grating structure, marking the end of the grating's functional lifetime.
+    \end{itemize}
+\end{enumerate}
+\hrule
+`,
+  },
+  {
+    id: "40",
+    title: "USAF Resolution Targets",
+    content: String.raw`\subsection*{USAF Resolution Targets}
+USAF 1951 resolution targets are microscopic rulers made of alternating dark and bright bars. Each pattern has a precise physical size that can be compared against it's size in pixels.
+\newline\linebreak
+\textbf{Groups and Elements}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{usaf_target.jpeg}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Group(G)} - identifies overall size range of patterns. Higher group numbers = smaller bars.
+    \item \textbf{Element(E)} - identifies 1 of 6 progressively smaller patterns within the group.
+    \item Each element consists of 2 sets of 3 bars - vertical and horizontal. Both represent same spatial freq, allowing to check resolution in perpendicular directions.
+\end{itemize}
+\textbf{Line Pair(lp)?}
+\begin{itemize}
+    \item 1 dark bar + 1 bright bar = 1 lp.
+    \item eg: if 1 dark bar is 15.625$\mu$m wide and adjacent bright bar is also 15.625$\mu$m long, then 1lp = 31.25$\mu$m.
+    \item Distance from center of 1 dark bar to another is also 1lp - called the \textbf{Period}. 3 dark bars contain 2 complete center-to-center periods.
+    \item Real size of 1 lp $\to\ f=2^{G+(E-1)/6}$. Here f: spatial freq(lp/mm)
+    \item eg: G5, E1 has f = 32lp/mm $\to$ 32 complete center-to-center periods fit in 1mm; $\therefore$ actual physical period $\to\ P=1/f = \frac{1}{32\times10^{-3}}=31.25\mu m$
+\end{itemize}
+\textbf{Measurement}
+\begin{itemize}
+    \item Camera stores brightness at each pixel - dark bar gives low intensity and surrounding bright region gives high intensity.
+    \item Camera turns bars into intensity profile - 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{usaf_measurement.png}
+    \end{figure}
+    \item Instead of looking at single row of noisy pixels, smooth intensity profiles is produced by averaging many rows parallel to the bars.
+    \item eg: 3 dark bar centers are detected at 3 horizontal pixel coordinates : 120px, 301px, 482px; center-to-center periods are calculated as : 
+    $$d_{12} = 301-120=181px$$
+    $$d_{23}=482-301=181px$$
+    $$\text{avg period} = 181px$$
+    \item WKT real period = 31.25$\mu$m, calculated lp period = 181px.
+    \item \textbf{Calibration factor:}
+    $$C=\frac{\text{Real period}}{\text{Measured pixel period}}\ \to\ C=\frac{31.25}{181}=0.17265\mu m/px$$
+    \item Any distance in any images taken under exactly same calibrated conditions , at exact same object plane can be converted to real physical distance.
+    \item eg: fringe spacing for any interference fringe pattern is 200px; Actual physical fringe spacing is :
+    $$\Lambda = 200\times0.17625 = 41.44\mu m$$
+    \item \textbf{Optical Magnification:} 
+    \begin{itemize}
+        \item Magnification compares physical image size on camera sensor with original size of target.
+        \item To obtain actual mag. camera's eff. pixel pitch must be known.
+        $$M_{act} = \text{eff. pixel pitch}\ /\ \text{C}$$
+        \item eg: eff. pixel pitch = 3.45$\mu$m/px; C=0.17625$\mu$m\px; M$_{act}\approx$19.7X
+    \end{itemize}
+\end{itemize}
+\hrule
+`,
+  },
 ];
 
 let activeNoteId = notes[0]?.id || null;
